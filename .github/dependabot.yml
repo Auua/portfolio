@@ -12,7 +12,7 @@ updates:
     target-branch: "dependencies"
 
   - package-ecosystem: "npm"
-    directory: "/app"
+    directory: "/"
     schedule:
       interval: "monthly"
     target-branch: "dependencies"
