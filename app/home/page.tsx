@@ -1,10 +1,12 @@
 import React from 'react';
 import Sidebar from '@/app/_components/navigation/Sidebar';
 import Header from '@/app/_components/common/Header';
+import ContactForm from '@/app/_components/form/ContactForm';
 import { lorem } from '@/app/_utils/dummyData';
+import { PageItem } from '@/app/_types/types';
 import styles from './page.module.css';
 
-const mainPageItems = [
+const mainPageItems: PageItem[] = [
   {
     title: 'Home', slug: '', order: 0, icon: ['fas', 'house'],
   },
@@ -41,6 +43,10 @@ export default function Home() {
         <section className={'main__section full-background other'} id={'skills'}>
           <h2>slugger</h2>
           <p>{lorem}</p>
+        </section>
+        <section className={'main__section'} id={'contact'}>
+          <h2>Contact</h2>
+          <p><ContactForm/></p>
         </section>
       </main>
     </>
