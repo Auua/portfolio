@@ -1,0 +1,17 @@
+/* Header */
+.main__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-default);
+    margin: var(--size-default);
+}
+
+.main__header p {
+    text-align: center;
+    margin: var(--size-default);
+    font-style: oblique;
+}
+
+
