@@ -1,9 +1,27 @@
+/* Default: Colour Scheme Light & Larger devices (1000+ px) */
 :root {
-    --max-width: 1100px;
+    --full-with: 100dvw;
+    --max-width: 900px;
+    --sidebar-width: 200px;
     --border-radius: 12px;
     --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+    --background: #F5F5F5;
+    --background-secondary: #E5EEF1;
+
+    --primary: #006699;
+    --secondary: #F5DEB3;
+    --highlight: #FFA07A;
+    --text-dark: #333333;
+    --text-light: #F5F5F5;
+
+    --primary-hover: #005f8d;
+    --secondary-hover: #e3c3a8;
+    --accent-hover: #ff7f50;
+    --text-dark-hover: #222222;
+    --text-light-hover: #CCCCCC;
 
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
@@ -38,13 +56,24 @@
     --callout-border-rgb: 172, 175, 176;
     --card-rgb: 180, 185, 188;
     --card-border-rgb: 131, 134, 135;
+
+    /* paddings and margins */
+    --size-x-small: 0.25rem;
+    --size-small: 0.5rem;
+    --size-default: 1rem;
+    --size-large: 2rem;
+    --size-x-large: 3rem;
 }
 
+/* Colour Scheme Dark */
 @media (prefers-color-scheme: dark) {
     :root {
         --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
+        --background-start-rgb: 18, 22, 34;
+        --background-end-rgb: 9, 11, 17;
+
+        --background: #1B2233;
+        --background-secondary: #232C40;
 
         --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
         --secondary-glow: linear-gradient(
@@ -71,12 +100,45 @@
         --card-rgb: 100, 100, 100;
         --card-border-rgb: 200, 200, 200;
     }
+
+    html {
+        color-scheme: dark;
+        color: var(--text-light);
+    }
 }
+
+/* Smaller devices */
+@media (max-width: 1000px) {
+    :root {
+        --max-width: 100%;
+        --border-radius: 12px;
+        --sidebar-width: 40px;
+    }
+
+    .page-container {
+        gap: 5px !important;
+    }
+
+    .sidebar-container {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+    }
+
+    .sidebar__icon {
+        font-size: 24px;
+    }
+}
+
 
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+html {
+    color: var(--text-dark);
 }
 
 html,
@@ -86,7 +148,6 @@ body {
 }
 
 body {
-    color: rgb(var(--foreground-rgb));
     background: linear-gradient(
             to bottom,
             transparent,
@@ -94,13 +155,100 @@ body {
     ) rgb(var(--background-start-rgb));
 }
 
+header {
+    margin-bottom: 10px;
+}
+
 a {
     color: inherit;
     text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
+section {
+    margin: var(--size-default);
+}
+
+/* Titles */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--size-default);
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: var(--size-default);
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--size-default);
+    text-transform: uppercase;
+}
+
+/* Text */
+
+.text-bold {
+    font-weight: 600;
+}
+
+.text-small {
+    font-size: 90%;
+}
+
+/* Colors */
+.primary {
+    color: var(--primary);
+}
+
+.primary:hover {
+    color: var(--primary-hover);
+}
+
+.secondary {
+    color: var(--secondary);
+}
+
+.secondary:hover {
+    color: var(--secondary-hover);
+}
+
+.highlight {
+    color: var(--highlight);
+}
+
+.highlight:hover {
+    color: var(--accent-hover);
+}
+
+
+/* Backgrounds */
+
+.bg-primary {
+    background-color: var(--background);
+}
+
+.bg-secondary {
+    background-color: var(--background-secondary);
+}
+
+/* Margins and paddings */
+
+.padded-vertical {
+    padding: var(--size-small) 0;
+
+}
+
+/* Containers */
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    margin: 0 auto;
 }
