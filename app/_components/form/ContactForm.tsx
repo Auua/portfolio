@@ -64,8 +64,8 @@ const ContactForm = () => {
         <SuccessNotification
           title={'Thank you!'}
           message={
-            "Awesome! Your message has successfully blasted off into cyberspace, and it's currently zooming its way straight to my inbox. "
-            + "Thanks for reaching out and I'll get back to you as soon as I can!"
+            'Awesome! Your message has successfully blasted off into cyberspace, and it\'s currently zooming its way straight to my inbox. '
+            + 'Thanks for reaching out and I\'ll get back to you as soon as I can!'
           }
           close={() => closeNotification(setSuccess)}
         />
@@ -82,51 +82,42 @@ const ContactForm = () => {
         />
       )}
       <form onSubmit={handleSubmit}>
-        <div className={'form-control'}>
-          <label htmlFor={'name'}>Name</label>
-          <input
-            type={'text'}
-            id={'name'}
-            name={'name'}
-            placeholder={'Enter Your Name'}
-            className={'input-field'}
-            required
-          />
-        </div>
-        <div className={'form-control'}>
-          <label htmlFor={'email'}>Email</label>
-          <input
-            type={'email'}
-            id={'email'}
-            name={'email'}
-            placeholder={'Enter Your Email'}
-            className={'input-field'}
-            required
-          />
-        </div>
-        <div className={'form-control'}>
-          <label htmlFor={'company'}>Company</label>
-          <input
-            type={'text'}
-            id={'company'}
-            name={'company'}
-            placeholder={'Enter Your Company'}
-            className={'input-field'}
-          />
-        </div>
-
-        <div className={'form-control'}>
-          <label htmlFor={'message'}>Message</label>
-          <textarea
-            id={'message'}
-            cols={60}
-            rows={10}
-            placeholder={'Enter Your Message'}
-            name={'message'}
-            className={'input-field'}
-            required
-          ></textarea>
-        </div>
+        <label htmlFor={'name'}>Name</label>
+        <input
+          type={'text'}
+          id={'name'}
+          name={'name'}
+          placeholder={'Enter Your Name'}
+          className={'input-field'}
+          required
+        />
+        <label htmlFor={'email'}>Email</label>
+        <input
+          type={'email'}
+          id={'email'}
+          name={'email'}
+          placeholder={'Enter Your Email'}
+          className={'input-field'}
+          required
+        />
+        <label htmlFor={'company'}>Company</label>
+        <input
+          type={'text'}
+          id={'company'}
+          name={'company'}
+          placeholder={'Enter Your Company'}
+          className={'input-field'}
+        />
+        <label htmlFor={'message'}>Message</label>
+        <textarea
+          id={'message'}
+          cols={60}
+          rows={10}
+          placeholder={'Enter Your Message'}
+          name={'message'}
+          className={'input-field'}
+          required
+        ></textarea>
         <input
           type={'submit'}
           id={'submit'}
