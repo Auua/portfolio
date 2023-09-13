@@ -3,11 +3,12 @@
 import '@/app/_styles/navigation.css';
 
 import React, { useEffect, useState } from 'react';
-import { PageItem } from '@/app/_types/types';
 import Link from 'next/link';
 import Icon from '@/app/_components/common/Icon';
+import { PageMetadataPageItems } from '@prisma/client';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-const Sidebar = ({ pageItems }: { pageItems: PageItem[] }) => {
+const Sidebar = ({ pageItems }: { pageItems: PageMetadataPageItems[] }) => {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
@@ -26,7 +27,6 @@ const Sidebar = ({ pageItems }: { pageItems: PageItem[] }) => {
     sections.forEach((section) => {
       sectionObserver.observe(section);
     });
-    console.log(sections);
 
     return () => {
       sectionObserver.disconnect();
@@ -54,17 +54,17 @@ const Sidebar = ({ pageItems }: { pageItems: PageItem[] }) => {
   }, [activeSection]);
 
   return (
-    <aside className="sidebar-container">
-      <div className="sidebar">
-        <ul className="sidebar__list">
+    <aside className='sidebar-container'>
+      <div className='sidebar'>
+        <ul className='sidebar__list'>
           {pageItems.sort((a, b) => a.order - b.order).map((item) => {
             const isActive = activeSection.replace('#', '') === item.slug;
             return (
               <li key={item.slug}>
                 <Link href={`#${item.slug}`} key={`${item.slug}__link`}
                       className={`sidebar__item ${isActive ? 'sidebar__item__active' : ''}`}>
-                  <Icon icon={item.icon} className="sidebar__icon"/>
-                  <span className="sidebar__text">{item.title}</span>
+                  <Icon icon={item.icon as IconProp} className='sidebar__icon' />
+                  <span className='sidebar__text'>{item.title}</span>
                 </Link>
               </li>
             );

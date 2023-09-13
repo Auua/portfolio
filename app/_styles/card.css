@@ -1,0 +1,12 @@
+.card--skill {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--size-x-small);
+    border-radius: var(--border-radius);
+    background-color: var(--secondary);
+    border: 1px solid var(--primary);
+    box-shadow: var(--size-x-small) var(--size-x-small) var(--size-x-small) var(--primary);
+    aspect-ratio: 1 / 1;
+}

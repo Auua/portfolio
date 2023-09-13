@@ -4,12 +4,9 @@ form {
     width: 100%;
 }
 
-.form-control {
-    margin: var(--size-small);
-}
-
 label {
     font-weight: 600;
+    margin-top: var(--size-default);
     margin-bottom: var(--size-small);
     text-transform: uppercase;
 }

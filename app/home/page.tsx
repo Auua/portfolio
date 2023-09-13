@@ -1,54 +1,66 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Sidebar from '@/app/_components/navigation/Sidebar';
 import Header from '@/app/_components/common/Header';
 import ContactForm from '@/app/_components/form/ContactForm';
-import { lorem } from '@/app/_utils/dummyData';
-import { PageItem } from '@/app/_types/types';
+import { Page } from '@prisma/client';
+import { getHomePage, getPage, getTopSkills } from '@/lib/pages';
+import { SkillCard } from '@/app/_components/cards/Card';
 import styles from './page.module.css';
 
-const mainPageItems: PageItem[] = [
-  {
-    title: 'Home', slug: '', order: 0, icon: ['fas', 'house'],
-  },
-  {
-    title: 'About', slug: 'about', order: 1, icon: ['fas', 'user'],
-  }, {
-    title: 'Skills',
-    slug: 'skills',
-    order: 2,
-    icon: ['fas', 'book'],
-  }, {
-    title: 'Projects',
-    slug: 'projects',
-    order: 3,
-    icon: ['far', 'folder-open'],
-  }, {
-    title: 'Contact',
-    slug: 'contact',
-    order: 4,
-    icon: ['far', 'envelope'],
-  }];
-
-export default function Home() {
+const About = async () => {
+  const { title, desc } = await getPage('about');
   return (
-    <>
-      <Sidebar pageItems={mainPageItems}/>
+    <section className={`${styles.main__section} center`} id={'about'}>
+      <h2>{title}</h2>
+      <p>
+        {desc}
+      </p>
+    </section>
+  );
+};
+
+const TopSkills = async () => {
+  const { title, excerpt, sections } = await getTopSkills();
+  return (
+    <section className={`${styles.main__section} center`} id={'skills'}>
+      <h2>{title}</h2>
+      <p>{excerpt}</p>
+      <div className={styles.main__skills}>
+        {sections?.map(({ skills }) => skills?.map((item, index) => (
+          <div key={index} className={styles.main__skills__card}>
+            <SkillCard key={`${item.title}-card`} skill={item} size={75} />
+          </div>
+        )))}
+      </div>
+    </section>
+  );
+};
+
+export default async function Home() {
+  const data: Page = await getHomePage();
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Sidebar pageItems={data.metadata.pageItems} />
       <main className={styles.main}>
-        <Header title={'My Portfolio'}>
-          <p>
-            Web App Developer | DIY builder <br/> Unleashing creativity with
-            code, fueled by coffee, building wonders, and smashing bugs!
+        <Header title={data.title}>
+          <p style={{ whiteSpace: 'pre-line' }}>
+            {data.excerpt.replace(/\\n/g, '\n')}
           </p>
         </Header>
-        <section className={'main__section full-background other'} id={'skills'}>
-          <h2>slugger</h2>
-          <p>{lorem}</p>
-        </section>
-        <section className={'main__section'} id={'contact'}>
-          <h2>Contact</h2>
-          <p><ContactForm/></p>
-        </section>
+        <Suspense fallback={<div>Loading...</div>}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
+          <TopSkills />
+        </Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
+          <section className={styles.main__section} id={'contact'}>
+            <h2>Contact</h2>
+            <div><ContactForm /></div>
+          </section>
+        </Suspense>
       </main>
-    </>
+    </Suspense>
   );
 }

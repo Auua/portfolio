@@ -168,6 +168,10 @@ section {
     margin: var(--size-default);
 }
 
+.center {
+    align-items: center;
+}
+
 /* Titles */
 h1 {
     font-size: 2.5rem;
@@ -251,4 +255,13 @@ h3 {
     justify-content: center;
     gap: 40px;
     margin: 0 auto;
+}
+
+.page-container--full {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    margin: 0 auto;
+    width: 100dvw;
 }
