@@ -1,16 +1,10 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-export type PageItem = {
-  title: string;
-  icon: IconProp
-  slug: string;
-  order: number;
-};
-
 export type NotificationProps = {
   title: string;
   message: string;
   close?: () => void;
+  classValue?: string;
 };
 
 export type CommonNotificationProps = {
@@ -20,8 +14,3 @@ export type CommonNotificationProps = {
 };
 
 export type FullNotificationProps = NotificationProps & CommonNotificationProps;
-
-export type ParamProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-};

@@ -3,6 +3,12 @@ with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/
 
 ## Portfolio
 
+### Setups
+
+```bash
+openssl rand -base64 32
+```
+
 ### Resources used
 
 <a target="_blank" href="https://icons8.com/icon/116827/programming">Programming</a> icon

@@ -1,3 +1,34 @@
+/* Navbar */
+.navbar-container {
+    width: 100%;
+    height: 100px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--size-default);
+    background-color: var(--primary);
+    color: var(--text-light);
+}
+
+.navbar__main {
+    display: flex;
+    align-items: center;
+    padding: var(--size-small);
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 125%;
+    flex-shrink: 0;
+    gap: var(--size-small);
+}
+
 /* Sidebar */
 
 .sidebar-container {
@@ -56,8 +87,99 @@
     display: none;
 }
 
+/* smaller devices */
+@media (max-width: 1000px) {
+    .navbar ul {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+        gap: var(--size-default);
+        font-size: 120%;
+    }
+
+    .hamburger {
+        cursor: pointer;
+        justify-self: end;
+        padding: 40px 20px;
+        color: var(--text-light);
+    }
+
+    .hamburger-line {
+        background: var(--text-light);
+        display: block;
+        height: 2px;
+        position: relative;
+        width: 24px;
+
+    }
+
+    .hamburger-line::before,
+    .hamburger-line::after {
+        background: var(--text-light);
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+        width: 100%;
+    }
+
+    .hamburger-line::before {
+        top: 5px;
+    }
+
+    .hamburger-line::after {
+        top: -5px;
+    }
+
+    .hamburger-menu,
+    .hamburger-menu-content {
+        display: none;
+    }
+
+    .hamburger-menu:checked ~ .hamburger-menu-content {
+        display: flex;
+        margin-top: var(--size-default);
+    }
+
+    .hamburger-menu:checked ~ .hamburger .hamburger-line {
+        background: transparent;
+    }
+
+    .hamburger-menu:checked ~ .hamburger .hamburger-line::before {
+        transform: rotate(-45deg);
+        top: 0;
+    }
+
+    .hamburger-menu:checked ~ .hamburger .hamburger-line::after {
+        transform: rotate(45deg);
+        top: 0;
+    }
+}
+
+
 /* Larger devices */
 @media (min-width: 1000px) {
+    .navbar ul {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        flex-grow: 1;
+        gap: var(--size-default);
+        font-size: 120%;
+    }
+
+    .hamburger,
+    .hamburger-menu {
+        display: none;
+    }
+
     .sidebar__text {
         display: block;
         padding-left: var(--size-default);

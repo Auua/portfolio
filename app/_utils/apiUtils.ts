@@ -6,3 +6,5 @@ export const sendForm = async (data: object): Promise<any> => {
   });
   return response.json();
 };
+
+export default sendForm;

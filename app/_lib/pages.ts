@@ -1,21 +1,8 @@
 import prisma from './prisma';
 
-export async function getHomePage() {
-  try {
-    const home = await prisma.page.findFirst({
-      where: {
-        label: 'home',
-      },
-    });
-    return home;
-  } catch (error) {
-    return { error };
-  }
-}
-
 export async function getTopSkills() {
   try {
-    const skills = await prisma.page.findUnique({
+    const skills = await prisma.page.findUniqueOrThrow({
       where: {
         label: 'skills',
       },
@@ -33,26 +20,32 @@ export async function getTopSkills() {
     });
     return skills;
   } catch (error) {
-    return { error };
+    // TODO logging service
+    // eslint-disable-next-line no-console
+    console.error('getTopSkills', error);
+    throw error;
   }
 }
 
 export async function getPage(name: string) {
   try {
-    const page = await prisma.page.findUnique({
+    const page = await prisma.page.findUniqueOrThrow({
       where: {
         label: name,
       },
     });
     return page;
   } catch (error) {
-    return { error };
+    // TODO logging service
+    // eslint-disable-next-line no-console
+    console.error(`getPage ${name}`, error);
+    throw error;
   }
 }
 
 export async function getFullPage(name: string) {
   try {
-    const page = await prisma.page.findUnique({
+    const page = await prisma.page.findUniqueOrThrow({
       where: {
         label: name,
       },
@@ -69,6 +62,9 @@ export async function getFullPage(name: string) {
     });
     return page;
   } catch (error) {
-    return { error };
+    // TODO logging service
+    // eslint-disable-next-line no-console
+    console.error(`getFullPage ${name}`, error);
+    throw error;
   }
 }

@@ -8,5 +8,20 @@
     background-color: var(--secondary);
     border: 1px solid var(--primary);
     box-shadow: var(--size-x-small) var(--size-x-small) var(--size-x-small) var(--primary);
+    width: 100%;
+}
+
+.card--skill-image {
+    position: relative;
     aspect-ratio: 1 / 1;
+    max-width: available;
+    width: 90%;
+    margin: var(--size-x-small);
+}
+
+
+.card--skill figcaption {
+    text-align: center;
+    word-break: break-word;
+    font-size: smaller;
 }

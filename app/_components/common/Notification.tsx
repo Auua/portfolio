@@ -4,7 +4,7 @@ import '@/app/_styles/common.css';
 
 import React from 'react';
 import Icon from '@/app/_components/common/Icon';
-import { FullNotificationProps, NotificationProps } from '@/app/_types/types';
+import { FullNotificationProps, NotificationProps } from '@/app/_types/notification';
 
 const Notification = ({
   title,
@@ -19,10 +19,10 @@ const Notification = ({
     role={role}
     onClick={close && close}
   >
-    <div><Icon icon={icon}/></div>
+    <div><Icon icon={icon} /></div>
     <div>
       <p className={'text-bold padded-vertical'}>{title}</p>
-      <p className={'text-small padded-vertical'}>{message}</p>
+      <p className={'text-small padded-vertical'} style={{ whiteSpace: 'pre-line' }}>{message}</p>
     </div>
     {close && <button onClick={close}>X</button>}
   </div>
@@ -58,9 +58,9 @@ export const SuccessNotification = ({
   />
 );
 
-export const InfoNotification = ({ title, message }: NotificationProps) => (
+export const InfoNotification = ({ title, message, classValue }: NotificationProps) => (
   <Notification
-    classValue={'notification__info'}
+    classValue={`notification__info ${classValue}`}
     role={'status'}
     title={title}
     icon={['fas', 'circle-info']}

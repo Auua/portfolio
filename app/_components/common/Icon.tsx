@@ -2,7 +2,6 @@ import React from 'react';
 import { IconProp, library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 library.add(fas);
@@ -15,6 +14,6 @@ type IconProps = {
 };
 
 const Icon = ({ icon, className, style }: IconProps) => (
-  <FontAwesomeIcon icon={icon} className={className} style={style}/>
+  <FontAwesomeIcon icon={icon} className={className} style={style} />
 );
 export default Icon;

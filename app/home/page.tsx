@@ -2,33 +2,46 @@ import React, { Suspense } from 'react';
 import Sidebar from '@/app/_components/navigation/Sidebar';
 import Header from '@/app/_components/common/Header';
 import ContactForm from '@/app/_components/form/ContactForm';
-import { Page } from '@prisma/client';
-import { getHomePage, getPage, getTopSkills } from '@/lib/pages';
+import { Page, PageMetadataPageItems } from '@prisma/client';
 import { SkillCard } from '@/app/_components/cards/Card';
+import Loading from '@/app/loading';
+import { getPage, getTopSkills } from '@/app/_lib/pages';
+import { getServerSession } from 'next-auth/next';
+import options from '@/app/api/auth/[...nextauth]/options';
+import Link from 'next/link';
+import Button from '@/app/_components/common/Button';
+import { fixNewLines } from '@/app/_utils/stringUtils';
+import { SessionProps } from '@/app/_types/common';
+import { Session } from 'next-auth';
 import styles from './page.module.css';
 
 const About = async () => {
-  const { title, desc } = await getPage('about');
+  const { title, desc }: Page = await getPage('about');
   return (
     <section className={`${styles.main__section} center`} id={'about'}>
       <h2>{title}</h2>
-      <p>
-        {desc}
-      </p>
+      <div>
+        {desc.split('\n').map((text, index) => (
+          <p key={`about-${index}`} className={index > 0 ? 'text-indent' : ''}>{text}</p>))}
+      </div>
     </section>
   );
 };
 
-const TopSkills = async () => {
+const TopSkills = async ({ session }: SessionProps) => {
   const { title, excerpt, sections } = await getTopSkills();
   return (
     <section className={`${styles.main__section} center`} id={'skills'}>
       <h2>{title}</h2>
-      <p>{excerpt}</p>
+      <div>
+        <p>{excerpt}</p>
+        {session ? <Link href={'/skills'}><Button>Check out more</Button></Link>
+          : <p> Sign in to see more</p>}
+      </div>
       <div className={styles.main__skills}>
         {sections?.map(({ skills }) => skills?.map((item, index) => (
           <div key={index} className={styles.main__skills__card}>
-            <SkillCard key={`${item.title}-card`} skill={item} size={75} />
+            <SkillCard key={`${item.title}-card`} skill={item} size={100} />
           </div>
         )))}
       </div>
@@ -37,30 +50,38 @@ const TopSkills = async () => {
 };
 
 export default async function Home() {
-  const data: Page = await getHomePage();
+  const session: Session | null = await getServerSession(options as any);
+  const data: Page = await getPage('home');
+
+  const filterUnauthorizedItems = (items: PageMetadataPageItems[]) => {
+    if (!session) {
+      return items.filter((item) => !item.auth);
+    }
+    return items;
+  };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Sidebar pageItems={data.metadata.pageItems} />
+    <>
+      <Sidebar pageItems={filterUnauthorizedItems(data.metadata.pageItems)} />
       <main className={styles.main}>
         <Header title={data.title}>
           <p style={{ whiteSpace: 'pre-line' }}>
-            {data.excerpt.replace(/\\n/g, '\n')}
+            {fixNewLines(data.excerpt)}
           </p>
         </Header>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <About />
         </Suspense>
-        <Suspense fallback={<div>Loading...</div>}>
-          <TopSkills />
+        <Suspense fallback={<Loading />}>
+          <TopSkills session={session} />
         </Suspense>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <section className={styles.main__section} id={'contact'}>
             <h2>Contact</h2>
             <div><ContactForm /></div>
           </section>
         </Suspense>
       </main>
-    </Suspense>
+    </>
   );
 }
