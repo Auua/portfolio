@@ -15,7 +15,7 @@ export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
 
   if (sizes) {
     return (
-      <figure className={'card--skill'}>
+      <figure className={'card card--skill'}>
         <div className={'card--skill-image'}>
           <Image
             src={src}

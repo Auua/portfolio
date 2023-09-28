@@ -176,6 +176,19 @@ p {
     align-items: center;
 }
 
+/* list */
+ul {
+    list-style: none;
+}
+
+.nested {
+    padding-left: var(--size-large);
+}
+
+.squared {
+    list-style: square outside;
+}
+
 .visually--hidden {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
@@ -223,6 +236,14 @@ h3 {
     text-indent: var(--size-default);
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
+.preline {
+    white-space: pre-line;
+}
+
 /* Colors */
 .primary {
     color: var(--primary);
@@ -264,6 +285,14 @@ h3 {
 .padded-vertical {
     padding: var(--size-small) 0;
 
+}
+
+.padded-horizontal {
+    padding: 0 var(--size-small);
+}
+
+.padded-right {
+    padding-right: var(--size-small);
 }
 
 .margin-bottom {

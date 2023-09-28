@@ -35,11 +35,13 @@ type ProjectUrl {
 }
 
 type TimelineExtra {
-  gpa          String
-  major        String
-  minor        String
-  thesis       String
+  gpa          String?
+  major        String?
+  minor        String?
+  thesis       String?
   thesis_grade String?
+  skills       String[]
+  main         String[]
 }
 
 model Page {

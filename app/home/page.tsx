@@ -15,7 +15,7 @@ import { SessionProps } from '@/app/_types/common';
 import { Session } from 'next-auth';
 import styles from './page.module.css';
 
-const About = async () => {
+const About = async ({ session }: SessionProps) => {
   const { title, desc }: Page = await getPage('about');
   return (
     <section className={`${styles.main__section} center`} id={'about'}>
@@ -23,6 +23,8 @@ const About = async () => {
       <div>
         {desc.split('\n').map((text, index) => (
           <p key={`about-${index}`} className={index > 0 ? 'text-indent' : ''}>{text}</p>))}
+        {session ? <Link href={'/skills'}><Button>Check out more</Button></Link>
+          : <p> Sign in to see more</p>}
       </div>
     </section>
   );
@@ -65,12 +67,12 @@ export default async function Home() {
       <Sidebar pageItems={filterUnauthorizedItems(data.metadata.pageItems)} />
       <main className={styles.main}>
         <Header title={data.title}>
-          <p style={{ whiteSpace: 'pre-line' }}>
+          <p className={'preline'}>
             {fixNewLines(data.excerpt)}
           </p>
         </Header>
         <Suspense fallback={<Loading />}>
-          <About />
+          <About session={session} />
         </Suspense>
         <Suspense fallback={<Loading />}>
           <TopSkills session={session} />
