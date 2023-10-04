@@ -2,7 +2,10 @@
 
 import '@/app/_styles/card.css';
 import Image from 'next/image';
-import { Skill } from '@prisma/client';
+import { Project, Skill } from '@prisma/client';
+import Link from 'next/link';
+import Button from '@/app/_components/common/Button';
+import { Suspense } from 'react';
 
 type SkillProps = {
   skill: Skill;
@@ -31,7 +34,7 @@ export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
   }
 
   return (
-    <figure className={'card--skill'}>
+    <figure className={'card card--skill'}>
       <Image
         src={src}
         alt={skill.title}
@@ -43,4 +46,29 @@ export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
   );
 };
 
-export default SkillCard;
+export const ProjectCard = ({ project }: { project: Project }) => (
+  <Suspense fallback={'Loading project...'}>
+    <article className={'card card--project'}>
+      <figure className={'card card--project-image'}>
+        <Image
+          src={`data:image/jpg;base64,${project.pics[0]?.src}`}
+          alt={project.pics[0]?.alt ?? project.title}
+          fill={true}
+          loading='lazy'
+          sizes='100%'
+        />
+        <figcaption>
+          <h3 className={'project-title'}>{project.title}</h3>
+        </figcaption>
+      </figure>
+      <p className={'card--project-excerpt'}>
+        {project.excerpt}
+        <Link href={`projects/${project.id}`}>
+          <Button>
+            View Project
+          </Button>
+        </Link>
+      </p>
+    </article>
+  </Suspense>
+);

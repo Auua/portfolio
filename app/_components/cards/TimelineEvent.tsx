@@ -3,6 +3,7 @@ import '@/app/_styles/card.css';
 import React from 'react';
 import { Timeline, TimelineExtra } from '@prisma/client';
 import Icon from '@/app/_components/common/Icon';
+import { mapRows } from '@/app/_utils/uiUtils';
 
 const months = [
   'Jan',
@@ -18,24 +19,6 @@ const months = [
   'Nov',
   'Dec',
 ];
-
-const mapNestedList = (value: string[]) => (
-  <ul className={'squared nested'}>
-    {value.map((key) => <li key={key}>{key}</li>)}
-  </ul>
-);
-
-// eslint-disable-next-line consistent-return
-const mapValues = (key: string, value: string | null | string[]) => {
-  if (value !== null) {
-    return (
-      <>
-        <span className={'capitalize text-bold'}>{key}</span>:
-        {typeof value === 'string' ? value : mapNestedList(value)}
-      </>
-    );
-  }
-};
 
 const TimelineEvent = ({
   end,
@@ -62,7 +45,7 @@ const TimelineEvent = ({
         {extra ? (
           <ul>
             {Object.keys(extra).map((value) => (
-              <li key={`${main}_${value}`}>{mapValues(value, (extra ?? {})[value as keyof TimelineExtra])}</li>
+              mapRows({ [value]: (extra ?? {})[value as keyof TimelineExtra] })
             ))}
           </ul>
         ) : null}

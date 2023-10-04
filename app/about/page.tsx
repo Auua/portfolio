@@ -9,7 +9,7 @@ import options from '@/app/api/auth/[...nextauth]/options';
 import { redirect } from 'next/navigation';
 import { getFullPage } from '@/app/_lib/pages';
 import TimelineEvent from '@/app/_components/cards/TimelineEvent';
-import { fixNewLines } from '@/app/_utils/stringUtils';
+import { mapParagraphs } from '@/app/_utils/uiUtils';
 
 export async function generateMetadata(): Promise<Metadata> {
   const page: Page = await getFullPage('about');
@@ -39,9 +39,9 @@ const About = async () => {
         {sections?.sort((a, b) => a.order - b.order).map((item) => (
           <section key={item.subtitle} className={styles.main__section} id={item.subtitle}>
             <h2>{item.subtitle}</h2>
-            <p className={'center preline'}>
-              {fixNewLines(item.content)}
-            </p>
+            <div>
+              {mapParagraphs(item.content)}
+            </div>
             <div className={styles.timeline__section}>
               <ul className={styles.timeline}>
                 {item.timeline?.map((event) => <li key={event.id}>

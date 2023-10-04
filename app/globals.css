@@ -169,7 +169,7 @@ section {
 }
 
 p {
-    margin: var(--size-x-small);
+    margin: var(--size-default);
 }
 
 .center {

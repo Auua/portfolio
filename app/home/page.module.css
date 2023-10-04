@@ -19,6 +19,10 @@
     flex-direction: column;
 }
 
+.main__section h2 {
+    margin-top: 100px;
+}
+
 .main__skills {
     margin: 0 var(--size-large);
     width: 100%;
@@ -28,9 +32,29 @@
     place-content: center;
 }
 
-.main__skills__card {
+.main__projects {
+    margin: 0 var(--size-large);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    place-content: center;
+}
+
+.main__card {
     padding: var(--size-default);
     width: 30%;
     display: flex;
+    justify-content: center;
+}
+
+.main__card--full {
+    width: 50%;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }

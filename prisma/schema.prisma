@@ -18,15 +18,17 @@ type PageMetadata {
 }
 
 type PageMetadataPageItems {
+  auth  Boolean?
   icon  String[]
   order Int
   slug  String
   title String
-  auth  Boolean?
 }
 
-type ProjectExtra {
-  tags String[]
+type ProjectSpecs {
+  Achievements       String[]
+  Technical_Approach Json     @map("Technical Approach")
+  User_Benefits      Json     @map("User Benefits")
 }
 
 type ProjectUrl {
@@ -34,14 +36,18 @@ type ProjectUrl {
   github String
 }
 
+type Picture {
+  src String
+  alt String
+}
+
 type TimelineExtra {
-  gpa          String?
-  major        String?
-  minor        String?
-  thesis       String?
-  thesis_grade String?
-  skills       String[]
-  main         String[]
+  gpa    String?
+  main   String[]
+  major  String?
+  minor  String?
+  skills String[]
+  thesis String?
 }
 
 model Page {
@@ -63,11 +69,13 @@ model Project {
   createdAt DateTime     @default(now()) @db.Date
   desc      String
   excerpt   String
-  extra     ProjectExtra
   page      Page         @relation(fields: [pageId], references: [id])
   pageId    String       @db.ObjectId
+  specs     ProjectSpecs
+  tags      String[]
   title     String
-  url       ProjectUrl
+  url       ProjectUrl?
+  pics      Picture[]
 }
 
 model Section {

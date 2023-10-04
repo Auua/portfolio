@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import Sidebar from '@/app/_components/navigation/Sidebar';
 import Header from '@/app/_components/common/Header';
 import ContactForm from '@/app/_components/form/ContactForm';
-import { Page, PageMetadataPageItems } from '@prisma/client';
-import { SkillCard } from '@/app/_components/cards/Card';
+import { Page, PageMetadataPageItems, Project } from '@prisma/client';
+import { ProjectCard, SkillCard } from '@/app/_components/cards/Card';
 import Loading from '@/app/loading';
-import { getPage, getTopSkills } from '@/app/_lib/pages';
+import { getLatestProjects, getPage, getTopSkills } from '@/app/_lib/pages';
 import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
 import Link from 'next/link';
@@ -13,6 +13,7 @@ import Button from '@/app/_components/common/Button';
 import { fixNewLines } from '@/app/_utils/stringUtils';
 import { SessionProps } from '@/app/_types/common';
 import { Session } from 'next-auth';
+import { mapParagraphs } from '@/app/_utils/uiUtils';
 import styles from './page.module.css';
 
 const About = async ({ session }: SessionProps) => {
@@ -20,10 +21,9 @@ const About = async ({ session }: SessionProps) => {
   return (
     <section className={`${styles.main__section} center`} id={'about'}>
       <h2>{title}</h2>
-      <div>
-        {desc.split('\n').map((text, index) => (
-          <p key={`about-${index}`} className={index > 0 ? 'text-indent' : ''}>{text}</p>))}
-        {session ? <Link href={'/skills'}><Button>Check out more</Button></Link>
+      <div className={styles.description}>
+        {mapParagraphs(desc)}
+        {session ? <Link href={'/about'}><Button>Check out more</Button></Link>
           : <p> Sign in to see more</p>}
       </div>
     </section>
@@ -35,17 +35,36 @@ const TopSkills = async ({ session }: SessionProps) => {
   return (
     <section className={`${styles.main__section} center`} id={'skills'}>
       <h2>{title}</h2>
-      <div>
+      <div className={styles.description}>
         <p>{excerpt}</p>
         {session ? <Link href={'/skills'}><Button>Check out more</Button></Link>
           : <p> Sign in to see more</p>}
       </div>
       <div className={styles.main__skills}>
         {sections?.map(({ skills }) => skills?.map((item, index) => (
-          <div key={index} className={styles.main__skills__card}>
+          <div key={index} className={styles.main__card}>
             <SkillCard key={`${item.title}-card`} skill={item} size={100} />
           </div>
         )))}
+      </div>
+    </section>
+  );
+};
+
+const LatestProjects = async () => {
+  const { title, excerpt, projects } = await getLatestProjects();
+  return (
+    <section className={`${styles.main__section} center`} id={'projects'}>
+      <h2>{title}</h2>
+      <div>
+        <p>{excerpt}</p>
+      </div>
+      <div className={styles.main__projects}>
+        {projects?.map((project: Project) => (
+          <div key={project.id} className={`${styles.main__card} ${styles['main__card--full']}`}>
+            <ProjectCard project={project} />
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -77,6 +96,11 @@ export default async function Home() {
         <Suspense fallback={<Loading />}>
           <TopSkills session={session} />
         </Suspense>
+        {session ? (
+          <Suspense fallback={<Loading />}>
+            <LatestProjects />
+          </Suspense>
+        ) : null}
         <Suspense fallback={<Loading />}>
           <section className={styles.main__section} id={'contact'}>
             <h2>Contact</h2>

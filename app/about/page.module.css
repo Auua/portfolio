@@ -17,6 +17,9 @@
     align-items: center;
     justify-content: center;
     gap: var(--size-default);
+    padding: var(--size-large);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--primary);
 }
 
 .timeline__section {

@@ -8,28 +8,30 @@ import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
 import { Session } from 'next-auth';
 
+const name = process.env.NAME || 'Home';
+
 const Navbar = async () => {
   const session: Session | null = await getServerSession(options as any);
 
   const menuProps: [string, string, IconProp][] = [
     [
       'About',
-      'about',
+      '/about',
       ['fas', 'user'],
     ],
     [
       'Skills',
-      'skills',
-      ['fas', 'swatchbook'],
+      '/skills',
+      ['fas', 'hammer'],
     ],
     [
       'Projects',
-      'projects',
+      '/projects',
       ['fas', 'folder-open'],
     ],
     [
       'Contact',
-      'home#contact',
+      '/home#contact',
       ['fas', 'envelope'],
     ],
   ];
@@ -39,7 +41,7 @@ const Navbar = async () => {
       <div className={'navbar-container'}>
         <nav className={'navbar'}>
           <Link href={'/home'} className={'navbar__main'}>
-            <Icon icon={['fas', 'laptop-code']} /> Anna Luhtakanta
+            <Icon icon={['fas', 'laptop-code']} /> {name}
           </Link>
           <ul id={'menu-content'}>
             <li><AuthStatusButton session={session} /></li>
@@ -53,7 +55,7 @@ const Navbar = async () => {
     <div className={'navbar-container'}>
       <nav className={'navbar'}>
         <Link href={'/home'} className={'navbar__main'}>
-          <Icon icon={['fas', 'laptop-code']} /> Anna Luhtakanta
+          <Icon icon={['fas', 'laptop-code']} /> {name}
         </Link>
         <input className={'hamburger-menu'} type={'checkbox'} id={'hamburger-menu'} />
         <label className={'hamburger'} htmlFor={'hamburger-menu'}><span className={'hamburger-line'}></span></label>

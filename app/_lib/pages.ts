@@ -15,10 +15,37 @@ export async function getTopSkills() {
               },
             },
           },
+          orderBy: {
+            order: 'asc',
+          },
         },
       },
     });
     return skills;
+  } catch (error) {
+    // TODO logging service
+    // eslint-disable-next-line no-console
+    console.error('getTopSkills', error);
+    throw error;
+  }
+}
+
+export async function getLatestProjects() {
+  try {
+    const projects = await prisma.page.findUniqueOrThrow({
+      where: {
+        label: 'projects',
+      },
+      include: {
+        projects: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 3,
+        },
+      },
+    });
+    return projects;
   } catch (error) {
     // TODO logging service
     // eslint-disable-next-line no-console
