@@ -1,0 +1,295 @@
+/* default values for custom properties */
+:root {
+    --grid-rows: 1;
+    --grid-row: 1;
+    --grid-row-start: 1;
+    --grid-row-end: 2;
+}
+
+.timeline {
+    --line-width: 0.25rem;
+    display: grid;
+    grid-template-columns: var(--line-width) 1fr;
+    grid-auto-columns: max-content;
+    column-gap: var(--size-large);
+    list-style: none;
+    margin-inline: auto;
+}
+
+/* line */
+.timeline::before {
+    content: '';
+    grid-column: 1;
+    grid-row: 1 / span 20;
+    background: rgb(225, 225, 225);
+    border-radius: calc(var(--line-width) / 2);
+}
+
+.work_history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: var(--size-default);
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.education_history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: var(--size-default);
+    margin-top: var(--size-large);
+    grid-column: 1 / 3;
+    grid-row: 3;
+}
+
+.description-title {
+    margin: var(--size-default);
+    background-color: var(--highlight);
+    color: var(--text-dark);
+    padding: var(--size-small);
+}
+
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* rows */
+.timeline-list {
+    grid-column: 2;
+}
+
+.timeline-list:before {
+    content: attr(aria-label);
+    font-size: 120%;
+    font-weight: bold;
+    text-align: center;
+    margin: var(--size-default);
+}
+
+.timeline__work {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
+}
+
+/* rows */
+.timeline__education {
+    display: grid;
+    grid-template-rows: 3rem repeat(auto-fit, 1fr);
+    align-items: end;
+}
+
+/* row gaps */
+.timeline-list .timeline-list__item:not(:last-child) {
+    margin-bottom: var(--size-default);
+}
+
+/* card */
+.timeline-list__item {
+    --inlineP: 1.5rem;
+    margin-inline: var(--inlineP);
+    background-color: white;
+    grid-row: span 2;
+    display: grid;
+    grid-template-rows: min-content min-content;
+}
+
+.timeline__education .timeline-list__item {
+    grid-template-rows: min-content min-content min-content;
+}
+
+/* date */
+.timeline-list__item .date {
+    --dateH: 3rem;
+    height: var(--dateH);
+    margin-inline: calc(var(--inlineP) * -1);
+
+    text-align: center;
+    background-color: var(--primary);
+
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    display: flex;
+    gap: var(--size-default);
+    place-content: center;
+    align-items: center;
+    position: relative;
+
+    border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+}
+
+/* date flap */
+.timeline-list__item .date::before {
+    content: "";
+    width: var(--inlineP);
+    aspect-ratio: 1;
+    background: var(--primary);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+    position: absolute;
+    top: 100%;
+    border-radius: 0 0 100% 0;
+    right: 0;
+}
+
+/* circle */
+.timeline-list__item .date::after {
+    content: "";
+    position: absolute;
+    width: 2rem;
+    aspect-ratio: 1;
+    border: 0.3rem solid var(--primary);
+    border-radius: 50%;
+    top: 50%;
+
+    transform: translate(50%, -50%);
+    right: calc(100% + var(--size-large) + var(--line-width) / 2);
+}
+
+/* title descr */
+.timeline-list__item .title,
+.timeline-list__item .descr {
+    position: relative;
+    padding-inline: 1.5rem;
+}
+
+.timeline-list__item .title {
+    overflow: hidden;
+    padding-block-start: 1.5rem;
+    padding-block-end: 1rem;
+    font-weight: 500;
+    border-bottom: thick solid var(--background);
+}
+
+.timeline-list__item .descr {
+    padding-block-end: 1.5rem;
+}
+
+/* shadows */
+.timeline-list__item .title::before,
+.timeline-list__item .descr::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    left: 50%;
+    border-radius: 50%;
+    filter: blur(4px);
+    transform: translate(-50%, 50%);
+}
+
+.timeline-list__item .title::before {
+    bottom: calc(100% + 0.125rem);
+}
+
+.timeline-list__item .descr::before {
+    z-index: -1;
+    bottom: 0.25rem;
+}
+
+/* desc */
+.location {
+    margin: 0 0 var(--size-default) 0;
+    display: flex;
+    flex-direction: row;
+    gap: var(--size-default);
+    border: thick solid var(--highlight);
+    padding: var(--size-small);
+    width: fit-content;
+}
+
+.achievements {
+    list-style-position: outside;
+    margin-bottom: var(--size-large);
+}
+
+.skills {
+    display: flex;
+    flex-direction: row;
+    gap: var(--size-default);
+}
+
+.skill {
+    display: inline-block;
+}
+
+.skill:not(:last-child)::after {
+    content: '|';
+    padding: var(--size-small);
+}
+
+@media (min-width: 40rem) {
+    .timeline {
+        padding: var(--size-large);
+        grid-template-columns: 1fr var(--line-width) 1fr;
+    }
+
+    .timeline::before {
+        grid-column: 2;
+    }
+
+    .timeline-list:before {
+        content: '';
+    }
+
+    .work_history {
+        grid-column: 1;
+        grid-row: 1;
+        margin: 0 0 var(--size-large) 0;
+    }
+
+    .education_history {
+        grid-column: 3;
+        grid-row: 1;
+        margin: 0 0 var(--size-large) 0;
+    }
+
+
+    .timeline__work {
+        grid-template-rows: repeat(var(--grid-rows), 1fr);
+        grid-column: 1;
+    }
+
+    .timeline__education {
+        grid-template-rows: 3rem repeat(var(--grid-rows), 1fr);
+        grid-column: 3;
+    }
+
+    .timeline__education > :first-child {
+        grid-row: 2/3;
+    }
+
+    .timeline-list__item {
+        grid-row: var(--grid-row);
+    }
+
+    .timeline__work .timeline-list__item {
+        grid-row: var(--grid-row-end) / var(--grid-row-start);
+    }
+
+    .timeline__work .timeline-list__item .date::before {
+        border-radius: 0 0 0 100%;
+        left: 0;
+    }
+
+    .timeline__work .timeline-list__item .date::after {
+        transform: translate(-50%, -50%);
+        left: calc(100% + var(--size-large) + var(--line-width) / 2);
+    }
+
+    .timeline__work .timeline-list__item .date {
+        border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+    }
+}
+
+

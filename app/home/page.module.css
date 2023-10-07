@@ -1,0 +1,64 @@
+.main {
+    max-width: var(--max-width);
+    align-self: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--size-large);
+    min-height: 100vh;
+    margin: var(--size-default);
+    overflow-y: scroll;
+    background-color: #fafafa;
+}
+
+.main__section {
+    display: flex;
+    flex-direction: column;
+}
+
+.main__section h2 {
+    margin-top: 100px;
+    background-color: var(--highlight);
+    color: var(--text-dark);
+    padding: var(--size-default);
+    width: fit-content;
+}
+
+.main__skills {
+    margin: 0 var(--size-large);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    place-content: center;
+    margin-bottom: var(--size-default);
+}
+
+.main__projects {
+    margin: 0 var(--size-large);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    place-content: center;
+}
+
+.main__card {
+    padding: var(--size-default);
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.main__card--full {
+    width: 50%;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

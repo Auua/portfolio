@@ -1,0 +1,133 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--size-default);
+    margin-bottom: var(--size-default);
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.row > *:not(:last-child)::after {
+    border-right: 2px solid var(--primary);
+    content: '';
+    margin-left: var(--size-default);
+}
+
+.section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--size-default);
+}
+
+.section--full {
+    flex: 0 0 90%;
+    margin-bottom: var(--size-large);
+}
+
+.section--two-thirds {
+    background-color: white;
+    margin: var(--size-large) 0;
+    padding: var(--size-default);
+}
+
+.section--half {
+    flex: 0 0 45%;
+    margin-bottom: var(--size-large);
+    padding: var(--size-default);
+}
+
+#project .title {
+    font-weight: bold;
+    margin-bottom: calc(var(--size-default) * -1);
+    transform: translateY(calc(var(--size-default) * -1.5));
+    padding: var(--size-small);
+}
+
+#project h3.title {
+    background-color: var(--highlight);
+    inline-size: max-content;
+}
+
+
+.benefit,
+.content,
+.selection {
+    background-color: white;
+    padding: var(--size-default);
+    height: min-content;
+    margin: var(--size-large) 0;
+}
+
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    gap: var(--size-default);
+    margin: var(--size-default);
+}
+
+.collapsible {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+}
+
+input[type='checkbox'] {
+    display: none;
+}
+
+.label-toggle {
+    display: block;
+    cursor: pointer;
+    border: solid 1px var(--primary);
+    transition: all 0.25s ease-out;
+    padding: var(--size-small);
+}
+
+.toggle:checked + .label-toggle,
+.label-toggle:hover {
+    color: var(--text-light);
+    background: var(--primary);
+}
+
+.collapsible__content {
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    width: 0;
+}
+
+.toggle:checked ~ .collapsible__content {
+    height: max-content;
+    width: max-content;
+    padding: var(--size-default) var(--size-small) var(--size-small) var(--size-small);
+    transform: translateY(calc(var(--size-small) * -1));
+    border: 1px solid var(--primary);
+}
+
+.stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--size-default);
+}
+
+.tech {
+    background-color: white;
+    margin-top: var(--size-default);
+    padding: var(--size-default);
+}
+
+.title__tech {
+    background-color: var(--primary);
+    color: var(--text-light);
+}
+
+.inside-item {
+    padding-left: var(--size-default);
+    border-left: 2px solid var(--primary);
+}
