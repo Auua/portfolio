@@ -4,62 +4,50 @@ import '@/app/_styles/form.css';
 
 import { Dispatch, SetStateAction, useState } from 'react';
 import { ErrorNotification, SuccessNotification } from '@/app/_components/common/Notification';
-import { sendForm } from '@/app/_utils/apiUtils';
+import sendForm from '@/app/_actions/formActions';
+import { z } from 'zod';
+import FormDataSchema from '@/app/_lib/FormDataSchema';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const closeNotification = (setter: Dispatch<SetStateAction<boolean>>) => {
   setter(false);
 };
+
+type Inputs = z.infer<typeof FormDataSchema>;
 
 const ContactForm = () => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>({
+    resolver: zodResolver(FormDataSchema),
+  });
+
+  const processForm: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
-    setSuccess(false);
-    setError(false);
+    const result = await sendForm(data);
 
-    const formData = new FormData(event.currentTarget);
-
-    const data = {
-      username: 'portfolio',
-      avatar_url: '',
-      embeds: [
-        {
-          fields: [
-            {
-              name: 'Name',
-              value: formData.get('name'),
-            },
-            {
-              name: 'Email',
-              value: formData.get('email'),
-            },
-            {
-              name: 'Company',
-              value: formData.get('company'),
-            },
-          ],
-        },
-      ],
-      content: formData.get('message'),
-    };
-
-    try {
-      await sendForm(data);
-      setSuccess(true);
-      setLoading(false);
-      event.target.reset();
-    } catch (exception) {
+    if (!result || result.error) {
       setError(true);
-      setLoading(false);
+      setSuccess(false);
+      return;
     }
+
+    reset();
+    setLoading(false);
+    setSuccess(true);
+    setError(false);
   };
 
   return (
-    <div>
+    <div className={'contact-form'}>
       {success && (
         <SuccessNotification
           title={'Thank you!'}
@@ -70,7 +58,7 @@ const ContactForm = () => {
           close={() => closeNotification(setSuccess)}
         />
       )}
-      {error && (
+      {(error) && (
         <ErrorNotification
           title={'Sorry, something is failing...'}
           message={
@@ -81,43 +69,44 @@ const ContactForm = () => {
           close={() => closeNotification(setError)}
         />
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(processForm)}>
         <label htmlFor={'name'}>Name</label>
         <input
           type={'text'}
           id={'name'}
-          name={'name'}
           placeholder={'Enter Your Name'}
           className={'input-field'}
-          required
+          {...register('name')}
         />
+        {errors.name && <p className={'form-alert'}>{errors.name.message}</p>}
         <label htmlFor={'email'}>Email</label>
         <input
           type={'email'}
           id={'email'}
-          name={'email'}
           placeholder={'Enter Your Email'}
           className={'input-field'}
-          required
+          {...register('email')}
         />
+        {errors.email && <p className={'form-alert'}>{errors.email.message}</p>}
         <label htmlFor={'company'}>Company</label>
         <input
           type={'text'}
           id={'company'}
-          name={'company'}
           placeholder={'Enter Your Company'}
           className={'input-field'}
+          {...register('company')}
         />
+        {errors.company && <p className={'form-alert'}>{errors.company.message}</p>}
         <label htmlFor={'message'}>Message</label>
         <textarea
           id={'message'}
           cols={60}
           rows={10}
           placeholder={'Enter Your Message'}
-          name={'message'}
           className={'input-field'}
-          required
+          {...register('message')}
         ></textarea>
+        {errors.message && <p className={'form-alert'}>{errors.message.message}</p>}
         <input
           type={'submit'}
           id={'submit'}

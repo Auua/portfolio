@@ -1,7 +1,7 @@
 form {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: max-content;
 }
 
 label {
@@ -36,4 +36,18 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: var(--primary-hover);
     color: var(--text-light-hover);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+}
+
+.form-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: var(--size-default);
+    width: fit-content;
+
 }
