@@ -1,5 +1,6 @@
 import '@/app/_styles/common.css';
 import React from 'react';
+import { removeUnderscore } from '@/app/_utils/stringUtils';
 
 export const mapParagraphs = (str: string) => str.split('\n')
   .filter((text) => text !== '' || text !== undefined)
@@ -35,7 +36,7 @@ export const mapRows = (data: Record<string, any>) => {
   if (value !== null) {
     return (
       <li key={key}>
-        <span className={'capitalize text-bold'}>{key.replace('_', ' ')}</span>:
+        <span className={'capitalize text-bold'}>{removeUnderscore(key)}</span>:
         {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
         {' '}{mapValues(key, value)}
       </li>

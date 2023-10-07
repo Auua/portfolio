@@ -2,6 +2,7 @@ import '@/app/_styles/project.css';
 
 import { mapValues } from '@/app/_utils/uiUtils';
 import Icon from '@/app/_components/common/Icon';
+import { removeUnderscore } from '@/app/_utils/stringUtils';
 
 type ProjectProps = {
   title: string;
@@ -10,7 +11,7 @@ type ProjectProps = {
 
 export const TechnicalApproach = ({ title, data }: ProjectProps) => (
   <section className={'section--full'} id={title}>
-    <h2><Icon icon={['fas', 'gears']} /> {title.replace('_', ' ')}</h2>
+    <h2><Icon icon={['fas', 'gears']} /> {removeUnderscore(title)}</h2>
     <div className={'section'}>
       <div className={'selection'}>
         <h3 className={'title'}>Tech stack selection</h3>
@@ -24,7 +25,7 @@ export const TechnicalApproach = ({ title, data }: ProjectProps) => (
               <input id={key} className='toggle' type='checkbox' />
               <label htmlFor={key} className='label-toggle'>
                 <h4>
-                  {key.replace('_', ' ')}
+                  {removeUnderscore(key)}
                 </h4>
               </label>
               <div className={'collapsible__content'}>
@@ -40,7 +41,7 @@ export const TechnicalApproach = ({ title, data }: ProjectProps) => (
       <div className={'stack'}>
         {Object.entries(data.stack as Record<string, string>).map(([key, value2]) => (
           <div key={key} className={'tech'}>
-            <h4 className={'title title__tech'}>{key.replace('_', ' ')}</h4>
+            <h4 className={'title title__tech'}>{removeUnderscore(key)}</h4>
             <p className={'inside-item'}>{value2}</p>
           </div>
         ))}
@@ -51,7 +52,7 @@ export const TechnicalApproach = ({ title, data }: ProjectProps) => (
 
 export const UserBenefits = ({ title, data }: ProjectProps) => (
   <section className={'section--half'} id={title}>
-    <h2 className={'title'}><Icon icon={['fas', 'users-viewfinder']} /> {title.replace('_', ' ')}</h2>
+    <h2 className={'title'}><Icon icon={['fas', 'users-viewfinder']} /> {removeUnderscore(title)}</h2>
     {Object.entries(data as Record<string, string>).map(([key, value]) => (
       <div key={key} className={'benefit'}>
         <h3 className={'title'}>{key}</h3>

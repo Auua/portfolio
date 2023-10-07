@@ -17,14 +17,14 @@ const Notification = ({
   <div
     className={`notification ${classValue}`}
     role={role}
-    onClick={close && close}
+    onClick={close}
   >
     <div><Icon icon={icon} /></div>
     <div>
       <p className={'text-bold padded-vertical'}>{title}</p>
       <p className={'text-small padded-vertical'} style={{ whiteSpace: 'pre-line' }}>{message}</p>
     </div>
-    {close && <button onClick={close}>X</button>}
+    {close ? <button onClick={close}>X</button> : null}
   </div>
 );
 
