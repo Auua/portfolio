@@ -4,7 +4,6 @@ import '@/app/_styles/card.css';
 import Image from 'next/image';
 import { Project, Skill } from '@prisma/client';
 import Link from 'next/link';
-import Button from '@/app/_components/common/Button';
 import { Suspense } from 'react';
 
 type SkillProps = {
@@ -22,7 +21,7 @@ export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
         <div className={'card--skill-image'}>
           <Image
             src={src}
-            alt={skill.title}
+            alt={`Icon of a "${skill.title}"`}
             fill={true}
             sizes={sizes}
             style={{ objectPosition: 'top', objectFit: 'contain', padding: '0.25rem' }}
@@ -37,7 +36,7 @@ export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
     <figure className={'card card--skill'}>
       <Image
         src={src}
-        alt={skill.title}
+        alt={`Icon of a "${skill.title}"`}
         height={size}
         width={size}
       />
@@ -49,7 +48,7 @@ export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
 export const ProjectCard = ({ project }: { project: Project }) => (
   <Suspense fallback={'Loading project...'}>
     <article className={'card card--project'}>
-      <figure className={'card card--project-image'}>
+      <figure id={project.title} className={'card card--project-image'}>
         <Image
           src={`data:image/jpg;base64,${project.pics[0]?.src}`}
           alt={project.pics[0]?.alt ?? project.title}
@@ -63,10 +62,8 @@ export const ProjectCard = ({ project }: { project: Project }) => (
       </figure>
       <p className={'card--project-excerpt'}>
         {project.excerpt}
-        <Link href={`projects/${project.id}`}>
-          <Button>
-            View Project
-          </Button>
+        <Link className={'btn'} href={`projects/${project.id}`} aria-label={project.title}>
+          View Project
         </Link>
       </p>
     </article>

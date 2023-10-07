@@ -12,7 +12,7 @@ type ButtonProps = {
 const Button = ({
   error = false, children, onClick, classNames = '',
 }: ButtonProps) => (
-  <button className={`${error ? 'error' : ''} ${classNames}`} onClick={onClick}>
+  <button className={`btn ${error ? 'error' : ''} ${classNames}`} onClick={onClick}>
     {children}
   </button>
 );

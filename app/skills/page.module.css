@@ -7,12 +7,13 @@
     gap: 40px;
     padding: var(--size-large);
     margin: var(--size-default);
-    border-radius: var(--border-radius);
 }
 
 .main__section {
-    background-color: var(--background-secondary);
+    background-color: white;
     justify-content: center;
+    padding: var(--size-large);
+    border: 2px solid var(--primary);
 }
 
 .grid__main {
@@ -50,18 +51,19 @@
     text-align: center;
     padding: var(--size-small);
     font-weight: 500;
+    color: black;
 }
 
 .skill-level--0 {
-    background-color: #43993b;
+    background-color: #4aa942;
 }
 
 .skill-level--1 {
-    background-color: #59ae4f;
+    background-color: #69B266;
 }
 
 .skill-level--2 {
-    background-color: #6fc463;
+    background-color: #9bca99;
 }
 
 .skill-level--3 {

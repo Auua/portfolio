@@ -43,28 +43,31 @@ const Projects = async ({ searchParams }: {
   return (
     <Suspense fallback={<Loading />}>
       <main className={styles.main}>
-        <Header title={title} />
-        <section className={styles.section__desc} id={'description'}>
-          {mapParagraphs(desc)}
-        </section>
-        <section className={styles.section} id={'tags filter'}>
-          <Suspense fallback={<Loading />}>
-            <TagRow data={tags} />
-          </Suspense>
-        </section>
-        <Suspense fallback={<Loading />}>
-          <section className={styles.section__projects} id={'projects'}>
-            {projects.length ? (
-              <div className={styles.grid__main}>
-                {projects.map((project, index) => (
-                  <ProjectCard key={index} project={project} />
-                ))}
-              </div>
-            ) : (
-              <div>No projects found...</div>
-            )}
+        <Header title={title} type={'highlight'} />
+        <div className={styles.container}>
+          <section className={`${styles.section__desc} ${styles.upper}`} id={'description'}>
+            {mapParagraphs(desc)}
           </section>
-        </Suspense>
+          <section className={styles.section} id={'tags filter'}>
+            <Suspense fallback={<Loading />}>
+              <TagRow data={tags} />
+            </Suspense>
+          </section>
+          <Suspense fallback={<Loading />}>
+            <section className={styles.section__projects} id={'projects'}>
+              <h2 className={'visually--hidden'}>Projects</h2>
+              {projects.length ? (
+                <div className={styles.grid__main}>
+                  {projects.map((project, index) => (
+                    <ProjectCard key={index} project={project} />
+                  ))}
+                </div>
+              ) : (
+                <div>No projects found...</div>
+              )}
+            </section>
+          </Suspense>
+        </div>
       </main>
     </Suspense>
   );

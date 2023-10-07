@@ -1,11 +1,27 @@
+import '@/app/_styles/common.css';
 import React from 'react';
 
 export const mapParagraphs = (str: string) => str.split('\n')
+  .filter((text) => text !== '' || text !== undefined)
   .map((text, index) => (
     <p key={`about-${index}`} className={'preline'}>
       {text}
     </p>
   ));
+
+export const mapMultiSections = (str: string) => str.split('“')
+  .map((section, index) => {
+    if (section === '') return null;
+    const [title, content] = section.split(':”\n');
+    return (
+      <section key={`multi-section section-${index}`} className={'sub-section'}>
+        <h2>{title}</h2>
+        <div className={'sub-section__content'}>
+          {mapParagraphs(content)}
+        </div>
+      </section>
+    );
+  });
 
 export const mapNestedList = (value: string[]) => (
   <ul className={'squared nested'}>

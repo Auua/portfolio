@@ -1,4 +1,5 @@
 import prisma from '@/app/_lib/prisma';
+import { notFound } from 'next/navigation';
 
 export async function getProjectTags() {
   try {
@@ -19,9 +20,15 @@ export async function getProjectTags() {
 
 export async function getProject(id: string) {
   try {
-    const project = await prisma.project.findUniqueOrThrow({
+    const project = await prisma.project.findUnique({
       where: { id },
     });
+
+    if (!project) {
+      console.log('not found any project with id: ', id);
+      notFound();
+    }
+
     return project;
   } catch (error) {
     // TODO logging service

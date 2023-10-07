@@ -9,7 +9,6 @@ import { getLatestProjects, getPage, getTopSkills } from '@/app/_lib/pages';
 import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
 import Link from 'next/link';
-import Button from '@/app/_components/common/Button';
 import { fixNewLines } from '@/app/_utils/stringUtils';
 import { SessionProps } from '@/app/_types/common';
 import { Session } from 'next-auth';
@@ -23,7 +22,7 @@ const About = async ({ session }: SessionProps) => {
       <h2>{title}</h2>
       <div className={styles.description}>
         {mapParagraphs(desc)}
-        {session ? <Link href={'/about'}><Button>Check out more</Button></Link>
+        {session ? <Link className={'btn'} href={'/about'}>Check out more</Link>
           : <p> Sign in to see more</p>}
       </div>
     </section>
@@ -37,8 +36,6 @@ const TopSkills = async ({ session }: SessionProps) => {
       <h2>{title}</h2>
       <div className={styles.description}>
         <p>{excerpt}</p>
-        {session ? <Link href={'/skills'}><Button>Check out more</Button></Link>
-          : <p> Sign in to see more</p>}
       </div>
       <div className={styles.main__skills}>
         {sections?.map(({ skills }) => skills?.map((item, index) => (
@@ -47,6 +44,8 @@ const TopSkills = async ({ session }: SessionProps) => {
           </div>
         )))}
       </div>
+      {session ? <Link className={'btn'} href={'/skills'}>Check out more</Link>
+        : <p> Sign in to see more</p>}
     </section>
   );
 };
@@ -102,7 +101,7 @@ export default async function Home() {
           </Suspense>
         ) : null}
         <Suspense fallback={<Loading />}>
-          <section className={styles.main__section} id={'contact'}>
+          <section className={`${styles.main__section} center`} id={'contact'}>
             <h2>Contact</h2>
             <div><ContactForm /></div>
           </section>

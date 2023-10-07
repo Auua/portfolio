@@ -12,16 +12,24 @@ export const TechnicalApproach = ({ title, data }: ProjectProps) => (
   <section className={'section--full'} id={title}>
     <h2><Icon icon={['fas', 'gears']} /> {title.replace('_', ' ')}</h2>
     <div className={'section'}>
-      <p>{data['Tech Stack Selection']}</p>
+      <div className={'selection'}>
+        <h3 className={'title'}>Tech stack selection</h3>
+        <p>{data['Tech Stack Selection']}</p>
+      </div>
       {data?.features ? <div className={'section--two-thirds'}>
-        <h3>Features</h3>
-        <ul>
+        <h3 className={'title'}>Features</h3>
+        <ul className={'features'}>
           {Object.entries(data.features as Record<string, string>).map(([key, value2]) => (
             <li key={key}>
-              <h4>
-                {key.replace('_', ' ')}
-              </h4>
-              <p>{value2}</p>
+              <input id={key} className='toggle' type='checkbox' />
+              <label htmlFor={key} className='label-toggle'>
+                <h4>
+                  {key.replace('_', ' ')}
+                </h4>
+              </label>
+              <div className={'collapsible__content'}>
+                {value2}
+              </div>
             </li>
           ))}
         </ul>
@@ -29,10 +37,10 @@ export const TechnicalApproach = ({ title, data }: ProjectProps) => (
     </div>
     <div>
       <h3>Tech stack</h3>
-      <div className={'grid'}>
+      <div className={'stack'}>
         {Object.entries(data.stack as Record<string, string>).map(([key, value2]) => (
-          <div key={key}>
-            <h4>{key.replace('_', ' ')}</h4>
+          <div key={key} className={'tech'}>
+            <h4 className={'title title__tech'}>{key.replace('_', ' ')}</h4>
             <p className={'inside-item'}>{value2}</p>
           </div>
         ))}
@@ -43,19 +51,19 @@ export const TechnicalApproach = ({ title, data }: ProjectProps) => (
 
 export const UserBenefits = ({ title, data }: ProjectProps) => (
   <section className={'section--half'} id={title}>
-    <h2><Icon icon={['fas', 'users-viewfinder']} /> {title.replace('_', ' ')}</h2>
+    <h2 className={'title'}><Icon icon={['fas', 'users-viewfinder']} /> {title.replace('_', ' ')}</h2>
     {Object.entries(data as Record<string, string>).map(([key, value]) => (
-      <>
-        <h3>{key}</h3>
-        <p>{value}</p>
-      </>
+      <div key={key} className={'benefit'}>
+        <h3 className={'title'}>{key}</h3>
+        <div>{value}</div>
+      </div>
     ))}
   </section>
 );
 
 export const Achievements = ({ title, data }: ProjectProps) => (
   <section className={'section--half'} id={'achievements'}>
-    <h2><Icon icon={['fas', 'award']} /> {title}</h2>
-    <div>{mapValues(title, data)}</div>
+    <h2 className={'title'}><Icon icon={['fas', 'award']} /> {title}</h2>
+    <div className={'content'}>{mapValues(title, data)}</div>
   </section>
 );

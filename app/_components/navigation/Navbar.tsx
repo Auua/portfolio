@@ -58,7 +58,8 @@ const Navbar = async () => {
           <Icon icon={['fas', 'laptop-code']} /> {name}
         </Link>
         <input className={'hamburger-menu'} type={'checkbox'} id={'hamburger-menu'} />
-        <label className={'hamburger'} htmlFor={'hamburger-menu'}><span className={'hamburger-line'}></span></label>
+        <label className={'hamburger'} htmlFor={'hamburger-menu'}><span className={'hamburger-line'} />
+          <span className={'visually--hidden'}>menu</span></label>
         <div className={'hamburger-menu-content'}>
           <ul id={'menu-content'}>
             {menuProps.map(([title, url, icon], index) => (

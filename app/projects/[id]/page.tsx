@@ -6,7 +6,6 @@ import Header from '@/app/_components/common/Header';
 import TagRow from '@/app/_components/project/TagRow';
 import { getProject } from '@/app/_lib/projects';
 import Loading from '@/app/loading';
-import Button from '@/app/_components/common/Button';
 import LinkRow from '@/app/_components/project/LinkRow';
 import { Achievements, TechnicalApproach, UserBenefits } from '@/app/_components/project/ProjectDetails';
 
@@ -31,8 +30,8 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <Suspense fallback={<Loading />}>
       <main className={styles.main}>
-        <article className={styles.article}>
-          <Header title={data.title} />
+        <article className={styles.article} id={'project'}>
+          <Header title={data.title} type={'banner primary'} />
           <section className={styles.article__column} id={'tags'}>
             {data?.url ? <LinkRow url={data.url} /> : null}
             {data?.tags ? <TagRow data={data.tags} /> : null}
@@ -47,7 +46,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
               {data.specs.Achievements ? <Achievements title={'Achievements'} data={data.specs.Achievements} /> : null}
             </section>
           ) : null}
-          <Link href={'/projects'}><Button>Back</Button></Link>
+          <Link className={'btn'} href={'/projects'}>Back to projects</Link>
         </article>
       </main>
     </Suspense>

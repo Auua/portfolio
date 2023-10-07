@@ -35,7 +35,7 @@ const TagRow = ({ data }: { data: string[] }) => {
             <div key={index}>
               <Button
                 key={index}
-                classNames={`${params.includes(tag) ? 'highlight ' : ''
+                classNames={`${params.includes(tag) ? 'selected ' : ''
                 }`}
                 onClick={() => router.replace(`/projects${createQueryString(tag)}`)
                 }

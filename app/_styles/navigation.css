@@ -1,7 +1,7 @@
 /* Navbar */
 .navbar-container {
     width: 100%;
-    height: 100px;
+    height: 6rem;
 }
 
 .navbar {
@@ -16,6 +16,7 @@
     padding: var(--size-default);
     background-color: var(--primary);
     color: var(--text-light);
+    height: 6rem;
 }
 
 .navbar__main {
@@ -42,7 +43,6 @@
     padding: var(--size-default) 0;
     background-color: var(--background-secondary);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: var(--border-radius);
 }
 
 .sidebar ul {

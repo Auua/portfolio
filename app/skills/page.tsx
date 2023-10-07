@@ -75,7 +75,7 @@ const Skills = async () => {
   return (
     <Suspense fallback={<Loading />}>
       <main className={styles.main}>
-        <Header title={title} />
+        <Header title={title} type={'light'} />
         {sections?.map((item) => (
           <section key={item.subtitle} className={styles.main__section} id={item.subtitle}>
             <h2>{item.subtitle}</h2>
