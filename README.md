@@ -3,7 +3,23 @@ with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/
 
 ## Portfolio
 
+My portfolio project is built with Next.js, Prisma, and MongoDB.
+It's also a personal learning experience where I explore how Next.js works and how to use Prisma with MongoDB.
+
 ### Setups
+
+Environment variables are set in `.env.local` file.
+
+```code
+# .env.local
+DATABASE_URL=[database connection]
+DISCORD_WEBHOOK=[used for contact form]
+NEXTAUTH_URL=[root url for next-auth]
+NEXTAUTH_SECRET=[random secret]
+NAME=[shown in the navbar]
+```
+
+#### Generate a random secret
 
 ```bash
 openssl rand -base64 32
