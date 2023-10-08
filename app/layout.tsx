@@ -7,10 +7,10 @@ import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { Page } from '@prisma/client';
 import Loading from '@/app/loading';
-import AuthProvider from '@/app/_components/auth/AuthProvider';
 import { getPage } from '@/app/_lib/pages';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Navbar from '@/app/_components/navigation/Navbar';
+import Providers from '@/app/_components/providers/Providers';
 
 config.autoAddCss = false;
 
@@ -43,12 +43,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
     <body className={inter.className}>
-    <AuthProvider>
+    <Providers>
       <Suspense fallback={<Loading />}>
         <Navbar />
         {children}
       </Suspense>
-    </AuthProvider>
+    </Providers>
     <Analytics />
     </body>
     </html>

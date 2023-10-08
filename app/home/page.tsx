@@ -4,7 +4,6 @@ import Header from '@/app/_components/common/Header';
 import ContactForm from '@/app/_components/form/ContactForm';
 import { Page, PageMetadataPageItems, Project } from '@prisma/client';
 import { ProjectCard, SkillCard } from '@/app/_components/cards/Card';
-import Loading from '@/app/loading';
 import { getLatestProjects, getPage, getTopSkills } from '@/app/_lib/pages';
 import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
@@ -13,27 +12,28 @@ import { fixNewLines } from '@/app/_utils/stringUtils';
 import { SessionProps } from '@/app/_types/common';
 import { Session } from 'next-auth';
 import { mapParagraphs } from '@/app/_utils/uiUtils';
+import LoadingComponent from '@/app/_components/common/LoadingComponent';
 import styles from './page.module.css';
 
 const About = async ({ session }: SessionProps) => {
   const { title, desc }: Page = await getPage('about');
   return (
-    <section className={`${styles.main__section} center`} id={'about'}>
-      <h2>{title}</h2>
+    <>
+      <h2 id={`${title}--title`}>{title}</h2>
       <div className={styles.description}>
         {mapParagraphs(desc)}
-        {session ? <Link className={'btn'} href={'/about'}>Check out more</Link>
+        {session ? <Link className={'btn'} href={'/about'}>Find out more</Link>
           : <p> Sign in to see more</p>}
       </div>
-    </section>
+    </>
   );
 };
 
 const TopSkills = async ({ session }: SessionProps) => {
   const { title, excerpt, sections } = await getTopSkills();
   return (
-    <section className={`${styles.main__section} center`} id={'skills'}>
-      <h2>{title}</h2>
+    <>
+      <h2 id={`${title}--title`}>{title}</h2>
       <div className={styles.description}>
         <p>{excerpt}</p>
       </div>
@@ -46,15 +46,15 @@ const TopSkills = async ({ session }: SessionProps) => {
       </div>
       {session ? <Link className={'btn'} href={'/skills'}>Check out more</Link>
         : <p> Sign in to see more</p>}
-    </section>
+    </>
   );
 };
 
 const LatestProjects = async () => {
   const { title, excerpt, projects } = await getLatestProjects();
   return (
-    <section className={`${styles.main__section} center`} id={'projects'}>
-      <h2>{title}</h2>
+    <>
+      <h2 id={`${title}--title`}>{title}</h2>
       <div>
         <p>{excerpt}</p>
       </div>
@@ -65,7 +65,7 @@ const LatestProjects = async () => {
           </div>
         ))}
       </div>
-    </section>
+    </>
   );
 };
 
@@ -82,30 +82,38 @@ export default async function Home() {
 
   return (
     <>
-      <Sidebar pageItems={filterUnauthorizedItems(data.metadata.pageItems)} />
+      <Suspense fallback={<LoadingComponent type={'sidebar'} />}>
+        <Sidebar pageItems={filterUnauthorizedItems(data.metadata.pageItems)} narrow={false} />
+      </Suspense>
       <main className={styles.main}>
         <Header title={data.title}>
           <p className={'preline'}>
             {fixNewLines(data.excerpt)}
           </p>
         </Header>
-        <Suspense fallback={<Loading />}>
-          <About session={session} />
-        </Suspense>
-        <Suspense fallback={<Loading />}>
-          <TopSkills session={session} />
-        </Suspense>
-        {session ? (
-          <Suspense fallback={<Loading />}>
-            <LatestProjects />
+        <section className={`${styles.main__section} center`} id={'about'}>
+          <Suspense fallback={<LoadingComponent type={'information'} />}>
+            <About session={session} />
           </Suspense>
-        ) : null}
-        <Suspense fallback={<Loading />}>
-          <section className={`${styles.main__section} center`} id={'contact'}>
-            <h2>Contact</h2>
-            <div><ContactForm /></div>
+        </section>
+        <section className={`${styles.main__section} center`} id={'skills'}>
+          <Suspense fallback={<LoadingComponent type={'skills'} />}>
+            <TopSkills session={session} />
+          </Suspense>
+        </section>
+        {session ? (
+          <section className={`${styles.main__section} center`} id={'projects'}>
+            <Suspense fallback={<LoadingComponent type={'projects'} />}>
+              <LatestProjects />
+            </Suspense>
           </section>
-        </Suspense>
+        ) : null}
+        <section className={`${styles.main__section} center`} id={'contact'}>
+          <Suspense fallback={<LoadingComponent type={'contact form'} />}>
+            <h2 id={'contact--title'}>Contact</h2>
+            <div><ContactForm /></div>
+          </Suspense>
+        </section>
       </main>
     </>
   );

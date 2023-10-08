@@ -9,7 +9,9 @@ import { PageMetadataPageItems } from '@prisma/client';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Loading from '@/app/loading';
 
-const Sidebar = ({ pageItems }: { pageItems: PageMetadataPageItems[] }) => {
+const Sidebar = ({ pageItems, narrow }: {
+  pageItems: PageMetadataPageItems[], narrow: boolean
+}) => {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
@@ -56,7 +58,7 @@ const Sidebar = ({ pageItems }: { pageItems: PageMetadataPageItems[] }) => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <aside className='sidebar-container'>
+      <aside className={`sidebar-container${narrow ? '--narrow' : '--full'}`}>
         <div className='sidebar'>
           <ul className='sidebar__list'>
             {pageItems.sort((a, b) => a.order - b.order).map((item) => {
@@ -64,7 +66,7 @@ const Sidebar = ({ pageItems }: { pageItems: PageMetadataPageItems[] }) => {
               return (
                 <li key={item.slug}>
                   <Link href={`#${item.slug}`} key={`${item.slug}__link`}
-                        className={`sidebar__item ${isActive ? 'sidebar__item__active' : ''}`}>
+                        className={`sidebar__item${narrow ? '--narrow' : '--full'} ${isActive ? 'sidebar__item__active' : ''}`}>
                     <Icon icon={item.icon as IconProp} className='sidebar__icon' />
                     <span className='sidebar__text'>{item.title}</span>
                   </Link>
