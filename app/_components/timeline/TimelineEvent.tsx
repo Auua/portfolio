@@ -21,7 +21,7 @@ const months = [
 ];
 
 const Description = ({ title, description, tag }: Record<string, string>) => (
-  <div className={`${tag} description`}>
+  <div className={`${tag}_history description page-item`} id={tag}>
     <h2 className={'description-title'}>{title}</h2>
     <div>{mapParagraphs(description)}</div>
   </div>

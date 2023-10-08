@@ -16,7 +16,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: var(--size-default);
     padding: 0 var(--size-large) var(--size-x-large) var(--size-large);
     background-color: var(--secondary);
     width: 100dvw;
@@ -30,7 +30,7 @@
 
 .section__desc {
     margin: var(--size-default);
-    background-color: white;
+    background-color: var(--background-light);
     justify-content: center;
     padding: var(--size-large);
     align-self: center;
@@ -42,7 +42,7 @@
 }
 
 .section__projects {
-    background-color: white;
+    background-color: var(--background-light);
     padding: var(--size-default);
     width: 80%;
 }
@@ -76,8 +76,48 @@
 @media (max-width: 1000px) {
     .grid__main {
         display: grid;
-        grid-template-columns: 1fr;
-        padding: var(--size-default);
+        grid-template-columns: 1fr 1fr;
+        padding: var(--size-x-small);
     }
+
+    .container {
+        padding: var(--size-small);
+        gap: var(--size-small);
+    }
+
+    .section__desc {
+        padding: var(--size-default);
+        width: 90%;
+    }
+
+    .section__projects {
+        padding: var(--size-small);
+        width: 90%;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .grid__main {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: var(--size-x-small);
+    }
+
+    .container {
+        padding: var(--size-small);
+        gap: var(--size-small);
+    }
+
+    .section__desc {
+        padding: var(--size-default);
+        width: 90%;
+    }
+
+    .section__projects {
+        padding: var(--size-small);
+        width: 90%;
+    }
+
 }
 

@@ -13,11 +13,11 @@ export const TechnicalApproach = ({ title, data }: ProjectProps) => (
   <section className={'section--full'} id={title}>
     <h2><Icon icon={['fas', 'gears']} /> {removeUnderscore(title)}</h2>
     <div className={'section'}>
-      <div className={'selection'}>
+      <div className={'section--selection'}>
         <h3 className={'title'}>Tech stack selection</h3>
         <p>{data['Tech Stack Selection']}</p>
       </div>
-      {data?.features ? <div className={'section--two-thirds'}>
+      {data?.features ? <div className={'section--features'}>
         <h3 className={'title'}>Features</h3>
         <ul className={'features'}>
           {Object.entries(data.features as Record<string, string>).map(([key, value2]) => (

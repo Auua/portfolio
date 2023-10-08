@@ -4,6 +4,7 @@
     --grid-row: 1;
     --grid-row-start: 1;
     --grid-row-end: 2;
+    --inlineP: 0.8rem;
 }
 
 .timeline {
@@ -29,7 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: var(--background-light);
     padding: var(--size-default);
     grid-column: 1 / 3;
     grid-row: 1;
@@ -39,7 +40,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: var(--background-light);
     padding: var(--size-default);
     margin-top: var(--size-large);
     grid-column: 1 / 3;
@@ -94,9 +95,8 @@
 
 /* card */
 .timeline-list__item {
-    --inlineP: 1.5rem;
     margin-inline: var(--inlineP);
-    background-color: white;
+    background-color: var(--background-light);
     grid-row: span 2;
     display: grid;
     grid-template-rows: min-content min-content;
@@ -115,7 +115,7 @@
     text-align: center;
     background-color: var(--primary);
 
-    color: white;
+    color: var(--text-light);
     font-size: 1.25rem;
     font-weight: 700;
 
@@ -228,7 +228,11 @@
     padding: var(--size-small);
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 800px) {
+    :root {
+        --inlineP: 1.5rem;
+    }
+
     .timeline {
         padding: var(--size-large);
         grid-template-columns: 1fr var(--line-width) 1fr;
@@ -246,12 +250,14 @@
         grid-column: 1;
         grid-row: 1;
         margin: 0 0 var(--size-large) 0;
+        padding: 0;
     }
 
     .education_history {
         grid-column: 3;
         grid-row: 1;
         margin: 0 0 var(--size-large) 0;
+        padding: 0;
     }
 
 

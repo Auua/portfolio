@@ -9,6 +9,8 @@ import { redirect } from 'next/navigation';
 import { getFullPage } from '@/app/_lib/pages';
 import Timeline from '@/app/_components/timeline/TimelineEvent';
 import { mapMultiSections } from '@/app/_utils/uiUtils';
+import LoadingComponent from '@/app/_components/common/LoadingComponent';
+import Sidebar from '@/app/_components/navigation/Sidebar';
 
 const fetchData = () => getFullPage('about');
 
@@ -29,12 +31,15 @@ const About = async () => {
     redirect('api/auth/signin?callbackUrl=/about');
   }
 
-  const { title, sections } = (await fetchData());
+  const { title, sections, metadata } = (await fetchData());
 
   const [about, work, education] = sections.sort((a, b) => a.order - b.order);
 
   return (
     <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingComponent type={'sidebar'} />}>
+        <Sidebar pageItems={metadata.pageItems} narrow={true} />
+      </Suspense>
       <main className={styles.main}>
         <Header title={title} type={'banner'} />
         <section className={styles.section__about}>
@@ -44,6 +49,9 @@ const About = async () => {
         </section>
         <section className={styles.section__timeline}>
           <Timeline workData={work} educationData={education} />
+        </section>
+        <section className={styles.section__timeline} id={'other'}>
+          <div>other coming soon</div>
         </section>
       </main>
     </Suspense>

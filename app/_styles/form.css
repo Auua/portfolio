@@ -1,7 +1,7 @@
 form {
     display: flex;
     flex-direction: column;
-    width: max-content;
+    padding: var(--size-default);
 }
 
 label {
@@ -16,9 +16,12 @@ input[type=text], input[type=email], select, textarea {
     padding: var(--size-default) var(--size-default);
     margin: var(--size-small) 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid var(--text-color);
     border-radius: 4px;
     box-sizing: border-box;
+    background-color: var(--background-light);
+    color: var(--text-color);
+
 }
 
 input[type=submit] {
@@ -41,13 +44,13 @@ input[type=submit]:hover {
 .contact-form {
     display: flex;
     flex-direction: column;
-    width: min-content;
+
 }
 
 .form-alert {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: var(--size-default);
+    background-color: var(--notification-alert-bg);
+    color: var(--notification-alert-text);
+    padding: var(--size-small);
     width: fit-content;
-
+    font-size: smaller;
 }

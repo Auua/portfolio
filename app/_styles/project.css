@@ -26,8 +26,8 @@
     margin-bottom: var(--size-large);
 }
 
-.section--two-thirds {
-    background-color: white;
+.section--features {
+    background-color: var(--background-light);
     margin: var(--size-large) 0;
     padding: var(--size-default);
 }
@@ -53,8 +53,8 @@
 
 .benefit,
 .content,
-.selection {
-    background-color: white;
+.section--selection {
+    background-color: var(--background-light);
     padding: var(--size-default);
     height: min-content;
     margin: var(--size-large) 0;
@@ -64,7 +64,7 @@
 .features {
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
+    background-color: var(--background-light);
     gap: var(--size-default);
     margin: var(--size-default);
 }
@@ -104,7 +104,7 @@ input[type='checkbox'] {
 
 .toggle:checked ~ .collapsible__content {
     height: max-content;
-    width: max-content;
+    width: fit-content;
     padding: var(--size-default) var(--size-small) var(--size-small) var(--size-small);
     transform: translateY(calc(var(--size-small) * -1));
     border: 1px solid var(--primary);
@@ -117,7 +117,7 @@ input[type='checkbox'] {
 }
 
 .tech {
-    background-color: white;
+    background-color: var(--background-light);
     margin-top: var(--size-default);
     padding: var(--size-default);
 }
@@ -130,4 +130,19 @@ input[type='checkbox'] {
 .inside-item {
     padding-left: var(--size-default);
     border-left: 2px solid var(--primary);
+}
+
+@media (max-width: 1000px) {
+    .row {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .section--half {
+        flex-basis: 100%;
+        margin-bottom: var(--size-default);
+        padding: var(--size-small);
+    }
+
 }

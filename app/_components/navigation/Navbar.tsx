@@ -1,12 +1,13 @@
 import '@/app/_styles/navigation.css';
 
 import Link from 'next/link';
-import AuthStatusButton from '@/app/_components/auth/AuthStatusButton';
 import Icon from '@/app/_components/common/Icon';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
 import { Session } from 'next-auth';
+import DarkModeButton from '@/app/_components/common/DarkMode';
+import AuthStatusButton from '@/app/_components/common/AuthStatusButton';
 
 const name = process.env.NAME || 'Home';
 
@@ -44,6 +45,7 @@ const Navbar = async () => {
             <Icon icon={['fas', 'laptop-code']} /> {name}
           </Link>
           <ul id={'menu-content'}>
+            <li><DarkModeButton /></li>
             <li><AuthStatusButton session={session} /></li>
           </ul>
         </nav>
@@ -57,9 +59,11 @@ const Navbar = async () => {
         <Link href={'/home'} className={'navbar__main'}>
           <Icon icon={['fas', 'laptop-code']} /> {name}
         </Link>
+        <DarkModeButton />
         <input className={'hamburger-menu'} type={'checkbox'} id={'hamburger-menu'} />
         <label className={'hamburger'} htmlFor={'hamburger-menu'}><span className={'hamburger-line'} />
-          <span className={'visually--hidden'}>menu</span></label>
+          <span className={'visually--hidden'}>menu</span>
+        </label>
         <div className={'hamburger-menu-content'}>
           <ul id={'menu-content'}>
             {menuProps.map(([title, url, icon], index) => (

@@ -5,28 +5,28 @@
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    padding: var(--size-large);
-    margin: var(--size-default);
+    padding: var(--size-default);
 }
 
 .main__section {
-    background-color: white;
+    background-color: var(--background-light);
     justify-content: center;
-    padding: var(--size-large);
+    padding: var(--size-small);
     border: 2px solid var(--primary);
+    margin: 0;
 }
 
 .grid__main {
     display: grid;
-    grid-template-columns: repeat(5, auto);
-    padding: var(--size-default);
+    grid-template-columns: 1fr;
+    padding: var(--size-x-small);
     object-fit: fill;
 }
 
 .grid__level {
-    width: 15dvw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: var(--size-small);
     padding: var(--size-default);
     justify-items: center;
@@ -34,7 +34,7 @@
 }
 
 .grid__level li {
-    width: 100%;
+    flex-basis: 30%;
 }
 
 .grid__main div:first-child div:first-child {
@@ -75,28 +75,53 @@
 }
 
 
-@media (max-width: 1000px) {
+/* @media screen and (max-width: 768px)  */
+@media (min-width: 500px) and (max-width: 1000px) {
     .grid__main {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(5, auto);
         padding: var(--size-default);
         object-fit: fill;
     }
 
     .grid__level {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: var(--size-small);
         padding: var(--size-default);
         justify-items: center;
         list-style: none;
     }
 
+    .grid__level li {
+        flex-basis: 40%;
+    }
+}
+
+/* @media screen and (max-width: 480px) */
+@media (max-width: 480px) {
     .skill-level {
-        text-align: center;
-        padding: var(--size-small);
-        font-weight: 500;
         border-radius: var(--border-radius);
+    }
+}
+
+@media (min-width: 1000px) {
+    .main {
+        padding: var(--size-large);
+        margin: var(--size-default);
+    }
+
+    .main__section {
+        padding: var(--size-large);
+        margin: var(--size-default);
+    }
+
+    .grid__main {
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+        padding: var(--size-default);
+        object-fit: fill;
     }
 }
 
