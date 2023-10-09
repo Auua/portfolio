@@ -40,3 +40,9 @@ m.</a>
 on <a href="https://unsplash.com/photos/ZzOa5G8hSPI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
 Unsplash</a>
   
+
+## Notes
+
+Current approach to use dynamic information from db with icons is not ideal. 
+Loading all the fontawesome libraries at the beginning so that whatever icons can be give 
+leads to heavy first load. Think of a way to change this... 
