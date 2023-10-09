@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -29,6 +30,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.5.4",
     "@types/bcrypt": "^5.0.0",
     "@types/node": "20.8.3",
     "@types/react": "18.2.25",

@@ -26,7 +26,7 @@ const Sidebar = ({ pageItems, narrow }: {
       { threshold: 0.5 },
     );
 
-    const sections = document.querySelectorAll('.main__section, .main__header, [class*=\'main__section\']');
+    const sections = document.querySelectorAll('.main__section, .main__header, [class*=\'main__section\'], .page-item');
     sections.forEach((section) => {
       sectionObserver.observe(section);
     });

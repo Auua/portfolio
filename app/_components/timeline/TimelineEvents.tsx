@@ -4,21 +4,7 @@ import React from 'react';
 import { Section, Timeline, TimelineExtra } from '@prisma/client';
 import Icon from '@/app/_components/common/Icon';
 import { mapParagraphs, mapRows } from '@/app/_utils/uiUtils';
-
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
+import { months } from '@/app/_utils/stringUtils';
 
 const Description = ({ title, description, tag }: Record<string, string>) => (
   <div className={`${tag}_history description page-item`} id={tag}>
