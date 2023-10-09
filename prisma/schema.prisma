@@ -79,15 +79,16 @@ model Project {
 }
 
 model Section {
-  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  id       String             @id @default(auto()) @map("_id") @db.ObjectId
   content  String
-  order    Int        @default(1)
-  page     Page       @relation(fields: [pageId], references: [id])
-  pageId   String     @db.ObjectId
+  order    Int                @default(1)
+  page     Page               @relation(fields: [pageId], references: [id])
+  pageId   String             @db.ObjectId
   subtitle String
   tag      String
   skills   Skill[]
   timeline Timeline[]
+  others   OtherAchievement[]
 }
 
 model Skill {
@@ -110,6 +111,19 @@ model Timeline {
   sectionId String         @db.ObjectId
   start     DateTime       @db.Date
   sub       String
+}
+
+model OtherAchievement {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  type      OtherTypes
+  title     String
+  date      DateTime   @db.Date
+  validity  DateTime?  @db.Date
+  desc      String
+  excerpt   String?
+  note      String?
+  section   Section    @relation(fields: [sectionId], references: [id])
+  sectionId String     @db.ObjectId
 }
 
 model Account {
@@ -155,4 +169,17 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum OtherTypes {
+  Award
+  Certification
+  Competition
+  Conference
+  Course
+  Hackathon
+  Other
+  Publication
+  Scholarship
+  Volunteer
 }

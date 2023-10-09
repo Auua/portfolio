@@ -81,6 +81,7 @@ export async function getFullPage(name: string) {
           include: {
             skills: true,
             timeline: true,
+            others: true,
           },
         },
         projects: true,

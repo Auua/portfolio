@@ -7,10 +7,11 @@ import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
 import { redirect } from 'next/navigation';
 import { getFullPage } from '@/app/_lib/pages';
-import Timeline from '@/app/_components/timeline/TimelineEvent';
+import Timeline from '@/app/_components/timeline/TimelineEvents';
 import { mapMultiSections } from '@/app/_utils/uiUtils';
 import LoadingComponent from '@/app/_components/common/LoadingComponent';
 import Sidebar from '@/app/_components/navigation/Sidebar';
+import Others from '@/app/_components/timeline/Others';
 
 const fetchData = () => getFullPage('about');
 
@@ -33,7 +34,7 @@ const About = async () => {
 
   const { title, sections, metadata } = (await fetchData());
 
-  const [about, work, education] = sections.sort((a, b) => a.order - b.order);
+  const [about, work, education, others] = sections.sort((a, b) => a.order - b.order);
 
   return (
     <Suspense fallback={<Loading />}>
@@ -50,8 +51,8 @@ const About = async () => {
         <section className={styles.section__timeline}>
           <Timeline workData={work} educationData={education} />
         </section>
-        <section className={styles.section__timeline} id={'other'}>
-          <div>other coming soon</div>
+        <section className={`${styles.section__timeline} page-item`} id={'other'}>
+          <Others otherData={others} />
         </section>
       </main>
     </Suspense>

@@ -119,9 +119,13 @@
 
     .grid__main {
         display: grid;
-        grid-template-columns: repeat(5, auto);
+        grid-template-columns: repeat(5, minmax(auto, 1fr));
         padding: var(--size-default);
         object-fit: fill;
+    }
+
+    .grid__level li {
+        flex-basis: 45%;
     }
 }
 
