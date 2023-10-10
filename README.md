@@ -43,6 +43,5 @@ Unsplash</a>
 
 ## Notes
 
-Current approach to use dynamic information from db with icons is not ideal. 
-Loading all the fontawesome libraries at the beginning so that whatever icons can be give 
-leads to heavy first load. Think of a way to change this... 
+Changed the fontawesome load-all-approach to load just used icons (currently known). 
+Once SWC might handle also fontawesome dynamic macro loading use that then...

@@ -28,12 +28,12 @@ const Navbar = async () => {
     [
       'Projects',
       '/projects',
-      ['fas', 'folder-open'],
+      ['far', 'folder-open'],
     ],
     [
       'Contact',
       '/home#contact',
-      ['fas', 'envelope'],
+      ['far', 'envelope'],
     ],
   ];
 

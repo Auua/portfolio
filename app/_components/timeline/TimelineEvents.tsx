@@ -1,10 +1,9 @@
 import '@/app/_styles/timeline.css';
 
 import React from 'react';
-import { Section, Timeline, TimelineExtra } from '@prisma/client';
-import Icon from '@/app/_components/common/Icon';
-import { mapParagraphs, mapRows } from '@/app/_utils/uiUtils';
-import { months } from '@/app/_utils/stringUtils';
+import { Section, Timeline } from '@prisma/client';
+import { mapParagraphs } from '@/app/_utils/uiUtils';
+import TimelineEvent from '@/app/_components/timeline/TimelineEvent';
 
 const Description = ({ title, description, tag }: Record<string, string>) => (
   <div className={`${tag}_history description page-item`} id={tag}>
@@ -61,38 +60,9 @@ const TimeLine = ({ workData, educationData }: {
           <li key={id}
               className={'timeline-list__item'}
               style={calculateWorkGridRows(end, start) as React.CSSProperties}>
-            <div className='date'><Icon
-              icon={['fas', 'suitcase']} /> {end ? `${months[end.getMonth()]} ${end.getFullYear()}` : 'Present'}</div>
-            <h3 className='title'>{main}</h3>
-            <div className='descr'>
-              <p className={'location'}>
-                <Icon icon={['fas', 'location']} /> <span
-                className={'text-bold'}>{sub}</span>{`- ${location}`}
-              </p>
-              {extra ? (
-                <>
-                  {extra.main ? (
-                    <div aria-label={'Achievements'} className={'achievements'} id={'achievements'}>
-                      <ul>
-                        {extra.main.map((task) => (
-                          <li key={task}>{task}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-                  {extra.skills ? (
-                    <div className={'skills'} aria-label={'Skills'}>
-                      <Icon icon={['fas', 'code']} />
-                      <ul>
-                        {extra.skills.map((skill) => (
-                          <li key={skill} className={'skill'}>{skill}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-                </>
-              ) : null}
-            </div>
+            <TimelineEvent {...{
+              end, location, main, sub, extra, isWorkType: true,
+            }} />
           </li>))}
       </ul>
       <Description title={educationData.subtitle}
@@ -105,22 +75,9 @@ const TimeLine = ({ workData, educationData }: {
           <li key={id}
               className={'timeline-list__item'}
               style={calculateEducationGridRows(end, index) as React.CSSProperties}>
-            <div className='date'><Icon
-              icon={['fas', 'graduation-cap']} /> {end ? `${months[end.getMonth()]} ${end.getFullYear()}` : 'Present'}
-            </div>
-            <h3 className='title'>{main}</h3>
-            <div className='descr'>
-              <p className={'location'}>
-                <Icon icon={['fas', 'location']} /> <span className={'text-bold'}>{sub}</span>{` - ${location}`}
-              </p>
-              {extra ? (
-                <ul className={'none'}>
-                  {Object.keys(extra).map((value) => (
-                    mapRows({ [value]: (extra ?? {})[value as keyof TimelineExtra] })
-                  ))}
-                </ul>
-              ) : null}
-            </div>
+              <TimelineEvent {...{
+                main, end, sub, location, extra, isWorkType: false,
+              }} />
           </li>))}
       </ul>
     </div>);
