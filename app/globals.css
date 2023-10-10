@@ -335,6 +335,12 @@ h4 {
     padding-top: 6rem;
 }
 
+.page-container--full.padded {
+    position: absolute;
+    top: 0;
+    padding-top: 10rem;
+}
+
 /* Loader */
 .loading {
     height: 100%;
