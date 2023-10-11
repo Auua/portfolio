@@ -21,7 +21,7 @@ export async function getTopSkills() {
         },
       },
     });
-    console.info('getTopSkills', skills);
+    console.info('getTopSkills');
     return skills;
   } catch (error) {
     console.error('getTopSkills', error);
@@ -44,10 +44,10 @@ export async function getLatestProjects() {
         },
       },
     });
-    console.info('getLatestProjects', projects);
+    console.info('getLatestProjects');
     return projects;
   } catch (error) {
-    console.error('getTopSkills', error);
+    console.error('getLatestProjects', error);
     throw error;
   }
 }
@@ -59,7 +59,7 @@ export async function getPage(name: string) {
         label: name,
       },
     });
-    console.info(`getPage ${name}`, page);
+    console.info(`getPage ${name}`);
     return page;
   } catch (error) {
     console.error(`getPage ${name}`, error);
@@ -85,7 +85,7 @@ export async function getFullPage(name: string) {
       },
 
     });
-    console.info(`getFullPage ${name}`, page);
+    console.info(`getFullPage ${name}`);
     return page;
   } catch (error) {
     console.error(`getFullPage ${name}`, error);
