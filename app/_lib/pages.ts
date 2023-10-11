@@ -1,4 +1,5 @@
-import prisma from './prisma';
+import logger from '@/app/_lib/logger';
+import prisma from '@/app/_lib/prisma';
 
 export async function getTopSkills() {
   try {
@@ -21,11 +22,10 @@ export async function getTopSkills() {
         },
       },
     });
+    logger.info('getTopSkills', skills);
     return skills;
   } catch (error) {
-    // TODO logging service
-    // eslint-disable-next-line no-console
-    console.error('getTopSkills', error);
+    logger.error('getTopSkills', error);
     throw error;
   }
 }
@@ -45,11 +45,10 @@ export async function getLatestProjects() {
         },
       },
     });
+    logger.info('getLatestProjects', projects);
     return projects;
   } catch (error) {
-    // TODO logging service
-    // eslint-disable-next-line no-console
-    console.error('getTopSkills', error);
+    logger.error('getTopSkills', error);
     throw error;
   }
 }
@@ -61,11 +60,10 @@ export async function getPage(name: string) {
         label: name,
       },
     });
+    logger.info(`getPage ${name}`, page);
     return page;
   } catch (error) {
-    // TODO logging service
-    // eslint-disable-next-line no-console
-    console.error(`getPage ${name}`, error);
+    logger.error(`getPage ${name}`, error);
     throw error;
   }
 }
@@ -88,11 +86,10 @@ export async function getFullPage(name: string) {
       },
 
     });
+    logger.info(`getFullPage ${name}`, page);
     return page;
   } catch (error) {
-    // TODO logging service
-    // eslint-disable-next-line no-console
-    console.error(`getFullPage ${name}`, error);
+    logger.error(`getFullPage ${name}`, error);
     throw error;
   }
 }
