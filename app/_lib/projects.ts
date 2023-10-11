@@ -1,6 +1,5 @@
 import prisma from '@/app/_lib/prisma';
 import { notFound } from 'next/navigation';
-import logger from '@/app/_lib/logger';
 
 export async function getProjectTags() {
   try {
@@ -10,10 +9,10 @@ export async function getProjectTags() {
       },
     });
     const allTags = [...new Set(projectTags.map(({ tags }) => tags).flat())];
-    logger.info('getProjectTags', allTags);
+    console.info('getProjectTags', allTags);
     return allTags;
   } catch (error) {
-    logger.error('getProjectTags', error);
+    console.error('getProjectTags', error);
     throw error;
   }
 }
@@ -25,13 +24,13 @@ export async function getProject(id: string) {
     });
 
     if (!project) {
-      logger.warn('not found any project with id: ', id);
+      console.warn('not found any project with id: ', id);
       notFound();
     }
-    logger.info('getProject', project);
+    console.info('getProject', project);
     return project;
   } catch (error) {
-    logger.error(`getProject ${id}`, error);
+    console.error(`getProject ${id}`, error);
     throw error;
   }
 }
@@ -49,7 +48,7 @@ export async function getFilteredProjects(params?: string[]) {
           createdAt: 'desc',
         },
       });
-      logger.info(`getFilteredProjects ${params}`, projects);
+      console.info(`getFilteredProjects ${params}`, projects);
       return projects;
     }
     const projects = await prisma.project.findMany({
@@ -57,11 +56,11 @@ export async function getFilteredProjects(params?: string[]) {
         createdAt: 'desc',
       },
     });
-    logger.info('getProjects', projects);
+    console.info('getProjects', projects);
 
     return projects;
   } catch (error) {
-    logger.error(`getFilteredProjects ${params}`, error);
+    console.error(`getFilteredProjects ${params}`, error);
     throw error;
   }
 }

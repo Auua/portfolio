@@ -1,4 +1,3 @@
-import logger from '@/app/_lib/logger';
 import prisma from '@/app/_lib/prisma';
 
 export async function getTopSkills() {
@@ -22,10 +21,10 @@ export async function getTopSkills() {
         },
       },
     });
-    logger.info('getTopSkills', skills);
+    console.info('getTopSkills', skills);
     return skills;
   } catch (error) {
-    logger.error('getTopSkills', error);
+    console.error('getTopSkills', error);
     throw error;
   }
 }
@@ -45,10 +44,10 @@ export async function getLatestProjects() {
         },
       },
     });
-    logger.info('getLatestProjects', projects);
+    console.info('getLatestProjects', projects);
     return projects;
   } catch (error) {
-    logger.error('getTopSkills', error);
+    console.error('getTopSkills', error);
     throw error;
   }
 }
@@ -60,10 +59,10 @@ export async function getPage(name: string) {
         label: name,
       },
     });
-    logger.info(`getPage ${name}`, page);
+    console.info(`getPage ${name}`, page);
     return page;
   } catch (error) {
-    logger.error(`getPage ${name}`, error);
+    console.error(`getPage ${name}`, error);
     throw error;
   }
 }
@@ -86,10 +85,10 @@ export async function getFullPage(name: string) {
       },
 
     });
-    logger.info(`getFullPage ${name}`, page);
+    console.info(`getFullPage ${name}`, page);
     return page;
   } catch (error) {
-    logger.error(`getFullPage ${name}`, error);
+    console.error(`getFullPage ${name}`, error);
     throw error;
   }
 }

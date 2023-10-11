@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import logger from '@/app/_lib/logger';
 import prisma from '@/app/_lib/prisma';
 
 // For Dashboard;
@@ -12,21 +11,21 @@ export default async function checkUser(username: string, password: string) {
       where: { username },
     });
     if (!user) {
-      logger.warn('not found any user with username: ', username);
+      console.warn('not found any user with username: ', username);
       return null;
     }
 
     const match = await bcrypt.compare(password, user.password);
 
     if (match) {
-      logger.info('user logged in ', username);
+      console.info('user logged in ', username);
       return user;
     }
 
-    logger.warn('user tried to login with a wrong password ', username);
+    console.warn('user tried to login with a wrong password ', username);
     return null;
   } catch (error) {
-    logger.error(`checkUser ${username}`, error);
+    console.error(`checkUser ${username}`, error);
     throw error;
   }
 }
