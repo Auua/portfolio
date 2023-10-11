@@ -9,7 +9,7 @@ export async function getProjectTags() {
       },
     });
     const allTags = [...new Set(projectTags.map(({ tags }) => tags).flat())];
-    console.info('getProjectTags', allTags);
+    console.info('getProjectTags');
     return allTags;
   } catch (error) {
     console.error('getProjectTags', error);
@@ -27,7 +27,7 @@ export async function getProject(id: string) {
       console.warn('not found any project with id: ', id);
       notFound();
     }
-    console.info('getProject', project);
+    console.info('getProject');
     return project;
   } catch (error) {
     console.error(`getProject ${id}`, error);
@@ -48,7 +48,7 @@ export async function getFilteredProjects(params?: string[]) {
           createdAt: 'desc',
         },
       });
-      console.info(`getFilteredProjects ${params}`, projects);
+      console.info(`getFilteredProjects ${params}`);
       return projects;
     }
     const projects = await prisma.project.findMany({
@@ -56,7 +56,7 @@ export async function getFilteredProjects(params?: string[]) {
         createdAt: 'desc',
       },
     });
-    console.info('getProjects', projects);
+    console.info('getProjects');
 
     return projects;
   } catch (error) {
