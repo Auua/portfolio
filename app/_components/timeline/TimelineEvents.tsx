@@ -14,8 +14,12 @@ const Description = ({ title, description, tag }: Record<string, string>) => (
 
 type TimelineEventProps = Section & { timeline: Timeline[] };
 
-const TimeLine = ({ workData, educationData }: {
-  workData: TimelineEventProps, educationData: TimelineEventProps
+const TimeLine = ({
+  workData,
+  educationData,
+}: {
+  workData: TimelineEventProps;
+  educationData: TimelineEventProps;
 }) => {
   const { timeline: work } = workData;
   const { timeline: education } = educationData;
@@ -34,53 +38,90 @@ const TimeLine = ({ workData, educationData }: {
 
   const calculateWorkGridRows = (end: Date | null, start: Date) => {
     const endPoint = currentYear - (end?.getFullYear() ?? currentYear) + 1;
-    const startPoint = endPoint + (end?.getFullYear() ?? currentYear) - start.getFullYear();
-    return ({
+    const startPoint =
+      endPoint + (end?.getFullYear() ?? currentYear) - start.getFullYear();
+    return {
       '--grid-row-end': endPoint,
       '--grid-row-start': startPoint,
-    });
+    };
   };
 
   const calculateEducationGridRows = (end: Date | null, index: number) => {
-    if (educationEventsBeforeWork > 0 && education.length - index <= educationEventsBeforeWork) {
+    if (
+      educationEventsBeforeWork > 0 &&
+      education.length - index <= educationEventsBeforeWork
+    ) {
       return { '--grid-row': -(education.length - index) };
     }
-    return ({ '--grid-row': currentYear - (end?.getFullYear() ?? currentYear) + 1 });
+    return {
+      '--grid-row': currentYear - (end?.getFullYear() ?? currentYear) + 1,
+    };
   };
 
   return (
     <div className={'timeline'}>
-      <Description title={workData.subtitle}
-                   description={workData.content}
-                   tag={workData.tag} />
-      <ul aria-label={'Work Experience'} className={'timeline-list timeline__work'} style={customStyle}>
-        {work.map(({
-          id, start, end, location, main, sub, extra,
-        }) => (
-          <li key={id}
-              className={'timeline-list__item'}
-              style={calculateWorkGridRows(end, start) as React.CSSProperties}>
-            <TimelineEvent {...{
-              end, location, main, sub, extra, isWorkType: true,
-            }} />
-          </li>))}
+      <Description
+        title={workData.subtitle}
+        description={workData.content}
+        tag={workData.tag}
+      />
+      <ul
+        aria-label={'Work Experience'}
+        className={'timeline-list timeline__work'}
+        style={customStyle}
+      >
+        {work.map(({ id, start, end, location, main, sub, extra }) => (
+          <li
+            key={id}
+            className={'timeline-list__item'}
+            style={calculateWorkGridRows(end, start) as React.CSSProperties}
+          >
+            <TimelineEvent
+              {...{
+                end,
+                location,
+                main,
+                sub,
+                extra,
+                isWorkType: true,
+              }}
+            />
+          </li>
+        ))}
       </ul>
-      <Description title={educationData.subtitle}
-                   description={educationData.content}
-                   tag={educationData.tag} />
-      <ul aria-label={'Education'} className={'timeline-list timeline__education'} style={customStyle}>
-        {education.map(({
-          id, end, location, main, sub, extra,
-        }, index) => (
-          <li key={id}
-              className={'timeline-list__item'}
-              style={calculateEducationGridRows(end, index) as React.CSSProperties}>
-              <TimelineEvent {...{
-                main, end, sub, location, extra, isWorkType: false,
-              }} />
-          </li>))}
+      <Description
+        title={educationData.subtitle}
+        description={educationData.content}
+        tag={educationData.tag}
+      />
+      <ul
+        aria-label={'Education'}
+        className={'timeline-list timeline__education'}
+        style={customStyle}
+      >
+        {education.map(({ id, end, location, main, sub, extra }, index) => (
+          <li
+            key={id}
+            className={'timeline-list__item'}
+            style={
+              calculateEducationGridRows(end, index) as React.CSSProperties
+            }
+          >
+            <TimelineEvent
+              {...{
+                main,
+                end,
+                sub,
+                location,
+                extra,
+                isWorkType: false,
+              }}
+            />
+          </li>
+        ))}
       </ul>
-    </div>);
+    </div>
+  );
 };
 
 export default TimeLine;

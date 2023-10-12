@@ -13,7 +13,10 @@ type SkillProps = {
 };
 
 export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
-  const src = skill.svg.charAt(0) === '<' ? `data:image/svg+xml;utf8,${encodeURIComponent(skill.svg)}` : skill.svg;
+  const src =
+    skill.svg.charAt(0) === '<'
+      ? `data:image/svg+xml;utf8,${encodeURIComponent(skill.svg)}`
+      : skill.svg;
 
   if (sizes) {
     return (
@@ -24,7 +27,11 @@ export const SkillCard = ({ skill, size = 50, sizes }: SkillProps) => {
             alt={`Icon of a "${skill.title}"`}
             fill={true}
             sizes={sizes}
-            style={{ objectPosition: 'top', objectFit: 'contain', padding: '0.25rem' }}
+            style={{
+              objectPosition: 'top',
+              objectFit: 'contain',
+              padding: '0.25rem',
+            }}
           />
         </div>
         <figcaption>{skill.title}</figcaption>
@@ -53,8 +60,8 @@ export const ProjectCard = ({ project }: { project: Project }) => (
           src={`data:image/jpg;base64,${project.pics[0]?.src}`}
           alt={project.pics[0]?.alt ?? project.title}
           fill={true}
-          loading='lazy'
-          sizes='100%'
+          loading="lazy"
+          sizes="100%"
         />
         <figcaption>
           <h3 className={'project-title'}>{project.title}</h3>
@@ -62,7 +69,11 @@ export const ProjectCard = ({ project }: { project: Project }) => (
       </figure>
       <p className={'card--project-excerpt'}>
         {project.excerpt}
-        <Link className={'btn'} href={`projects/${project.id}`} aria-label={project.title}>
+        <Link
+          className={'btn'}
+          href={`projects/${project.id}`}
+          aria-label={project.title}
+        >
           View Project
         </Link>
       </p>

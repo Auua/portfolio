@@ -16,7 +16,10 @@ const options: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials) throw new Error('Credentials are needed for login');
-        const user: User | null = await checkUser(credentials?.username, credentials?.password);
+        const user: User | null = await checkUser(
+          credentials?.username,
+          credentials?.password,
+        );
         if (user) {
           return user;
         }

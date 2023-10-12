@@ -25,12 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const fetchData = () => getFullPage('skills');
 
-const Level = ({ level, data }: {
-  level: Levels;
-  data: Skill[];
-}) => (
+const Level = ({ level, data }: { level: Levels; data: Skill[] }) => (
   <div>
-    <div className={` ${styles['skill-level']} ${styles[`skill-level--${level}`]} text-black`}>
+    <div
+      className={` ${styles['skill-level']} ${
+        styles[`skill-level--${level}`]
+      } text-black`}
+    >
       {Levels[level]}
     </div>
     <ul className={styles.grid__level}>
@@ -44,25 +45,27 @@ const Level = ({ level, data }: {
 );
 
 const Skills = async () => {
-  const session = await getServerSession(options as any);
+  const session = await getServerSession(options as never);
 
   if (!session) {
     redirect('api/auth/signin?callbackUrl=/skills');
   }
 
-  const { title, desc, sections } = (await fetchData());
+  const { title, desc, sections } = await fetchData();
 
   const skills = new Map();
-  sections?.sort((a, b) => a.order - b.order).forEach((item) => {
-    item?.skills?.forEach((skill) => {
-      const key = `${item.tag}:${skill.level}`;
-      if (skills.has(key)) {
-        skills.set(key, [...skills.get(key), skill]);
-      } else {
-        skills.set(key, [skill]);
-      }
+  sections
+    ?.sort((a, b) => a.order - b.order)
+    .forEach((item) => {
+      item?.skills?.forEach((skill) => {
+        const key = `${item.tag}:${skill.level}`;
+        if (skills.has(key)) {
+          skills.set(key, [...skills.get(key), skill]);
+        } else {
+          skills.set(key, [skill]);
+        }
+      });
     });
-  });
 
   const levels: Levels[] = [
     Levels.Expert,
@@ -77,7 +80,11 @@ const Skills = async () => {
       <main className={styles.main}>
         <Header title={title} type={'light'} />
         {sections?.map((item) => (
-          <section key={item.subtitle} className={styles.main__section} id={item.subtitle}>
+          <section
+            key={item.subtitle}
+            className={styles.main__section}
+            id={item.subtitle}
+          >
             <h2>{item.subtitle}</h2>
             <div className={styles.grid__main}>
               {levels.map((level) => (
@@ -90,7 +97,11 @@ const Skills = async () => {
             </div>
           </section>
         ))}
-        <InfoNotification title={'About levels'} message={fixNewLines(desc)} classValue={'margin-bottom'} />
+        <InfoNotification
+          title={'About levels'}
+          message={fixNewLines(desc)}
+          classValue={'margin-bottom'}
+        />
       </main>
     </Suspense>
   );

@@ -4,15 +4,21 @@ import React from 'react';
 
 type ButtonProps = {
   error?: boolean;
-  children: any;
+  children: React.ReactNode;
   onClick?: () => void;
   classNames?: string;
 };
 
 const Button = ({
-  error = false, children, onClick, classNames = '',
+  error = false,
+  children,
+  onClick,
+  classNames = '',
 }: ButtonProps) => (
-  <button className={`btn ${error ? 'error' : ''} ${classNames}`} onClick={onClick}>
+  <button
+    className={`btn ${error ? 'error' : ''} ${classNames}`}
+    onClick={onClick}
+  >
     {children}
   </button>
 );

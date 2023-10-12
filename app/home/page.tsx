@@ -22,8 +22,13 @@ const About = async ({ session }: SessionProps) => {
       <h2 id={`${title}--title`}>{title}</h2>
       <div className={styles.description}>
         {mapParagraphs(desc)}
-        {session ? <Link className={'btn'} href={'/about'}>Find out more</Link>
-          : <p> Sign in to see more</p>}
+        {session ? (
+          <Link className={'btn'} href={'/about'}>
+            Find out more
+          </Link>
+        ) : (
+          <p> Sign in to see more</p>
+        )}
       </div>
     </>
   );
@@ -38,14 +43,22 @@ const TopSkills = async ({ session }: SessionProps) => {
         <p>{excerpt}</p>
       </div>
       <div className={styles.main__skills}>
-        {sections?.map(({ skills }) => skills?.map((item, index) => (
-          <div key={index} className={styles.main__card}>
-            <SkillCard key={`${item.title}-card`} skill={item} size={100} />
-          </div>
-        )))}
+        {sections?.map(
+          ({ skills }) =>
+            skills?.map((item, index) => (
+              <div key={index} className={styles.main__card}>
+                <SkillCard key={`${item.title}-card`} skill={item} size={100} />
+              </div>
+            )),
+        )}
       </div>
-      {session ? <Link className={'btn'} href={'/skills'}>Check out more</Link>
-        : <p> Sign in to see more</p>}
+      {session ? (
+        <Link className={'btn'} href={'/skills'}>
+          Check out more
+        </Link>
+      ) : (
+        <p> Sign in to see more</p>
+      )}
     </>
   );
 };
@@ -60,7 +73,10 @@ const LatestProjects = async () => {
       </div>
       <div className={styles.main__projects}>
         {projects?.map((project: Project) => (
-          <div key={project.id} className={`${styles.main__card} ${styles['main__card--full']}`}>
+          <div
+            key={project.id}
+            className={`${styles.main__card} ${styles['main__card--full']}`}
+          >
             <ProjectCard project={project} />
           </div>
         ))}
@@ -70,7 +86,7 @@ const LatestProjects = async () => {
 };
 
 export default async function Home() {
-  const session: Session | null = await getServerSession(options as any);
+  const session: Session | null = await getServerSession(options as never);
   const data: Page = await getPage('home');
 
   const filterUnauthorizedItems = (items: PageMetadataPageItems[]) => {
@@ -83,13 +99,14 @@ export default async function Home() {
   return (
     <>
       <Suspense fallback={<LoadingComponent type={'sidebar'} />}>
-        <Sidebar pageItems={filterUnauthorizedItems(data.metadata.pageItems)} narrow={false} />
+        <Sidebar
+          pageItems={filterUnauthorizedItems(data.metadata.pageItems)}
+          narrow={false}
+        />
       </Suspense>
       <main className={styles.main}>
         <Header title={data.title}>
-          <p className={'preline'}>
-            {fixNewLines(data.excerpt)}
-          </p>
+          <p className={'preline'}>{fixNewLines(data.excerpt)}</p>
         </Header>
         <section className={`${styles.main__section} center`} id={'about'}>
           <Suspense fallback={<LoadingComponent type={'information'} />}>
@@ -111,7 +128,9 @@ export default async function Home() {
         <section className={`${styles.main__section} center`} id={'contact'}>
           <Suspense fallback={<LoadingComponent type={'contact form'} />}>
             <h2 id={'contact--title'}>Contact</h2>
-            <div><ContactForm /></div>
+            <div>
+              <ContactForm />
+            </div>
           </Suspense>
         </section>
       </main>

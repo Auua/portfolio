@@ -3,7 +3,10 @@
 import '@/app/_styles/form.css';
 
 import { Dispatch, SetStateAction, useState } from 'react';
-import { ErrorNotification, SuccessNotification } from '@/app/_components/common/Notification';
+import {
+  ErrorNotification,
+  SuccessNotification,
+} from '@/app/_components/common/Notification';
 import sendForm from '@/app/_actions/formActions';
 import { z } from 'zod';
 import FormDataSchema from '@/app/_lib/FormDataSchema';
@@ -52,19 +55,19 @@ const ContactForm = () => {
         <SuccessNotification
           title={'Thank you!'}
           message={
-            'Awesome! Your message has successfully blasted off into cyberspace, and it\'s currently zooming its way straight to my inbox. '
-            + 'Thanks for reaching out and I\'ll get back to you as soon as I can!'
+            "Awesome! Your message has successfully blasted off into cyberspace, and it's currently zooming its way straight to my inbox. " +
+            "Thanks for reaching out and I'll get back to you as soon as I can!"
           }
           close={() => closeNotification(setSuccess)}
         />
       )}
-      {(error) && (
+      {error && (
         <ErrorNotification
           title={'Sorry, something is failing...'}
           message={
-            'Oops, it looks like something went wrong and your message was unable to be sent. '
-            + 'Please try again later, or if the problem persists, feel free to contact me through LinkedIn. '
-            + 'I apologize for the inconvenience and appreciate your understanding.'
+            'Oops, it looks like something went wrong and your message was unable to be sent. ' +
+            'Please try again later, or if the problem persists, feel free to contact me through LinkedIn. ' +
+            'I apologize for the inconvenience and appreciate your understanding.'
           }
           close={() => closeNotification(setError)}
         />
@@ -96,7 +99,9 @@ const ContactForm = () => {
           className={'input-field'}
           {...register('company')}
         />
-        {errors.company && <p className={'form-alert'}>{errors.company.message}</p>}
+        {errors.company && (
+          <p className={'form-alert'}>{errors.company.message}</p>
+        )}
         <label htmlFor={'message'}>Message</label>
         <textarea
           id={'message'}
@@ -106,7 +111,9 @@ const ContactForm = () => {
           className={'input-field'}
           {...register('message')}
         ></textarea>
-        {errors.message && <p className={'form-alert'}>{errors.message.message}</p>}
+        {errors.message && (
+          <p className={'form-alert'}>{errors.message.message}</p>
+        )}
         <input
           type={'submit'}
           id={'submit'}

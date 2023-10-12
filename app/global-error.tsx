@@ -13,15 +13,15 @@ export default function GlobalError({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <html>
-    <body>
-    <main className={'page-container--full center'}>
-      <Header title={'Hmm.. We are facing some issues at the moment'} />
-      <Button error onClick={() => reset()}>
-        Try again
-      </Button>
-    </main>
-    </body>
+    <html lang={'en'}>
+      <body>
+        <main className={'page-container--full center'}>
+          <Header title={'Hmm.. We are facing some issues at the moment'} />
+          <Button error onClick={() => reset()}>
+            Try again
+          </Button>
+        </main>
+      </body>
     </html>
   );
 }

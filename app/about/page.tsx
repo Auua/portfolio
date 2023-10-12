@@ -26,15 +26,17 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const About = async () => {
-  const session = await getServerSession(options as any);
+  const session = await getServerSession(options as never);
 
   if (!session) {
     redirect('api/auth/signin?callbackUrl=/about');
   }
 
-  const { title, sections, metadata } = (await fetchData());
+  const { title, sections, metadata } = await fetchData();
 
-  const [about, work, education, others] = sections.sort((a, b) => a.order - b.order);
+  const [about, work, education, others] = sections.sort(
+    (a, b) => a.order - b.order,
+  );
 
   return (
     <Suspense fallback={<Loading />}>
@@ -51,7 +53,10 @@ const About = async () => {
         <section className={styles.section__timeline}>
           <Timeline workData={work} educationData={education} />
         </section>
-        <section className={`${styles.section__timeline} page-item`} id={'other'}>
+        <section
+          className={`${styles.section__timeline} page-item`}
+          id={'other'}
+        >
           <Others otherData={others} />
         </section>
       </main>

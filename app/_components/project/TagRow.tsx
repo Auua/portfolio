@@ -35,9 +35,11 @@ const TagRow = ({ data }: { data: string[] }) => {
             <div key={index}>
               <Button
                 key={index}
-                classNames={`${params.includes(tag) ? 'selected ' : ''
-                }`}
-                onClick={() => router.replace(`/projects${createQueryString(tag)}`, { scroll: false })
+                classNames={`${params.includes(tag) ? 'selected ' : ''}`}
+                onClick={() =>
+                  router.replace(`/projects${createQueryString(tag)}`, {
+                    scroll: false,
+                  })
                 }
               >
                 {tag}

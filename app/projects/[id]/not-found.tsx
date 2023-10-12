@@ -10,7 +10,9 @@ export default function NotFound() {
           <Icon icon={['fas', 'magnifying-glass']} style={{ height: '3rem' }} />
         </Header>
         <p>Could not find any project with the specs</p>
-        <Link className={'btn'} href='/projects'>Return Projects</Link>
+        <Link className={'btn'} href="/projects">
+          Return Projects
+        </Link>
       </main>
     </div>
   );

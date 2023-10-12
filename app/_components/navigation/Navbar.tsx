@@ -12,29 +12,13 @@ import AuthStatusButton from '@/app/_components/common/AuthStatusButton';
 const name = process.env.NAME || 'Home';
 
 const Navbar = async () => {
-  const session: Session | null = await getServerSession(options as any);
+  const session: Session | null = await getServerSession(options as never);
 
   const menuProps: [string, string, IconProp][] = [
-    [
-      'About',
-      '/about',
-      ['fas', 'user'],
-    ],
-    [
-      'Skills',
-      '/skills',
-      ['fas', 'hammer'],
-    ],
-    [
-      'Projects',
-      '/projects',
-      ['far', 'folder-open'],
-    ],
-    [
-      'Contact',
-      '/home#contact',
-      ['far', 'envelope'],
-    ],
+    ['About', '/about', ['fas', 'user']],
+    ['Skills', '/skills', ['fas', 'hammer']],
+    ['Projects', '/projects', ['far', 'folder-open']],
+    ['Contact', '/home#contact', ['far', 'envelope']],
   ];
 
   if (!session) {
@@ -45,8 +29,12 @@ const Navbar = async () => {
             <Icon icon={['fas', 'laptop-code']} /> {name}
           </Link>
           <ul id={'menu-content'}>
-            <li><DarkModeButton /></li>
-            <li><AuthStatusButton session={session} /></li>
+            <li>
+              <DarkModeButton />
+            </li>
+            <li>
+              <AuthStatusButton session={session} />
+            </li>
           </ul>
         </nav>
       </div>
@@ -60,8 +48,13 @@ const Navbar = async () => {
           <Icon icon={['fas', 'laptop-code']} /> {name}
         </Link>
         <DarkModeButton />
-        <input className={'hamburger-menu'} type={'checkbox'} id={'hamburger-menu'} />
-        <label className={'hamburger'} htmlFor={'hamburger-menu'}><span className={'hamburger-line'} />
+        <input
+          className={'hamburger-menu'}
+          type={'checkbox'}
+          id={'hamburger-menu'}
+        />
+        <label className={'hamburger'} htmlFor={'hamburger-menu'}>
+          <span className={'hamburger-line'} />
           <span className={'visually--hidden'}>menu</span>
         </label>
         <div className={'hamburger-menu-content'}>
@@ -73,7 +66,9 @@ const Navbar = async () => {
                 </Link>
               </li>
             ))}
-            <li key={'auth'}><AuthStatusButton session={session} /></li>
+            <li key={'auth'}>
+              <AuthStatusButton session={session} />
+            </li>
           </ul>
         </div>
       </nav>
