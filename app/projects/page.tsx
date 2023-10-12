@@ -25,10 +25,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Projects = async ({ searchParams }: {
+const Projects = async ({
+  searchParams,
+}: {
   searchParams: Record<string, string | string[] | undefined>;
 }) => {
-  const session = await getServerSession(options as any);
+  const session = await getServerSession(options as never);
 
   if (!session) {
     redirect('api/auth/signin?callbackUrl=/projects');
@@ -45,7 +47,10 @@ const Projects = async ({ searchParams }: {
       <main className={styles.main}>
         <Header title={title} type={'highlight'} />
         <div className={styles.container}>
-          <section className={`${styles.section__desc} ${styles.upper}`} id={'description'}>
+          <section
+            className={`${styles.section__desc} ${styles.upper}`}
+            id={'description'}
+          >
             {mapParagraphs(desc)}
           </section>
           <section className={styles.section} id={'tags filter'}>

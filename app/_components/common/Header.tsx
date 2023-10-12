@@ -2,7 +2,7 @@ import React from 'react';
 
 type HeaderProps = {
   title: string;
-  children?: any;
+  children?: React.ReactNode;
   type?: string;
 };
 const Header = ({ title, type, children }: HeaderProps) => (

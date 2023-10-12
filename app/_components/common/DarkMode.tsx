@@ -18,10 +18,15 @@ const DarkModeButton = () => {
   }
 
   return (
-    <Button classNames={'end'} onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}>
-      {theme === 'dark'
-        ? <Icon icon={['far', 'moon']} style={{ fontSize: '24px' }} />
-        : <Icon icon={['far', 'sun']} style={{ fontSize: '24px' }} />}
+    <Button
+      classNames={'end'}
+      onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}
+    >
+      {theme === 'dark' ? (
+        <Icon icon={['far', 'moon']} style={{ fontSize: '24px' }} />
+      ) : (
+        <Icon icon={['far', 'sun']} style={{ fontSize: '24px' }} />
+      )}
     </Button>
   );
 };

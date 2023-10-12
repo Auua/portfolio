@@ -17,12 +17,14 @@ export default function Error({ error, reset }: ErrorProps) {
     <div className={'page-container--full height center bg-primary'}>
       <main className={'main__page'}>
         <Header title={'Error occurred'}>
-          <Icon icon={['fas', 'triangle-exclamation']} style={{ height: '3rem' }} className={'highlight'} />
+          <Icon
+            icon={['fas', 'triangle-exclamation']}
+            style={{ height: '3rem' }}
+            className={'highlight'}
+          />
         </Header>
         <p>Something went wrong! Unable to fetch data...</p>
-        <Button onClick={() => reset()}>
-          Try again
-        </Button>
+        <Button onClick={() => reset()}>Try again</Button>
       </main>
     </div>
   );

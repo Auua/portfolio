@@ -8,7 +8,6 @@ export default async function AuthStatusButton({ session }: SessionProps) {
       <Link href={'/api/auth/signout'}>
         <Icon icon={['fas', 'arrow-right-to-bracket']} /> Sign out
       </Link>
-
     );
   }
   return (

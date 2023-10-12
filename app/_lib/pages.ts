@@ -83,7 +83,6 @@ export async function getFullPage(name: string) {
         },
         projects: true,
       },
-
     });
     console.info(`getFullPage ${name}`);
     return page;

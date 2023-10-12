@@ -1,13 +1,34 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "airbnb-base",
-    "airbnb-typescript"
+    "airbnb/hooks",
+    "airbnb-typescript/base",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "rules": {
-    "no-unused-vars": "warn"
-  }
+    "no-unused-vars": "warn",
+    "react/react-in-jsx-scope": "off"
+  },
+  "plugins": ["testing-library", "react", "react-hooks", "import", "@typescript-eslint" ],
+  "overrides": [
+    // Only uses Testing Library lint rules in test files
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
 }

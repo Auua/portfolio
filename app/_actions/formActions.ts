@@ -43,11 +43,17 @@ export default async function sendForm(formData: Inputs) {
       },
       body: JSON.stringify(data),
     });
-    return { error: false, message: 'Thank You for Your message. I will contact You soon.' };
+    return {
+      error: false,
+      message: 'Thank You for Your message. I will contact You soon.',
+    };
   } catch (error) {
     // TODO logging service
     // eslint-disable-next-line no-console
     console.error(error);
-    return { error: true, message: 'Something went wrong. Please try again later.' };
+    return {
+      error: true,
+      message: 'Something went wrong. Please try again later.',
+    };
   }
 }

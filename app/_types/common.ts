@@ -10,6 +10,6 @@ export type SessionProps = {
 };
 
 export type ParamProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
