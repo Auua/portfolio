@@ -3,15 +3,10 @@ import styles from '@/app/projects/page.module.css';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/app/_components/common/Header';
-import TagRow from '@/app/_components/project/TagRow';
 import { getProject } from '@/app/_lib/projects';
 import Loading from '@/app/loading';
-import LinkRow from '@/app/_components/project/LinkRow';
-import {
-  Achievements,
-  TechnicalApproach,
-  UserBenefits,
-} from '@/app/_components/project/ProjectDetails';
+import Links from '@/app/projects/_components/Links';
+import ProjectSpecsSection from '@/app/projects/_components/ProjectSpecsSection';
 
 const fetchData = (id: string) => getProject(id);
 
@@ -36,37 +31,13 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
       <main className={styles.main}>
         <article className={styles.article} id={'project'}>
           <Header title={data.title} type={'banner primary'} />
-          <section className={styles.article__column} id={'tags'}>
-            {data?.url ? <LinkRow url={data.url} /> : null}
-            {data?.tags ? <TagRow data={data.tags} /> : null}
-          </section>
+          <Links url={data.url} tags={data.tags} />
           {data.desc ? (
             <section className={styles.section__desc} id={'description'}>
               {data.desc}
             </section>
           ) : null}
-          {data.specs ? (
-            <section className={styles.section} id={'specifics'}>
-              {data.specs.Technical_Approach ? (
-                <TechnicalApproach
-                  title={'Technical_Approach'}
-                  data={data.specs.Technical_Approach}
-                />
-              ) : null}
-              {data.specs.User_Benefits ? (
-                <UserBenefits
-                  title={'User Benefits'}
-                  data={data.specs.User_Benefits}
-                />
-              ) : null}
-              {data.specs.Achievements ? (
-                <Achievements
-                  title={'Achievements'}
-                  data={data.specs.Achievements}
-                />
-              ) : null}
-            </section>
-          ) : null}
+          {data.specs ? <ProjectSpecsSection {...data.specs} /> : null}
           <Link className={'btn'} href={'/projects'}>
             Back to projects
           </Link>

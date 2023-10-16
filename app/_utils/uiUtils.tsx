@@ -16,10 +16,20 @@ export const mapMultiSections = (str: string) =>
   str.split('“').map((section, index) => {
     if (section === '') return null;
     const [title, content] = section.split(':”\n');
+    if (content) {
+      return (
+        <section
+          key={`multi-section section-${index}`}
+          className={'sub-section'}
+        >
+          <h2>{title}</h2>
+          <div className={'sub-section__content'}>{mapParagraphs(content)}</div>
+        </section>
+      );
+    }
     return (
       <section key={`multi-section section-${index}`} className={'sub-section'}>
-        <h2>{title}</h2>
-        <div className={'sub-section__content'}>{mapParagraphs(content)}</div>
+        <div className={'sub-section__content'}>{mapParagraphs(title)}</div>
       </section>
     );
   });

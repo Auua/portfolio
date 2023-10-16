@@ -8,10 +8,10 @@ import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
 import { redirect } from 'next/navigation';
 import { getFullPage } from '@/app/_lib/pages';
-import TagRow from '@/app/_components/project/TagRow';
 import { getFilteredProjects, getProjectTags } from '@/app/_lib/projects';
-import { ProjectCard } from '@/app/_components/cards/Card';
 import { mapParagraphs } from '@/app/_utils/uiUtils';
+import TagRow from '@/app/projects/_components/TagRow';
+import ProjectSection from '@/app/projects/_components/ProjectSection';
 
 const fetchData = () => getFullPage('projects');
 
@@ -33,14 +33,16 @@ const Projects = async ({
   const session = await getServerSession(options as never);
 
   if (!session) {
-    redirect('api/auth/signin?callbackUrl=/projects');
+    return redirect('api/auth/signin?callbackUrl=/projects');
   }
 
-  const { title, desc } = await fetchData();
-  const tags = await getProjectTags();
   const searchTags = searchParams?.tags?.toString().split(',');
 
-  const projects = await getFilteredProjects(searchTags || undefined);
+  const [{ title, desc }, tags, projects] = await Promise.all([
+    fetchData(),
+    getProjectTags(),
+    getFilteredProjects(searchTags || undefined),
+  ]);
 
   return (
     <Suspense fallback={<Loading />}>
@@ -59,18 +61,7 @@ const Projects = async ({
             </Suspense>
           </section>
           <Suspense fallback={<Loading />}>
-            <section className={styles.section__projects} id={'projects'}>
-              <h2 className={'visually--hidden'}>Projects</h2>
-              {projects.length ? (
-                <div className={styles.grid__main}>
-                  {projects.map((project, index) => (
-                    <ProjectCard key={index} project={project} />
-                  ))}
-                </div>
-              ) : (
-                <div>No projects found...</div>
-              )}
-            </section>
+            <ProjectSection projects={projects} />
           </Suspense>
         </div>
       </main>

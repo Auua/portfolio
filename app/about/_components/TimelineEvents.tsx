@@ -3,7 +3,7 @@ import '@/app/_styles/timeline.css';
 import React from 'react';
 import { Section, Timeline } from '@prisma/client';
 import { mapParagraphs } from '@/app/_utils/uiUtils';
-import TimelineEvent from '@/app/_components/timeline/TimelineEvent';
+import TimelineEvent from '@/app/about/_components/TimelineEvent';
 
 const Description = ({ title, description, tag }: Record<string, string>) => (
   <div className={`${tag}_history description page-item`} id={tag}>
