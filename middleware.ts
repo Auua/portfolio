@@ -3,9 +3,7 @@ import { withAuth } from 'next-auth/middleware';
 // More on how NextAuth.js middleware works: https://next-auth.js.org/configuration/nextjs#middleware
 export default withAuth(
   (req) => {
-    // TODO: logging service
-    // eslint-disable-next-line no-console
-    console.log(req.nextauth.token);
+    console.info(req.nextauth.token);
   },
   {
     callbacks: {

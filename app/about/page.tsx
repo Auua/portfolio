@@ -3,15 +3,15 @@ import Header from '@/app/_components/common/Header';
 import styles from '@/app/about/page.module.css';
 import { Metadata } from 'next';
 import Loading from '@/app/loading';
-import { getServerSession } from 'next-auth/next';
-import options from '@/app/api/auth/[...nextauth]/options';
-import { redirect } from 'next/navigation';
 import { getFullPage } from '@/app/_lib/pages';
-import Timeline from '@/app/_components/timeline/TimelineEvents';
 import { mapMultiSections } from '@/app/_utils/uiUtils';
 import LoadingComponent from '@/app/_components/common/LoadingComponent';
 import Sidebar from '@/app/_components/navigation/Sidebar';
-import Others from '@/app/_components/timeline/Others';
+import Others from '@/app/about/_components/Others';
+import TimelineEvents from '@/app/about/_components/TimelineEvents';
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth/next';
+import options from '@/app/api/auth/[...nextauth]/options';
 
 const fetchData = () => getFullPage('about');
 
@@ -29,7 +29,7 @@ const About = async () => {
   const session = await getServerSession(options as never);
 
   if (!session) {
-    redirect('api/auth/signin?callbackUrl=/about');
+    return redirect('api/auth/signin?callbackUrl=/about');
   }
 
   const { title, sections, metadata } = await fetchData();
@@ -51,7 +51,7 @@ const About = async () => {
           </div>
         </section>
         <section className={styles.section__timeline}>
-          <Timeline workData={work} educationData={education} />
+          <TimelineEvents workData={work} educationData={education} />
         </section>
         <section
           className={`${styles.section__timeline} page-item`}
