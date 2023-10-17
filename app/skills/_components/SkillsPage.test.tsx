@@ -1,4 +1,4 @@
-import { renderComponent } from '@/__tests__/testUtils';
+import { renderComponent } from '@/__tests__/__utils__/testUtils';
 import React from 'react';
 import SkillsPage from '@/app/skills/_components/SkillsPage';
 import { getByText, screen } from '@testing-library/react';

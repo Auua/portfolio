@@ -45,3 +45,6 @@ Unsplash</a>
 
 Changed the fontawesome load-all-approach to load just used icons (currently known). 
 Once SWC might handle also fontawesome dynamic macro loading use that then...
+
+Fixing needed: 
+- Prisma calls are not cached (not using fetch which Nextjs handles), so they are called on every request - fix this.

@@ -16,9 +16,7 @@ import {
   faLaptopCode,
   faLocation,
   faMagnifyingGlass,
-  faMoon,
   faSuitcase,
-  faSun,
   faTriangleExclamation,
   faUser,
   faUserNinja,
@@ -26,7 +24,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faFolderOpen } from '@fortawesome/free-regular-svg-icons';
+import {
+  faEnvelope,
+  faFolderOpen,
+  faMoon,
+  faSun,
+} from '@fortawesome/free-regular-svg-icons';
 
 library.add(
   faLaptopCode,

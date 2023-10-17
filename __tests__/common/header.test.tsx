@@ -4,7 +4,7 @@
 
 import { screen } from '@testing-library/react';
 import Header from '@/app/_components/common/Header';
-import { renderComponent } from '@/__tests__/testUtils';
+import { renderComponent } from '@/__tests__/__utils__/testUtils';
 
 describe('Header', () => {
   it('renders with only title', () => {
