@@ -2,12 +2,13 @@
 
 import '@/app/_styles/navigation.css';
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Link from 'next/link';
 import Icon from '@/app/_components/common/Icon';
 import { PageMetadataPageItems } from '@prisma/client';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Loading from '@/app/loading';
+import { useHashChange, usePageScroll } from '@/app/_hooks';
 
 const Sidebar = ({
   pageItems,
@@ -17,50 +18,23 @@ const Sidebar = ({
   narrow: boolean;
 }) => {
   const [activeSection, setActiveSection] = useState('');
+  const scrollToSection = (targetId: string) => {
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      const offset = targetSection.offsetTop - 110;
+      window.scrollTo({ top: offset, behavior: 'instant' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+    setActiveSection(`#${targetId}`);
+  };
 
-  useEffect(() => {
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(`#${entry.target.id}`);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
+  const handleActiveSection = (position: string) => {
+    setActiveSection(position);
+  };
 
-    const sections = document.querySelectorAll(
-      ".main__section, .main__header, [class*='main__section'], .page-item",
-    );
-    sections.forEach((section) => {
-      sectionObserver.observe(section);
-    });
-
-    return () => {
-      sectionObserver.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      const { hash } = window.location;
-      setActiveSection(hash);
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    // Initial setup
-    handleHashChange();
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    window.location.hash = activeSection;
-  }, [activeSection]);
+  useHashChange(handleActiveSection);
+  usePageScroll(handleActiveSection);
 
   return (
     <Suspense fallback={<Loading />}>
@@ -74,8 +48,10 @@ const Sidebar = ({
                 return (
                   <li key={item.slug}>
                     <Link
+                      scroll={false}
                       href={`#${item.slug}`}
                       key={`${item.slug}__link`}
+                      onClick={() => scrollToSection(item.slug)}
                       className={`sidebar__item${
                         narrow ? '--narrow' : '--full'
                       } ${isActive ? 'sidebar__item__active' : ''}`}

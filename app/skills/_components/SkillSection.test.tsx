@@ -1,9 +1,8 @@
 import SkillSection from '@/app/skills/_components/SkillSection';
-import { screen } from '@testing-library/react';
 import { skillMock } from '@/__mocks__/skill';
 import { sectionMock } from '@/__mocks__/section';
 import { Skill } from '@prisma/client';
-import { renderComponent } from '@/__tests__/testUtils';
+import { renderComponent, screen } from '@/__tests__/__utils__/testUtils';
 
 const skills = [
   skillMock('skill1', true, 'Proficient'),
@@ -29,7 +28,11 @@ skills.forEach((skill) => {
 
 describe('SkillSection', () => {
   it('should render a section with a title and a grid of skills for each level', () => {
-    renderComponent(<SkillSection section={section} skills={mappedSkills} />);
+    renderComponent(
+      <main>
+        <SkillSection section={section} skills={mappedSkills} />
+      </main>,
+    );
 
     const header = screen.getByRole('heading', { level: 2 });
     expect(header.innerHTML).toEqual('Subtitle of the section Test Subtitle');
@@ -54,7 +57,11 @@ describe('SkillSection', () => {
       }
     });
 
-    renderComponent(<SkillSection section={section} skills={emptyMap} />);
+    renderComponent(
+      <main>
+        <SkillSection section={section} skills={emptyMap} />
+      </main>,
+    );
 
     const header = screen.getByRole('heading', { level: 2 });
     expect(header.innerHTML).toEqual('Subtitle of the section Test Subtitle');

@@ -31,6 +31,22 @@
     gap: var(--size-small);
 }
 
+.link {
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    background-color: var(--primary);
+    width: fit-content;
+    transform: scale(1);
+    transition: .3s ease-in-out;
+}
+
+.link:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+    transition: .3s ease-in-out;
+}
+
 /* Sidebar */
 .sidebar {
     position: fixed;

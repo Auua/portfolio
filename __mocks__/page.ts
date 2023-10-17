@@ -30,6 +30,20 @@ export const pageMetaDataMock = {
       slug: 'page-item-2',
       title: 'Page Item 2',
     },
+    {
+      auth: true,
+      icon: ['far', 'icon3'],
+      order: 3,
+      slug: 'page-item-3',
+      title: 'Page Item 3',
+    },
+    {
+      auth: false,
+      icon: ['far', 'icon4'],
+      order: 4,
+      slug: 'page-item-4',
+      title: 'Page Item 4',
+    },
   ],
 };
 

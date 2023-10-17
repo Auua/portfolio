@@ -25,7 +25,7 @@ const Navbar = async () => {
     return (
       <div className={'navbar-container'}>
         <nav className={'navbar'}>
-          <Link href={'/home'} className={'navbar__main'}>
+          <Link href={'/home'} className={'navbar__main link'}>
             <Icon icon={['fas', 'laptop-code']} /> {name}
           </Link>
           <ul id={'menu-content'}>
@@ -44,7 +44,7 @@ const Navbar = async () => {
   return (
     <div className={'navbar-container'}>
       <nav className={'navbar'}>
-        <Link href={'/home'} className={'navbar__main'}>
+        <Link href={'/home'} className={'navbar__main link'}>
           <Icon icon={['fas', 'laptop-code']} /> {name}
         </Link>
         <DarkModeButton />
@@ -61,7 +61,7 @@ const Navbar = async () => {
           <ul id={'menu-content'}>
             {menuProps.map(([title, url, icon], index) => (
               <li key={index}>
-                <Link key={index} href={url}>
+                <Link key={index} href={url} className={'link'}>
                   <Icon icon={icon} /> {title}
                 </Link>
               </li>
