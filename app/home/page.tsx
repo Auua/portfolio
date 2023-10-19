@@ -13,10 +13,22 @@ import styles from './page.module.css';
 import LatestProjects from '@/app/home/_components/LatestProjects';
 import TopSkills from '@/app/home/_components/TopSkills';
 import About from '@/app/home/_components/About';
+import { Metadata } from 'next';
+
+const fetchData = () => getPage('home');
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page: Page = await fetchData();
+  return {
+    title: page.title,
+    description: page.excerpt,
+    keywords: page.metadata.keywords,
+  };
+}
 
 export default async function Home() {
   const session: Session | null = await getServerSession(options as never);
-  const data: Page = await getPage('home');
+  const data: Page = await fetchData();
 
   const filterUnauthorizedItems = (items: PageMetadataPageItems[]) => {
     if (!session) {

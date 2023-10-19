@@ -1,7 +1,10 @@
 import prisma from '@/app/_lib/prisma';
 import { notFound } from 'next/navigation';
+import { cache } from 'react';
 
-export async function getProjectTags() {
+export const revalidate = 3600;
+
+export const getProjectTags = cache(async () => {
   try {
     const projectTags = await prisma.project.findMany({
       select: {
@@ -15,9 +18,9 @@ export async function getProjectTags() {
     console.error('getProjectTags', error);
     throw error;
   }
-}
+});
 
-export async function getProject(id: string) {
+export const getProject = cache(async (id: string) => {
   try {
     const project = await prisma.project.findUnique({
       where: { id },
@@ -33,9 +36,9 @@ export async function getProject(id: string) {
     console.error(`getProject ${id}`, error);
     throw error;
   }
-}
+});
 
-export async function getFilteredProjects(params?: string[]) {
+export const getFilteredProjects = cache(async (params?: string[]) => {
   try {
     if (params) {
       const projects = await prisma.project.findMany({
@@ -63,4 +66,4 @@ export async function getFilteredProjects(params?: string[]) {
     console.error(`getFilteredProjects ${params}`, error);
     throw error;
   }
-}
+});
