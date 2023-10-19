@@ -1,6 +1,9 @@
 import prisma from '@/app/_lib/prisma';
+import { cache } from 'react';
 
-export async function getTopSkills() {
+export const revalidate = 3600;
+
+export const getTopSkills = cache(async () => {
   try {
     const skills = await prisma.page.findUniqueOrThrow({
       where: {
@@ -27,9 +30,9 @@ export async function getTopSkills() {
     console.error('getTopSkills', error);
     throw error;
   }
-}
+});
 
-export async function getLatestProjects() {
+export const getLatestProjects = cache(async () => {
   try {
     const projects = await prisma.page.findUniqueOrThrow({
       where: {
@@ -50,9 +53,9 @@ export async function getLatestProjects() {
     console.error('getLatestProjects', error);
     throw error;
   }
-}
+});
 
-export async function getPage(name: string) {
+export const getPage = cache(async (name: string) => {
   try {
     const page = await prisma.page.findUniqueOrThrow({
       where: {
@@ -65,9 +68,9 @@ export async function getPage(name: string) {
     console.error(`getPage ${name}`, error);
     throw error;
   }
-}
+});
 
-export async function getFullPage(name: string) {
+export const getFullPage = cache(async (name: string) => {
   try {
     const page = await prisma.page.findUniqueOrThrow({
       where: {
@@ -90,4 +93,4 @@ export async function getFullPage(name: string) {
     console.error(`getFullPage ${name}`, error);
     throw error;
   }
-}
+});

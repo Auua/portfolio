@@ -3,7 +3,6 @@
 import '@/app/_styles/navigation.css';
 
 import React, { Suspense, useState } from 'react';
-import Link from 'next/link';
 import Icon from '@/app/_components/common/Icon';
 import { PageMetadataPageItems } from '@prisma/client';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -26,7 +25,9 @@ const Sidebar = ({
     } else {
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
+    const hash = targetId ? `#${targetId}` : '#';
     setActiveSection(`#${targetId}`);
+    history.replaceState(null, '', hash);
   };
 
   const handleActiveSection = (position: string) => {
@@ -47,9 +48,7 @@ const Sidebar = ({
                 const isActive = activeSection.replace('#', '') === item.slug;
                 return (
                   <li key={item.slug}>
-                    <Link
-                      scroll={false}
-                      href={`#${item.slug}`}
+                    <button
                       key={`${item.slug}__link`}
                       onClick={() => scrollToSection(item.slug)}
                       className={`sidebar__item${
@@ -61,7 +60,7 @@ const Sidebar = ({
                         className="sidebar__icon"
                       />
                       <span className="sidebar__text">{item.title}</span>
-                    </Link>
+                    </button>
                   </li>
                 );
               })}

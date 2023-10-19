@@ -78,11 +78,14 @@
 .sidebar__item--narrow {
     display: flex;
     align-items: center;
+    width: 100%;
+    border: none;
 }
 
-.sidebar__item:hover {
+.sidebar__item--narrow:hover,
+.sidebar__item--full:hover {
     background: var(--background-secondary);
-    color: var(--text-dark);
+    color: var(--text-color);
     font-weight: 600;
 }
 
