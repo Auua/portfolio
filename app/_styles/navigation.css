@@ -32,6 +32,7 @@
 }
 
 .link {
+    padding: var(--size-small) var(--size-small);
     border: none;
     cursor: pointer;
     color: var(--text-light);
@@ -39,6 +40,7 @@
     width: fit-content;
     transform: scale(1);
     transition: .3s ease-in-out;
+    text-transform: uppercase;
 }
 
 .link:hover {
@@ -68,23 +70,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: var(--size-small);
     cursor: pointer;
     color: var(--highlight);
     font-size: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    padding: var(--size-small);
 }
 
 .sidebar__item--full,
 .sidebar__item--narrow {
+    background: var(--background-secondary);
     display: flex;
     align-items: center;
     width: 100%;
     border: none;
+    gap: var(--size-default);
 }
 
 .sidebar__item--narrow:hover,
 .sidebar__item--full:hover {
-    background: var(--background-secondary);
+    background: var(--background-light); 
     color: var(--text-color);
     font-weight: 600;
 }
@@ -122,7 +128,6 @@
         justify-content: stretch;
         align-items: center;
         width: 100%;
-        padding: var(--size-small);
         background-color: var(--primary);
         color: var(--text-light);
     }
@@ -141,14 +146,23 @@
 
     .navbar ul {
         list-style: none;
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         flex-grow: 1;
-        gap: var(--size-large);
-        font-size: 120%;
-        padding: var(--size-default);
+        gap: var(--size-small);
+    }
+
+    .link {
+        padding: 0;
+        display: inline-flex;
+        justify-items: stretch;
+        width: 100%;
+    }
+
+    .link a {
+        padding: var(--size-small) var(--size-large);
+        width: 100%;
     }
 
     .hamburger {
@@ -197,7 +211,6 @@
         display: flex;
         background-color: var(--primary);
         width: 100%;
-        padding: 0 var(--size-default);
     }
 
     .hamburger-menu:checked ~ .hamburger .hamburger-line {
@@ -254,6 +267,7 @@
 
     .sidebar__item--full .sidebar__text {
         display: block;
-        padding-left: var(--size-default);
+        text-align: start;
+        text-transform: uppercase;
     }
 }

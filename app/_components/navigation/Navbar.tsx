@@ -32,7 +32,7 @@ const Navbar = async () => {
             <li>
               <DarkModeButton />
             </li>
-            <li>
+            <li className={'link'}>
               <AuthStatusButton session={session} />
             </li>
           </ul>
@@ -60,13 +60,13 @@ const Navbar = async () => {
         <div className={'hamburger-menu-content'}>
           <ul id={'menu-content'}>
             {menuProps.map(([title, url, icon], index) => (
-              <li key={index}>
-                <Link key={index} href={url} className={'link'}>
+              <li key={index} className={'link'}>
+                <Link key={index} href={url}>
                   <Icon icon={icon} /> {title}
                 </Link>
               </li>
             ))}
-            <li key={'auth'}>
+            <li key={'auth'} className={'link'}>
               <AuthStatusButton session={session} />
             </li>
           </ul>

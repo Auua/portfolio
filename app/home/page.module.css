@@ -16,6 +16,7 @@
 .main__section {
     display: flex;
     flex-direction: column;
+    margin-bottom: var(--size-x-large);
 }
 
 .main__section h2 {

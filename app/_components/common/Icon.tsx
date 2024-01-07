@@ -66,6 +66,6 @@ type IconProps = {
 };
 
 const Icon = ({ icon, className, style }: IconProps) => (
-  <FontAwesomeIcon icon={icon} className={className} style={style} />
+  <FontAwesomeIcon fixedWidth icon={icon} className={className} style={style} />
 );
 export default Icon;

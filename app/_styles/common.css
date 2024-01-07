@@ -103,6 +103,10 @@
     transition: .3s ease-in-out;
 }
 
+.btn--margin {
+    margin: var(--size-large);
+}
+
 .error {
     background-color: var(--highlight);
 }

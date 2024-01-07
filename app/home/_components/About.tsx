@@ -14,7 +14,7 @@ const About = async ({ session }: SessionProps) => {
       <div className={styles.description}>
         {mapParagraphs(desc)}
         {session ? (
-          <Link className={'btn'} href={'/about'}>
+          <Link className={'btn btn--margin'} href={'/about'}>
             Find out more
           </Link>
         ) : (
