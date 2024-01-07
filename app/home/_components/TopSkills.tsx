@@ -6,13 +6,10 @@ import Link from 'next/link';
 import React from 'react';
 
 const TopSkills = async ({ session }: SessionProps) => {
-  const { title, excerpt, sections } = await getTopSkills();
+  const { title, sections } = await getTopSkills();
   return (
     <>
-      <h2 id={`${title}--title`}>{title}</h2>
-      <div className={styles.description}>
-        <p>{excerpt}</p>
-      </div>
+      <h2 id={`${title}--title`}>Top skills</h2>
       <div className={styles.main__skills}>
         {sections?.map(
           ({ skills }) =>
@@ -24,7 +21,7 @@ const TopSkills = async ({ session }: SessionProps) => {
         )}
       </div>
       {session ? (
-        <Link className={'btn'} href={'/skills'}>
+        <Link className={'btn btn--margin'} href={'/skills'}>
           Check out more
         </Link>
       ) : (

@@ -6,9 +6,6 @@
     --max-width: 900px;
     --sidebar-width: 200px;
     --border-radius: 12px;
-    --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
     --font-size-base: 18px;
 
@@ -196,6 +193,10 @@ ul {
 }
 
 /* Titles */
+h1, h2, h3, h4 {
+    font-family: var(--quicksand-font)
+}
+
 h1 {
     font-size: 2rem;
     font-weight: 600;
@@ -207,6 +208,7 @@ h2 {
     font-weight: 600;
     margin-bottom: var(--size-default);
     text-transform: uppercase;
+    
 }
 
 h3 {

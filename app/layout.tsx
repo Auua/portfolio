@@ -2,18 +2,16 @@ import './globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import { Analytics } from '@vercel/analytics/react';
-import { Inter } from 'next/font/google';
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import Loading from '@/app/loading';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Navbar from '@/app/_components/navigation/Navbar';
 import Providers from '@/app/_components/providers/Providers';
+import { karla, quicksand } from './_utils/fonts';
 
 config.autoAddCss = false;
 const name = process.env.NAME || 'a Software Engineer';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -32,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${karla.className} ${quicksand.variable}`}>
+      <body>
         <Providers>
           <Suspense fallback={<Loading />}>
             <Navbar />

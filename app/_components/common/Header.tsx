@@ -1,3 +1,4 @@
+import { cormorant } from '@/app/_utils/fonts';
 import React from 'react';
 
 type HeaderProps = {
@@ -8,7 +9,7 @@ type HeaderProps = {
 const Header = ({ title, type, children }: HeaderProps) => (
   <header className={`main__header ${type ?? ''}`}>
     <h1>{title}</h1>
-    {children}
+    {children ? <div className={cormorant.className}>{children}</div> : null}
   </header>
 );
 export default Header;
