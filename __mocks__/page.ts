@@ -1,4 +1,3 @@
-import { Project, Section } from '@prisma/client';
 import { sectionMock } from '@/__mocks__/section';
 import { skillMock } from '@/__mocks__/skill';
 import { projectMock } from '@/__mocks__/project';
@@ -7,6 +6,7 @@ import {
   timelineMock,
   timelineWorkMock,
 } from '@/__mocks__/timeline';
+import { FullPageProps, ProjectProps, SectionProps } from '@/app/_types/common';
 
 export const pageHeroMock = {
   content: 'Lorem ipsum content',
@@ -18,28 +18,28 @@ export const pageMetaDataMock = {
   pageItems: [
     {
       auth: true,
-      icon: ['far', 'icon1'],
+      icon: ['fas', 'house'],
       order: 1,
       slug: 'page-item-1',
       title: 'Page Item 1',
     },
     {
       auth: false,
-      icon: ['far', 'icon2'],
+      icon: ['fas', 'hammer'],
       order: 2,
       slug: 'page-item-2',
       title: 'Page Item 2',
     },
     {
       auth: true,
-      icon: ['far', 'icon3'],
+      icon: ['fas', 'location'],
       order: 3,
       slug: 'page-item-3',
       title: 'Page Item 3',
     },
     {
       auth: false,
-      icon: ['far', 'icon4'],
+      icon: ['fas', 'user'],
       order: 4,
       slug: 'page-item-4',
       title: 'Page Item 4',
@@ -47,11 +47,15 @@ export const pageMetaDataMock = {
   ],
 };
 
-export const pageMock = (
-  title: string,
-  projects: Project[],
-  sections: Section[],
-) => ({
+export const pageMock = ({
+  title,
+  projects,
+  sections,
+}: {
+  title: string;
+  projects: ProjectProps[];
+  sections: SectionProps[];
+}): FullPageProps => ({
   id: `title-${title}`,
   createdAt: new Date('2023-01-15T10:30:00Z'),
   desc: `This is a description of the page of ${title}.`,
@@ -59,16 +63,17 @@ export const pageMock = (
   label: title,
   metadata: pageMetaDataMock,
   title: title,
-  updatedAt: '2023-04-20T14:45:00Z',
+  updatedAt: new Date('2023-01-15T10:30:00Z'),
   projects: projects,
   sections: sections,
+  hero: pageHeroMock,
 });
 
 export const skillsPageMock = (top: boolean) =>
-  pageMock(
-    'Skills',
-    [],
-    [
+  pageMock({
+    title: 'Skills',
+    projects: [],
+    sections: [
       sectionMock(
         'skills',
         1,
@@ -95,18 +100,22 @@ export const skillsPageMock = (top: boolean) =>
         [],
       ),
     ],
-  );
+  });
 
-export const projectsPageMock = pageMock(
-  'Projects',
-  [projectMock('project1'), projectMock('project2')],
-  [],
-);
+export const projectsPageMock = pageMock({
+  title: 'Projects',
+  projects: [
+    projectMock('project1'),
+    projectMock('project2'),
+    projectMock('project3'),
+  ],
+  sections: [],
+});
 
-export const aboutPageMock = pageMock(
-  'About',
-  [],
-  [
+export const aboutPageMock = pageMock({
+  title: 'About',
+  projects: [],
+  sections: [
     sectionMock('about', 1, [], [], []),
     sectionMock(
       'work',
@@ -198,4 +207,4 @@ export const aboutPageMock = pageMock(
       ],
     ),
   ],
-);
+});

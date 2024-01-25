@@ -3,7 +3,7 @@
 import '@/app/_styles/navigation.css';
 
 import React, { Suspense, useState } from 'react';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import { PageMetadataPageItems } from '@prisma/client';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Loading from '@/app/loading';

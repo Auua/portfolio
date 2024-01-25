@@ -5,13 +5,13 @@ const nextConfig = {
       {
         source: '/',
         destination: '/home',
-        permanent: true
-      }
+        permanent: true,
+      },
     ];
   },
   experimental: {
-    serverActions: true
-  }
+    optimizePackageImports: ['zod', '@fortawesome'],
+  },
 };
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({

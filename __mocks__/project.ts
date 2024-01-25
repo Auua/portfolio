@@ -1,11 +1,17 @@
-import { Picture } from '.prisma/client';
-import { ProjectSpecs, ProjectUrl } from '@prisma/client';
+import { Picture, ProjectSpecs, ProjectUrl } from '@prisma/client';
 
 export const projectSpecsMock = {
   Achievements: ['Achievement 1', 'Achievement 2'],
   Technical_Approach: {
-    key1: 'value1',
-    key2: 'value2',
+    'Tech Stack Selection': 'Tech Stack lorem',
+    stack: {
+      tech_1: 'value1',
+      tech_2: 'value2',
+    },
+    features: {
+      f1: 'lorem feature',
+      f2: 'lorem product',
+    },
   },
   User_Benefits: {
     benefit1: 'Benefit description 1',

@@ -1,25 +1,25 @@
 import '@/app/_styles/navigation.css';
 
 import Link from 'next/link';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { getServerSession } from 'next-auth/next';
 import options from '@/app/api/auth/[...nextauth]/options';
 import { Session } from 'next-auth';
-import DarkModeButton from '@/app/_components/common/DarkMode';
-import AuthStatusButton from '@/app/_components/common/AuthStatusButton';
+import DarkModeButton from '@/app/_components/navigation/DarkMode';
+import AuthStatusButton from '@/app/_components/navigation/AuthStatusButton';
 
 const name = process.env.NAME || 'Home';
 
+const menuProps: [string, string, IconProp][] = [
+  ['About', '/about', ['fas', 'user']],
+  ['Skills', '/skills', ['fas', 'hammer']],
+  ['Projects', '/projects', ['far', 'folder-open']],
+  ['Contact', '/home#contact', ['far', 'envelope']],
+];
+
 const Navbar = async () => {
   const session: Session | null = await getServerSession(options as never);
-
-  const menuProps: [string, string, IconProp][] = [
-    ['About', '/about', ['fas', 'user']],
-    ['Skills', '/skills', ['fas', 'hammer']],
-    ['Projects', '/projects', ['far', 'folder-open']],
-    ['Contact', '/home#contact', ['far', 'envelope']],
-  ];
 
   if (!session) {
     return (
@@ -60,8 +60,8 @@ const Navbar = async () => {
         <div className={'hamburger-menu-content'}>
           <ul id={'menu-content'}>
             {menuProps.map(([title, url, icon], index) => (
-              <li key={index} className={'link'}>
-                <Link key={index} href={url}>
+              <li key={`${title}-${index}`} className={'link'}>
+                <Link key={`${title}-${index}`} href={url}>
                   <Icon icon={icon} /> {title}
                 </Link>
               </li>

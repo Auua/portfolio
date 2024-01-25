@@ -3,7 +3,7 @@
 import '@/app/_styles/common.css';
 
 import React from 'react';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import {
   FullNotificationProps,
   NotificationProps,

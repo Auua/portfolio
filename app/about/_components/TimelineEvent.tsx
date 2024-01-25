@@ -1,6 +1,6 @@
 import '@/app/_styles/timeline.css';
 
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import { months } from '@/app/_utils/stringUtils';
 import { Timeline, TimelineExtra } from '@prisma/client';
 import { mapRows } from '@/app/_utils/uiUtils';

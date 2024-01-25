@@ -4,15 +4,13 @@ import Header from '@/app/_components/common/Header';
 import SkillSection from '@/app/skills/_components/SkillSection';
 import { InfoNotification } from '@/app/_components/common/Notification';
 import { fixNewLines } from '@/app/_utils/stringUtils';
-import { Section, Skill } from '@prisma/client';
+import { FullPageProps } from '@/app/_types/common';
 
-type SkillPageProps = {
-  title: string;
-  desc: string;
-  sections: (Section & { skills?: Skill[] })[];
-};
-
-const SkillsPage = ({ title, desc, sections }: SkillPageProps) => {
+const SkillsPage = ({
+  title,
+  desc,
+  sections,
+}: Pick<FullPageProps, 'title' | 'desc' | 'sections'>) => {
   const skills = sections
     ?.sort((a, b) => a.order - b.order)
     .reduce((map, section) => {
@@ -30,7 +28,7 @@ const SkillsPage = ({ title, desc, sections }: SkillPageProps) => {
     <main className={styles.main}>
       <Header title={title} type={'light'} />
       {sections?.map((item) => (
-        <SkillSection key={item.tag} {...{ section: item, skills }} />
+        <SkillSection key={item.tag} section={item} skills={skills} />
       ))}
       <InfoNotification
         title={'About levels'}

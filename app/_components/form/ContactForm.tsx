@@ -2,20 +2,16 @@
 
 import '@/app/_styles/form.css';
 
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState, useCallback } from 'react';
 import {
   ErrorNotification,
   SuccessNotification,
 } from '@/app/_components/common/Notification';
-import sendForm from '@/app/_actions/formActions';
+import { sendForm } from '@/app/_actions/formActions';
 import { z } from 'zod';
 import FormDataSchema from '@/app/_lib/FormDataSchema';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-const closeNotification = (setter: Dispatch<SetStateAction<boolean>>) => {
-  setter(false);
-};
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -23,6 +19,13 @@ const ContactForm = () => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  const closeNotificationHandler = useCallback(
+    (setNotificationState: Dispatch<SetStateAction<boolean>>) => {
+      setNotificationState(false);
+    },
+    [],
+  );
 
   const {
     register,
@@ -40,6 +43,7 @@ const ContactForm = () => {
     if (!result || result.error) {
       setError(true);
       setSuccess(false);
+      setLoading(false);
       return;
     }
 
@@ -58,7 +62,7 @@ const ContactForm = () => {
             "Awesome! Your message has successfully blasted off into cyberspace, and it's currently zooming its way straight to my inbox. " +
             "Thanks for reaching out and I'll get back to you as soon as I can!"
           }
-          close={() => closeNotification(setSuccess)}
+          close={() => closeNotificationHandler(setSuccess)}
         />
       )}
       {error && (
@@ -69,7 +73,7 @@ const ContactForm = () => {
             'Please try again later, or if the problem persists, feel free to contact me through LinkedIn. ' +
             'I apologize for the inconvenience and appreciate your understanding.'
           }
-          close={() => closeNotification(setError)}
+          close={() => closeNotificationHandler(setError)}
         />
       )}
       <form onSubmit={handleSubmit(processForm)}>
@@ -79,6 +83,7 @@ const ContactForm = () => {
           id={'name'}
           placeholder={'Enter Your Name'}
           className={'input-field'}
+          autoComplete={'name'}
           {...register('name')}
         />
         {errors.name && <p className={'form-alert'}>{errors.name.message}</p>}
@@ -88,6 +93,7 @@ const ContactForm = () => {
           id={'email'}
           placeholder={'Enter Your Email'}
           className={'input-field'}
+          autoComplete={'email'}
           {...register('email')}
         />
         {errors.email && <p className={'form-alert'}>{errors.email.message}</p>}
@@ -97,6 +103,7 @@ const ContactForm = () => {
           id={'company'}
           placeholder={'Enter Your Company'}
           className={'input-field'}
+          autoComplete={'organization'}
           {...register('company')}
         />
         {errors.company && (
@@ -109,6 +116,7 @@ const ContactForm = () => {
           rows={10}
           placeholder={'Enter Your Message'}
           className={'input-field'}
+          autoComplete={'off'}
           {...register('message')}
         ></textarea>
         {errors.message && (
