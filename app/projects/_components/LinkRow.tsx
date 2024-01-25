@@ -3,7 +3,7 @@ import '@/app/_styles/project.css';
 import { ProjectUrl } from '@prisma/client';
 import React from 'react';
 import Link from 'next/link';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const Icons: Record<string, IconProp> = {

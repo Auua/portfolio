@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Header from '@/app/_components/common/Header';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 
 export default function NotFound() {
   return (

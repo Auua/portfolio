@@ -1,10 +1,8 @@
 import styles from '@/app/projects/page.module.css';
 import { ProjectSpecs } from '@prisma/client';
-import {
-  Achievements,
-  TechnicalApproach,
-  UserBenefits,
-} from '@/app/projects/_components/ProjectDetails';
+import Achievements from './details/Achievements';
+import TechnicalApproach from './details/TechnicalApproach';
+import UserBenefits from './details/UserBenefits';
 
 const ProjectSpecsSection = (specs: ProjectSpecs) => {
   return (
@@ -18,7 +16,7 @@ const ProjectSpecsSection = (specs: ProjectSpecs) => {
       {specs.User_Benefits ? (
         <UserBenefits title={'User Benefits'} data={specs.User_Benefits} />
       ) : null}
-      {specs.Achievements ? (
+      {specs.Achievements && specs.Achievements.length > 0 ? (
         <Achievements title={'Achievements'} data={specs.Achievements} />
       ) : null}
     </section>

@@ -1,4 +1,4 @@
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import Link from 'next/link';
 import { SessionProps } from '@/app/_types/common';
 

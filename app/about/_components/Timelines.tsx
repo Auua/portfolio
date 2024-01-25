@@ -14,7 +14,7 @@ const Description = ({ title, description, tag }: Record<string, string>) => (
 
 type TimelineEventProps = Section & { timeline: Timeline[] };
 
-const TimeLine = ({
+const Timelines = ({
   workData,
   educationData,
 }: {
@@ -124,4 +124,4 @@ const TimeLine = ({
   );
 };
 
-export default TimeLine;
+export default Timelines;

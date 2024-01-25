@@ -2,8 +2,7 @@ import { SessionProps } from '@/app/_types/common';
 import { getTopSkills } from '@/app/_lib/pages';
 import styles from '@/app/home/page.module.css';
 import { SkillCard } from '@/app/_components/cards/Card';
-import Link from 'next/link';
-import React from 'react';
+import ForwardButton from '@/app/_components/common/ForwardButton';
 
 const TopSkills = async ({ session }: SessionProps) => {
   const { title, sections } = await getTopSkills();
@@ -11,22 +10,15 @@ const TopSkills = async ({ session }: SessionProps) => {
     <>
       <h2 id={`${title}--title`}>Top skills</h2>
       <div className={styles.main__skills}>
-        {sections?.map(
-          ({ skills }) =>
-            skills?.map((item, index) => (
-              <div key={index} className={styles.main__card}>
-                <SkillCard key={`${item.title}-card`} skill={item} size={100} />
-              </div>
-            )),
+        {sections?.map(({ skills }) =>
+          skills?.map((item, index) => (
+            <div key={index} className={styles.main__card}>
+              <SkillCard key={`${item.title}-card`} skill={item} size={100} />
+            </div>
+          )),
         )}
       </div>
-      {session ? (
-        <Link className={'btn btn--margin'} href={'/skills'}>
-          Check out more
-        </Link>
-      ) : (
-        <p> Sign in to see more</p>
-      )}
+      <ForwardButton session={session} name={'skills'} />
     </>
   );
 };

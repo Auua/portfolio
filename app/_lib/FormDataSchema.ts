@@ -1,24 +1,20 @@
-import { z } from 'zod';
+import { string, object } from 'zod';
 
-const sanitize = (string: string) =>
-  string.replace(/[^a-zA-Z0-9 ,.\-+?'`]/g, '**');
+const sanitize = (txt: string) => txt.replace(/[^a-zA-Z0-9 ,.\-+?'`]/g, '**');
 
-const formSchema = z.object({
-  name: z
-    .string()
+const formSchema = object({
+  name: string()
     .min(3, { message: 'Please enter Your full name' })
     .includes(' ', { message: 'Please enter Your full name' })
-    .transform((string) => sanitize(string)),
-  company: z
-    .string()
+    .transform((txt) => sanitize(txt)),
+  company: string()
     .min(2, { message: 'Please enter Your company name' })
     .trim()
-    .transform((string) => sanitize(string)),
-  message: z
-    .string()
+    .transform((txt) => sanitize(txt)),
+  message: string()
     .min(2, { message: 'Please enter Your message' })
-    .transform((string) => sanitize(string)),
-  email: z.string().email('Please enter a valid email address').trim(),
+    .transform((txt) => sanitize(txt)),
+  email: string().email('Please enter a valid email address').trim(),
 });
 
 export default formSchema;

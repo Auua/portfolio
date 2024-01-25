@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { ErrorProps } from '@/app/_types/common';
 import Header from '@/app/_components/common/Header';
 import Button from '@/app/_components/common/Button';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {

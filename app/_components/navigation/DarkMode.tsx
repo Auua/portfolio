@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import Button from '@/app/_components/common/Button';
 
 const DarkModeButton = () => {
@@ -19,6 +19,7 @@ const DarkModeButton = () => {
 
   return (
     <Button
+      ariaLabel={`Change app theme to ${theme === 'dark' ? 'light' : 'dark'}`}
       classNames={'end'}
       onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}
     >

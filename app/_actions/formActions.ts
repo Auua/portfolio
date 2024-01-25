@@ -7,7 +7,7 @@ const formUrl = process.env.DISCORD_WEBHOOK || '';
 
 type Inputs = z.infer<typeof formDataSchema>;
 
-export default async function sendForm(formData: Inputs) {
+export async function sendForm(formData: Inputs) {
   try {
     const validatedData = formDataSchema.parse(formData);
 
@@ -57,3 +57,5 @@ export default async function sendForm(formData: Inputs) {
     };
   }
 }
+
+export default sendForm;

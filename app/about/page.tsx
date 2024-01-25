@@ -8,10 +8,9 @@ import { mapMultiSections } from '@/app/_utils/uiUtils';
 import LoadingComponent from '@/app/_components/common/LoadingComponent';
 import Sidebar from '@/app/_components/navigation/Sidebar';
 import Others from '@/app/about/_components/Others';
-import TimelineEvents from '@/app/about/_components/TimelineEvents';
-import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth/next';
-import options from '@/app/api/auth/[...nextauth]/options';
+import TimelineEvents from '@/app/about/_components/Timelines';
+
+import { withSession } from '../_components/hoc/withSession';
 
 const fetchData = () => getFullPage('about');
 
@@ -26,12 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const About = async () => {
-  const session = await getServerSession(options as never);
-
-  if (!session) {
-    return redirect('api/auth/signin?callbackUrl=/about');
-  }
-
   const { title, sections, metadata } = await fetchData();
 
   const [about, work, education, others] = sections.sort(
@@ -63,4 +56,4 @@ const About = async () => {
     </Suspense>
   );
 };
-export default About;
+export default withSession('about', About);

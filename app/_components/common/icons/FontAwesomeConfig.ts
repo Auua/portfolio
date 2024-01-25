@@ -1,5 +1,5 @@
-import React from 'react';
-import { IconProp, library } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { library, config } from '@fortawesome/fontawesome-svg-core';
 import {
   faArrowRightFromBracket,
   faArrowRightToBracket,
@@ -7,6 +7,7 @@ import {
   faBook,
   faCircleInfo,
   faCircleQuestion,
+  faCircleExclamation,
   faCode,
   faGears,
   faGlobe,
@@ -23,13 +24,14 @@ import {
   faUsersViewfinder,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEnvelope,
   faFolderOpen,
   faMoon,
   faSun,
 } from '@fortawesome/free-regular-svg-icons';
+
+config.autoAddCss = false;
 
 library.add(
   faLaptopCode,
@@ -48,6 +50,7 @@ library.add(
   faGlobe,
   faGithub,
   faCircleQuestion,
+  faCircleExclamation,
   faUserNinja,
   faHouse,
   faUser,
@@ -58,14 +61,3 @@ library.add(
   faCircleInfo,
   faGears,
 );
-
-type IconProps = {
-  icon: IconProp;
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-const Icon = ({ icon, className, style }: IconProps) => (
-  <FontAwesomeIcon fixedWidth icon={icon} className={className} style={style} />
-);
-export default Icon;

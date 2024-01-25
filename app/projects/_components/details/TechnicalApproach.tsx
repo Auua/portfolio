@@ -1,21 +1,10 @@
 import '@/app/_styles/project.css';
 
-import { mapValues } from '@/app/_utils/uiUtils';
-import Icon from '@/app/_components/common/Icon';
+import Icon from '@/app/_components/common/icons/Icon';
 import { removeUnderscore } from '@/app/_utils/stringUtils';
+import { ProjectJsonProps } from '@/app/_types/project';
 
-type ProjectJsonProps = {
-  title: string;
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  data: any;
-};
-
-type ProjectArrayProps = {
-  title: string;
-  data: string[];
-};
-
-export const TechnicalApproach = ({ title, data }: ProjectJsonProps) => {
+const TechnicalApproach = ({ title, data }: ProjectJsonProps) => {
   return (
     <section className={'section--full'} id={title}>
       <h2>
@@ -62,25 +51,4 @@ export const TechnicalApproach = ({ title, data }: ProjectJsonProps) => {
   );
 };
 
-export const UserBenefits = ({ title, data }: ProjectJsonProps) => (
-  <section className={'section--half'} id={title}>
-    <h2 className={'title'}>
-      <Icon icon={['fas', 'users-viewfinder']} /> {removeUnderscore(title)}
-    </h2>
-    {Object.entries(data as Record<string, string>).map(([key, value]) => (
-      <div key={key} className={'benefit'}>
-        <h3 className={'title'}>{key}</h3>
-        <div>{value}</div>
-      </div>
-    ))}
-  </section>
-);
-
-export const Achievements = ({ title, data }: ProjectArrayProps) => (
-  <section className={'section--half'} id={'achievements'}>
-    <h2 className={'title'}>
-      <Icon icon={['fas', 'award']} /> {title}
-    </h2>
-    <div className={'content'}>{mapValues(title, data)}</div>
-  </section>
-);
+export default TechnicalApproach;

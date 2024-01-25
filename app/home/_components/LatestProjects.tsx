@@ -1,4 +1,3 @@
-import React from 'react';
 import { getLatestProjects } from '@/app/_lib/pages';
 import styles from '@/app/home/page.module.css';
 import { Project } from '@prisma/client';
