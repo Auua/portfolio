@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type PageMetadata {
+  keywords  String
+  pageItems PageMetadataPageItems[]
+}
+
+type PageMetadataPageItems {
+  auth  Boolean?
+  icon  String[]
+  order Int
+  slug  String
+  title String
+}
+
+type ProjectSpecs {
+  Achievements       String[]
+  Technical_Approach Json     @map("Technical Approach")
+  User_Benefits      Json     @map("User Benefits")
+}
+
+type ProjectUrl {
+  demo   String
+  github String
+}
+
+type Picture {
+  src String
+  alt String
+}
+
+model Page {
+  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime     @db.Date
+  desc      String
+  excerpt   String
+  label     String       @unique
+  metadata  PageMetadata
+  title     String
+  updatedAt DateTime     @db.Date
+  projects  Project[]
+  sections  Section[]
+}
+
+model Project {
+  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime     @default(now()) @db.Date
+  desc      String
+  excerpt   String
+  page      Page         @relation(fields: [pageId], references: [id])
+  pageId    String       @db.ObjectId
+  specs     ProjectSpecs
+  tags      String[]
+  title     String
+  url       ProjectUrl?
+  pics      Picture[]
+}
+
+model Section {
+  id       String             @id @default(auto()) @map("_id") @db.ObjectId
+  content  String
+  order    Int                @default(1)
+  page     Page               @relation(fields: [pageId], references: [id])
+  pageId   String             @db.ObjectId
+  subtitle String
+  tag      String
+}
+
+model User {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name     String?
+  username String    @unique
+  password String
+  roles    Role[]
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Role {
+  ADMIN
+  USER
+}
