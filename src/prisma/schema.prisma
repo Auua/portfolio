@@ -63,6 +63,16 @@ model Project {
   pics      Picture[]
 }
 
+model Skill {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  level     String
+  section   Section  @relation(fields: [sectionId], references: [id])
+  sectionId String   @db.ObjectId
+  svg       String
+  title     String
+  top       Boolean?
+}
+
 model Section {
   id       String             @id @default(auto()) @map("_id") @db.ObjectId
   content  String
@@ -71,6 +81,7 @@ model Section {
   pageId   String             @db.ObjectId
   subtitle String
   tag      String
+  skills   Skill[]
 }
 
 model User {

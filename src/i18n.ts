@@ -15,7 +15,7 @@ export default getRequestConfig(async ({ locale: providedLocale }) => {
 
   // Return the messages for the selected locale from the `i18n` directory (submodule)
   return {
-    messages: (await import(`../i18n/${locale}.json`)).default,
+    messages: (await import(`../i18n/${locale}/common.json`)).default,
   };
 });
 

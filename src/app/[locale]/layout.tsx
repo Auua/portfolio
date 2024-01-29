@@ -1,8 +1,9 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { SUPPORTED_LANGUAGES } from '../../../i18n';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { LocaleParamProps } from '../_types/common';
 import Navbar from '../_components/navigation/Navbar';
+import { Suspense } from 'react';
 
 export async function generateMetadata({
   params: { locale },
@@ -22,6 +23,7 @@ export default function LocaleLayout({
   children,
   params: { locale },
 }: LocaleParamProps) {
+  unstable_setRequestLocale(locale);
   const messages = useMessages();
 
   return (
@@ -30,10 +32,12 @@ export default function LocaleLayout({
         <title>Some title is this</title>
       </head>
       <body>
-        <Navbar />
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <Suspense fallback={'Loading...'}>
+          <Navbar locale={locale} />
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </Suspense>
       </body>
     </html>
   );

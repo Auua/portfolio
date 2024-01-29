@@ -1,15 +1,13 @@
-import { useTranslations } from 'next-intl';
+import { TranslationProps } from '@/app/_types/common';
 import { SUPPORTED_LANGUAGES } from '../../../../i18n';
 import LangSelect from './LangSelect';
 
-export default function LangSwitch({ locale }) {
-  const t = useTranslations('LangSwitch');
-
+export default function LangSwitch({ locale, t }: TranslationProps) {
   return (
-    <LangSelect defaultValue={locale} label={t('label')}>
+    <LangSelect defaultValue={locale} label={t('LangSwitch.label')}>
       {SUPPORTED_LANGUAGES.map((cur) => (
         <option key={cur} value={cur}>
-          {t('locale', { locale: cur })}
+          {t('LangSwitch.locale', { locale: cur })}
         </option>
       ))}
     </LangSelect>

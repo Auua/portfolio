@@ -1,0 +1,56 @@
+nav {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  gap: var(--size-default);
+  padding: var(--size-default) var(--size-x-large);
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .nav-item__skip {
+  flex: 1;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+nav .nav-item__skip:focus {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+nav .nav-item__center {
+  justify-content: center;
+  display: flex;
+  flex-grow: 0;
+}
+
+nav .nav-group__end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--size-default);
+  flex: 1;
+}
+
+nav select {
+  background: transparent;
+  border: none;
+  color: rgb(var(--foreground-rgb));
+  font-family: 'Avenir Next LT W01 Bold', sans-serif;
+  font-weight: 700;
+  line-height: 24px;
+  padding: var(--size-small) var(--size-large);
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}

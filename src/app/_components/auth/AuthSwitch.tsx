@@ -1,10 +1,20 @@
 import Link from 'next/link';
-import { SessionProps } from '@/app/_types/common';
+import { SessionAndTranslationsProps } from '@/app/_types/common';
 
-export default async function AuthSwitch({ session }: SessionProps) {
-
+export default async function AuthSwitch({
+  session,
+  t,
+}: Pick<SessionAndTranslationsProps, 'session' | 't'>) {
   if (session) {
-    return <Link href={'/api/auth/signout'}>Sign out</Link>;
+    return (
+      <Link type={'button'} href={'/api/auth/signout'}>
+        {t('Login.logout')}
+      </Link>
+    );
   }
-  return <Link href={'/api/auth/signin'}>Sign in</Link>;
+  return (
+    <Link type={'button'} href={'/api/auth/signin'}>
+      {t('Login.login')}
+    </Link>
+  );
 }

@@ -1,15 +1,30 @@
+import styles from '../page.module.css';
 import { SessionProps } from '@/app/_types/common';
 import { useTranslations } from 'next-intl';
+import { Skill } from '@prisma/client';
 
-export default function Home({ session }: SessionProps) {
+export default function Home({
+  session,
+  skills,
+}: SessionProps & { skills: Skill[] }) {
   const t = useTranslations('Home');
-  if (session) {
-    return (
-      <main>
-        <h1>{t('title')} Logged in</h1>
-      </main>
-    );
-  }
-
-  return <main>{t('title')}</main>;
+  console.log(session);
+  return (
+    <main className={styles.main}>
+      <div className={styles.content}>
+        <section className={styles.container}>
+          <h2>{t('title')}</h2>
+          <div className={styles.description}>{t('content')}</div>
+        </section>
+        <section className={styles.container}>
+          <h2>{t('titleSkills')}</h2>
+          {skills.map((skill) => (
+            <div key={skill.id} className={styles.description}>
+              {skill.title}
+            </div>
+          ))}
+        </section>
+      </div>
+    </main>
+  );
 }

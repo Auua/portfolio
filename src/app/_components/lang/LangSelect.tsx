@@ -23,7 +23,7 @@ export default function LangSelect({ children, defaultValue, label }: Props) {
 
   return (
     <label>
-      <p className="sr-only">{label}</p>
+      <p className="screen-reader-only">{label}</p>
       <select
         defaultValue={defaultValue}
         disabled={isPending}

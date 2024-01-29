@@ -1,0 +1,56 @@
+.button-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--size-large);
+  margin: var(--size-large) 0;
+  align-items: center;
+}
+
+button,
+[type="button"] {
+  background-color: transparent;
+  border: 1px solid #266DB6;
+  box-sizing: border-box;
+  color: #00132C;
+  font-family: "Avenir Next LT W01 Bold",sans-serif;
+  font-weight: 700;
+  line-height: 24px;
+  padding: var(--size-small) var(--size-default);
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+[type="button"]:hover,
+[type="button"]:active {
+  outline: 0;
+}
+
+[type="button"]:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+[type="button"]:before {
+  background-color: var(--highlight);
+  content: "";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+}
+
+[type="button"]:hover:before {
+  background-color: var(--highlight-hover);
+}
+
+@media (min-width: 768px) {
+  [type="button"] {
+    padding: var(--size-small) var(--size-large);
+  }
+}
