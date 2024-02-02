@@ -2,10 +2,10 @@
 
 import { ErrorProps } from '@/app/_types/common';
 import { useEffect } from 'react';
-import { DEFAULT_LOCALE } from '../../i18n';
+import { DEFAULT_LOCALE } from '../../../i18n';
 import Error from '@/app/_components/error/Error';
 
-export default function GlobalError({ error, reset }: ErrorProps) {
+export default function ErrorPage({ error, reset }: ErrorProps) {
   useEffect(() => {
     console.error(error, error.digest);
   }, [error]);

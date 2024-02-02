@@ -1,17 +1,11 @@
 import { getRequestConfig } from 'next-intl/server';
 import { createSharedPathnamesNavigation } from 'next-intl/navigation';
-import {
-  DEFAULT_LOCALE,
-  isSupportedLanguage,
-  SUPPORTED_LANGUAGES,
-} from '../i18n';
+import { isSupportedLanguage, SUPPORTED_LANGUAGES } from '../i18n/';
+import { notFound } from 'next/navigation';
 
-export default getRequestConfig(async ({ locale: providedLocale }) => {
-  let locale = providedLocale;
+export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid according to the `i18n` directory (submodule)
-  if (!isSupportedLanguage(locale)) {
-    locale = DEFAULT_LOCALE;
-  }
+  if (!isSupportedLanguage(locale)) notFound();
 
   // Return the messages for the selected locale from the `i18n` directory (submodule)
   return {

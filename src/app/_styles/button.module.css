@@ -12,7 +12,7 @@ button,
   border: 1px solid #266DB6;
   box-sizing: border-box;
   color: #00132C;
-  font-family: "Avenir Next LT W01 Bold",sans-serif;
+  font-family: var(--font-button);
   font-weight: 700;
   line-height: 24px;
   padding: var(--size-small) var(--size-default);

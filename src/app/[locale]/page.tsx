@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth';
 import Home from './_components/Home';
 import options from '@/app/api/auth/[...nextauth]/options';
-import { getTopSkills } from '@/_lib/skills';
+import { getTopSkills } from '@/lib/skills';
 
 export default async function IndexPage() {
   const skillData = getTopSkills();

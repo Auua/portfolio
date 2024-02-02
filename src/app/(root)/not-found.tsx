@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { DEFAULT_LOCALE, supportedLanguagesNames } from '../../i18n';
+import { DEFAULT_LOCALE, supportedLanguagesNames } from '../../../i18n';
 import Error from '@/app/_components/error/Error';
 
 export default function NotFound() {
@@ -10,7 +10,12 @@ export default function NotFound() {
           <Error statusCode={404} title={'Page not found'}>
             <div className={'button-row'}>
               {Object.entries(supportedLanguagesNames).map(([lang, name]) => (
-                <Link type={'button'} key={lang} href={`/${lang}`}>
+                <Link
+                  type={'button'}
+                  key={lang}
+                  href={`/${lang}`}
+                  locale={lang}
+                >
                   {name}
                 </Link>
               ))}

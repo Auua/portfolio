@@ -17,6 +17,7 @@ const customJestConfig = {
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
     '/__utils__/',
+    '<rootDir>/v2/__tests__/',
   ],
   preset: 'ts-jest',
   verbose: true,

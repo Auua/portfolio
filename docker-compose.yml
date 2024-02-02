@@ -1,0 +1,19 @@
+# Use Prisma example for local mongodb setup https://github.com/prisma/prisma-examples/blob/latest/databases/mongodb/docker-compose.yml
+version: '3.8'
+services:
+  mongo:
+    image: prismagraphql/mongo-single-replica:4.4.3-bionic
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'password'
+      MONOG_INITDB_DATABASE: 'portfoliotestdb'
+      INIT_WAIT_SEC: 3
+    ports:
+      - 27017:27017
+
+
+volumes:
+  mongo-data:
+
+networks:
+  default:

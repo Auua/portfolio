@@ -5,10 +5,11 @@ export type SessionProps = {
   session: Session | null;
 };
 
+type ObjectType = { [k: string]: string };
+
 export type TranslationProps = {
   locale: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  t: any;
+  t: (key: string, values?: ObjectType) => string;
 };
 
 export type SessionAndTranslationsProps = SessionProps & TranslationProps;

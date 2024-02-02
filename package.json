@@ -4,19 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "next dev --experimental-https",
-    "build": "npm run prisma:generate && next build",
+    "build": "npm run prisma:generate && npm run build:sitemap && npm run build:robots && next build",
     "analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
     "test:ci": "jest --ci --coverage",
-    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma"
+    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma",
+    "build:sitemap": "ts-node scripts/generate-sitemap.mjs",
+    "build:robots": "ts-node scripts/generate-robots-txt.mjs",
+    "start:test:local": "npm run prisma:generate && npm run dev",
+    "start:test:ci": "npm run compose:up && npm run build && npm run start",
+    "compose:up": "docker-compose up -d",
+    "compose:down": "docker-compose down"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.0.14",
     "@prisma/client": "^5.8.1",
     "@vercel/analytics": "^1.1.1",
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.1",
     "next": "14.1.0",
     "next-auth": "^4.24.5",
     "next-intl": "^3.5.2",
@@ -27,6 +34,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.0.4",
+    "@playwright/test": "^1.41.1",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
@@ -34,7 +42,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/jest": "^29.5.11",
     "@types/jest-axe": "^3.5.9",
-    "@types/node": "20.11.4",
+    "@types/node": "^20.11.4",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
@@ -60,6 +68,7 @@
     "postcss-nesting": "^12.0.2",
     "prettier": "3.2.2",
     "prisma": "^5.8.1",
+    "sitemap": "^7.1.1",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5"

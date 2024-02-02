@@ -19,6 +19,6 @@ export default chain([withAuthentication, withInternatialization]);
 export const config = {
   matcher: [
     // Skip API routes and static assets
-    '/((?!api|_next|.*\\..*).*)',
+    '/((?!api|_next|_vercel|.*\\..*).*)',
   ],
 };

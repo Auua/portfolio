@@ -1,4 +1,4 @@
-nav {
+.main {
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -11,8 +11,12 @@ nav {
   justify-content: space-between;
 }
 
-nav .nav-item__skip {
+.first {
   flex: 1;
+}
+
+.skip {
+  position: relative;
   left: -10000px;
   top: auto;
   width: 1px;
@@ -20,19 +24,26 @@ nav .nav-item__skip {
   overflow: hidden;
 }
 
-nav .nav-item__skip:focus {
+.skip:focus {
   position: static;
   width: auto;
   height: auto;
 }
 
-nav .nav-item__center {
+.label {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.centered {
   justify-content: center;
   display: flex;
   flex-grow: 0;
 }
 
-nav .nav-group__end {
+.group {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -40,14 +51,15 @@ nav .nav-group__end {
   flex: 1;
 }
 
-nav select {
+.main select {
   background: transparent;
   border: none;
   color: rgb(var(--foreground-rgb));
   font-family: 'Avenir Next LT W01 Bold', sans-serif;
+  font-size: inherit;
   font-weight: 700;
   line-height: 24px;
-  padding: var(--size-small) var(--size-large);
+  padding: var(--size-small);
   position: relative;
   text-decoration: none;
   user-select: none;

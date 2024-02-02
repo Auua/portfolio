@@ -3,8 +3,8 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { NextAuthOptions } from 'next-auth';
 import { Adapter } from 'next-auth/adapters';
 import { User } from '@prisma/client';
-import prisma from '@/_lib/prisma';
-import checkUser from '@/_lib/users';
+import prisma from '@/lib/prisma';
+import checkUser from '@/lib/users';
 
 const options: NextAuthOptions = {
   providers: [

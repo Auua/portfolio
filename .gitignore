@@ -32,6 +32,7 @@ yarn-error.log*
 .env*.local
 .env
 .env.local
+.env*
 
 # vercel
 .vercel
@@ -39,3 +40,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scrpited files
+public/robots.txt
+public/sitemap.xml
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

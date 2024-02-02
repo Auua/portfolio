@@ -1,6 +1,6 @@
 import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 import { MiddlewareFactory } from './middlewareFactory';
-import { SUPPORTED_LANGUAGES } from '../../i18n';
+import { SUPPORTED_LANGUAGES } from '../../i18n/';
 import { getToken } from 'next-auth/jwt';
 
 const publicPages = ['/', '/login', '/signup'];

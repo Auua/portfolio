@@ -1,7 +1,7 @@
-.error-title {
+.title {
   margin: var(--size-default) var(--size-default);
 }
 
-.error-desc {
+.description {
   margin: var(--size-default) var(--size-default);
 }

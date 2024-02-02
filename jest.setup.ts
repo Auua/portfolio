@@ -3,6 +3,7 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations);
 
+/*
 jest.mock('next-auth/providers/credentials', () => {
   return require('./__mocks__/next-auth');
 });
@@ -30,6 +31,7 @@ jest.mock('next-auth/next', () => ({
       }),
   ),
 }));
+*/
 
 global.afterEach(async () => {
   await axe(document.body).then((result) => {

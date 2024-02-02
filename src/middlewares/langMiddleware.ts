@@ -1,5 +1,5 @@
 import createIntlMiddleware from 'next-intl/middleware';
-import { DEFAULT_LOCALE, SUPPORTED_LANGUAGES } from '../../i18n/index';
+import { DEFAULT_LOCALE, SUPPORTED_LANGUAGES } from '../../i18n/';
 import { NextRequest, NextFetchEvent } from 'next/server';
 import { MiddlewareFactory } from './middlewareFactory';
 

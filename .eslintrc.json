@@ -19,7 +19,8 @@
   "rules": {
     "no-unused-vars": "warn",
     "react/react-in-jsx-scope": "off",
-    "jest/no-mocks-import": "off"
+    "jest/no-mocks-import": "off",
+    "react/prop-types": "off"
   },
   "plugins": ["testing-library", "react", "react-hooks", "import", "@typescript-eslint" ],
   "overrides": [

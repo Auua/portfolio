@@ -1,4 +1,6 @@
-@import '@/app/_styles/button.css';
+@import url('https://fonts.googleapis.com/css?family=Coda:400|Nurito:400,400i,700|Roboto+Slab:400,700|Nothing+You+Could+Do:400,700&display=swap');
+@import '@/app/_styles/button.module.css';
+
 
 :root {
     --background: #F5F5F5;
@@ -41,6 +43,21 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --font-body: 'Nurito', sans-serif;
+  --font-heading: 'Nothing You Could Do', sans-serif;
+  --font-headings: 'Coda', sans-serif;
+  --font-accent: 'Roboto Slab', serif;
+  --font-button: "Avenir Next LT W01 Bold",sans-serif;
+
+  /*
+  --font-body: 'Nurito', sans-serif;
+  --font-heading: 'Nothing You Could Do', sans-serif;
+  --font-headings: 'Coda', sans-serif;
+  --font-accent: 'Roboto Slab', serif;
+  --font-button: "Avenir Next LT W01 Bold",sans-serif;
+  */
+
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -123,6 +140,7 @@ body {
 }
 
 body {
+  font-family: var(--font-body);
   min-height: 100dvh;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -131,6 +149,19 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  font-family: var(--font-headings);
+
+}
+
+h1, h2 {
+  font-size: 2rem;
+  line-height: 1.5;
+  padding: var(--size-default) var(--size-small);
+  margin: var(--size-default) 0;
 }
 
 main {
@@ -151,6 +182,15 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.quote {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .center {

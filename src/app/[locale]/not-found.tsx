@@ -8,14 +8,12 @@ export default function NotFound() {
   const t = useTranslations('Common');
 
   return (
-    <div className={'page-container--full height center bg-primary'}>
-      <main className={'main__page'}>
-        <Error statusCode={404} title={'Page not found'}>
-          <div className={'button-row'}>
-            <button onClick={() => router.back()}>{t('goBack')}</button>
-          </div>
-        </Error>
-      </main>
-    </div>
+    <main>
+      <Error statusCode={404} title={t('notFound')}>
+        <div className={'button-row'}>
+          <button onClick={() => router.back()}>{t('goBack')}</button>
+        </div>
+      </Error>
+    </main>
   );
 }
