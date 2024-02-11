@@ -7,9 +7,12 @@ export type SessionProps = {
 
 type ObjectType = { [k: string]: string };
 
-export type TranslationProps = {
-  locale: string;
+export type TranslatorProps = {
   t: (key: string, values?: ObjectType) => string;
+};
+
+export type TranslationProps = TranslatorProps & {
+  locale: string;
 };
 
 export type SessionAndTranslationsProps = SessionProps & TranslationProps;
@@ -21,6 +24,7 @@ export type ParamProps = {
 
 export type LocaleParamProps = {
   children?: ReactNode;
+  form?: React.ReactNode;
   params: { locale: string };
 };
 

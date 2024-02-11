@@ -1,14 +1,10 @@
 import styles from '../page.module.css';
-import { SessionProps } from '@/app/_types/common';
 import { useTranslations } from 'next-intl';
 import { Skill } from '@prisma/client';
 import TopSkills from './TopSkills';
 
-type HomeProps = SessionProps & { skills: Skill[] };
-
-export default function Home({ session, skills }: HomeProps) {
+export default function Home({ skills }: { skills: Skill[] }) {
   const t = useTranslations('Home');
-  console.log(session);
   return (
     <main className={styles.main}>
       <div className={styles.content}>
@@ -36,7 +32,6 @@ export default function Home({ session, skills }: HomeProps) {
         </section>
         <TopSkills skills={skills} session={null} />
       </div>
-      {session && <>Something to todo</>}
     </main>
   );
 }

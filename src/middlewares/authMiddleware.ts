@@ -3,7 +3,7 @@ import { MiddlewareFactory } from './middlewareFactory';
 import { SUPPORTED_LANGUAGES } from '../../i18n/';
 import { getToken } from 'next-auth/jwt';
 
-const publicPages = ['/', '/login', '/signup'];
+const publicPages = ['/', '/login', '/logout', '/contact'];
 
 const locales = SUPPORTED_LANGUAGES;
 

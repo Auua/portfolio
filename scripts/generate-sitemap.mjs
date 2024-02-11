@@ -7,11 +7,20 @@ import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
   const siteUrl =
     process.env.NEXT_PUBLIC_VERCEL_URL || 'https://localhost:3000';
 
-  const links = SUPPORTED_LANGUAGES.map((locale) => ({
-    url: `/${locale}`,
-    changefreq: 'monthly',
-    priority: 0.9,
-  }));
+  const links = SUPPORTED_LANGUAGES.map(
+    (locale) => (
+      {
+        url: `/${locale}`,
+        changefreq: 'monthly',
+        priority: 0.9,
+      },
+      {
+        url: `/${locale}/contact`,
+        changefreq: 'monthly',
+        priority: 0.5,
+      }
+    ),
+  );
 
   const sitemapStream = new SitemapStream({ hostname: siteUrl });
 

@@ -35,6 +35,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "i18n/index.ts",
+    "src/tests/components/ContactForm.t.tsx",
+    "src/tests/components/Modal.test.tsx",
+    "src/tests/components/Navbar.test.tsx",
+    "src/tests/components/SkillCard.test.tsx",
+    "src/tests/locale/Home.test.tsx1",
   ],
   "exclude": [
     "node_modules",
