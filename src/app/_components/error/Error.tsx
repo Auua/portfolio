@@ -1,15 +1,15 @@
 import styles from '@/app/_styles/error.module.css';
 
 type ErrorComponentProps = {
-  statusCode: number;
-  title: string;
+  statusCode?: number;
+  title?: string;
   description?: string;
   children?: React.ReactNode;
 };
 
 const Error = ({
-  statusCode,
-  title,
+  statusCode = 500,
+  title = 'Unexpected Error Occurred',
   description,
   children,
 }: ErrorComponentProps) => {

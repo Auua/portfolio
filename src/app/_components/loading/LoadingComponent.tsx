@@ -6,7 +6,7 @@ const LoadingComponent = ({
   translation?: string;
 }) => {
   return (
-    <div className={`center`}>
+    <div className={`center full`}>
       <div className={styles.loading}>
         <div className={styles.loader} />
         <span className="screen-reader-only">{translation}</span>

@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import LoadingComponent from '../_components/loading/LoadingComponent';
 import Navbar from '../_components/navigation/Navbar';
 import { Analytics } from '../_components/Analytics';
+import Footer from '../_components/footer/Footer';
 
 export async function generateMetadata({
   params: { locale },
@@ -45,6 +46,7 @@ export function generateStaticParams() {
 
 export default function LocaleLayout({
   children,
+  form,
   params: { locale },
 }: LocaleParamProps) {
   unstable_setRequestLocale(locale);
@@ -54,10 +56,12 @@ export default function LocaleLayout({
     <html lang={locale}>
       <body>
         <Navbar locale={locale} />
-        <Suspense fallback={<LoadingComponent />}>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
-          </NextIntlClientProvider>
+        {children}
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {form}
+        </NextIntlClientProvider>
+        <Footer />
+        <Suspense fallback={null}>
           <Analytics />
         </Suspense>
       </body>

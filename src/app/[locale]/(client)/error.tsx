@@ -12,10 +12,12 @@ export default function ErrorPage({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div>
-      <Error statusCode={500} title={t('title')} description={t('description')}>
-        <button onClick={() => reset()}>{t('retry')}</button>
+    <main>
+      <Error statusCode={500} title={t('title')}>
+        <div className={'button-row'}>
+          <button onClick={() => reset()}>{t('retry')}</button>
+        </div>
       </Error>
-    </div>
+    </main>
   );
 }

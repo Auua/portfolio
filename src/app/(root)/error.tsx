@@ -15,7 +15,9 @@ export default function ErrorPage({ error, reset }: ErrorProps) {
       <body>
         <main>
           <Error statusCode={500} title={'Something went wrong'}>
-            <button onClick={() => reset()}>Try</button>
+            <div className={'button-row'}>
+              <button onClick={() => reset()}>Try again</button>
+            </div>
           </Error>
         </main>
       </body>

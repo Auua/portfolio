@@ -22,15 +22,13 @@ export default function LangSelect({ children, defaultValue, label }: Props) {
   }
 
   return (
-    <label>
-      <p className="screen-reader-only">{label}</p>
-      <select
-        defaultValue={defaultValue}
-        disabled={isPending}
-        onChange={onSelectChange}
-      >
-        {children}
-      </select>
-    </label>
+    <select
+      defaultValue={defaultValue}
+      disabled={isPending}
+      onChange={onSelectChange}
+      aria-label={label}
+    >
+      {children}
+    </select>
   );
 }

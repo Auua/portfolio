@@ -4,6 +4,11 @@
   gap: var(--size-large);
   margin: var(--size-large) 0;
   align-items: center;
+  justify-content: space-evenly;
+}
+
+.button-row.end {
+  justify-content: flex-end;
 }
 
 button,
@@ -21,6 +26,7 @@ button,
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  cursor: pointer;
 }
 
 [type="button"]:hover,
@@ -30,7 +36,6 @@ button,
 
 [type="button"]:hover {
   background-color: transparent;
-  cursor: pointer;
 }
 
 [type="button"]:before {
@@ -53,4 +58,13 @@ button,
   [type="button"] {
     padding: var(--size-small) var(--size-large);
   }
+}
+
+button.secondary {
+  border: none;
+  background: transparent;
+}
+
+button.secondary:hover {
+  text-decoration: underline;
 }
