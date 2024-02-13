@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <main>
       <Suspense fallback={<LoadingComponent />}>
-        <h1>{header}</h1>
+        <h1 id={'main'}>{header}</h1>
         {content}
       </Suspense>
     </main>

@@ -1,10 +1,12 @@
 import styles from '@/app/_styles/form.module.css';
 import { TranslatorProps } from '@/app/_types/common';
 import { BsExclamationTriangle } from 'react-icons/bs';
+import FocusContent from './FocusContent';
 
 type ErrorMessageProps = {
   name: string;
   messages: string[];
+  shouldFocus?: boolean;
 } & TranslatorProps;
 
 type InputFieldProps = {
@@ -13,12 +15,15 @@ type InputFieldProps = {
   name: string;
   autoComplete: string;
   required: boolean;
+  shouldFocus?: boolean;
 } & TranslatorProps;
 
-const errorMessages = ({ name, messages, t }: ErrorMessageProps) => (
-  <div className={styles.error} id={`${name}Error`}>
-    <BsExclamationTriangle /> {messages.map((error) => t(error)).join(', ')}
-  </div>
+const errorMessages = ({ name, messages, t, shouldFocus }: ErrorMessageProps) => (
+  <FocusContent focus={shouldFocus}>
+    <div className={styles.error} id={`${name}Error`} role={'alert'}>
+      <BsExclamationTriangle /> {messages.map((error) => t(error)).join(', ')}
+    </div>
+  </FocusContent>
 );
 
 export const InputField = ({
@@ -28,6 +33,7 @@ export const InputField = ({
   name,
   autoComplete,
   required,
+  shouldFocus,
 }: InputFieldProps) => {
   return (
     <>
@@ -44,7 +50,7 @@ export const InputField = ({
         autoComplete={autoComplete}
         aria-describedby={`${name}Error`}
       />
-      {errors && errorMessages({ messages: errors, t, name })}
+      {errors && errorMessages({ messages: errors, t, name, shouldFocus })}
     </>
   );
 };
@@ -55,6 +61,7 @@ export const TextAreaField = ({
   name,
   autoComplete,
   required,
+  shouldFocus,
 }: InputFieldProps) => {
   return (
     <>
@@ -70,7 +77,7 @@ export const TextAreaField = ({
           aria-describedby={`${name}Error`}
         />
       </label>
-      {errors && errorMessages({ messages: errors, t, name })}
+      {errors && errorMessages({ messages: errors, t, name, shouldFocus })}
     </>
   );
 };

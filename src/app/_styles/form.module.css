@@ -1,53 +1,59 @@
 .contact {
-    display: flex;
-    flex-direction: column;
-    padding: var(--size-default) 0;
-    min-width: 60dvw;
+  display: flex;
+  flex-direction: column;
+  padding: var(--size-default) 0;
+  min-width: 60dvw;
 }
 
 .label {
-    font-weight: 600;
-    margin-top: var(--size-default);
-    margin-bottom: var(--size-x-small);
+  font-weight: 600;
+  margin-top: var(--size-default);
+  margin-bottom: var(--size-x-small);
 }
 
 .input {
-    width: 100%;
-    padding: var(--size-default);
-    margin: var(--size-small) 0;
-    display: inline-block;
-    border: 1px solid var(--text-color);
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: var(--background-light);
-    color: var(--text-color);
+  width: 100%;
+  padding: var(--size-default);
+  margin: var(--size-small) 0;
+  display: inline-block;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: var(--background-light);
+  color: var(--text-color);
 }
 
 .submit {
-    background-color: var(--primary);
-    color: var(--text-light);
-    margin: var(--size-default) 0;
-    width: fit-content;
-    display: flex;
-    gap: var(--size-small);
-    align-items: center;
+  background-color: var(--primary);
+  color: var(--text-light);
+  margin: var(--size-default) 0;
+  width: fit-content;
+  display: flex;
+  gap: var(--size-small);
+  align-items: center;
 }
 
 .submit:hover {
-    background-color: var(--primary-hover);
-    color: var(--text-light-hover);
+  background-color: var(--primary-hover);
+  color: var(--text-light-hover);
 }
 
 .error {
-    border: 1px solid var(--notification-alert-bg);
-    background-color: var(--notification-alert-bg);
-    color: var(--notification-alert-text);
+  color: var(--notification-alert-text);
 }
 
-.form-alert {
-    background-color: var(--notification-alert-bg);
-    color: var(--notification-alert-text);
-    padding: var(--size-small);
-    width: fit-content;
-    font-size: smaller;
+.alert {
+  color: var(--notification-alert-text);
+  padding: var(--size-small);
+  width: fit-content;
+  font-size: smaller;
+  margin: 0;
+}
+
+.success {
+  color: var(--notification-success-text);
+  padding: var(--size-small);
+  width: fit-content;
+  font-size: smaller;
+  margin: 0;
 }

@@ -3,7 +3,7 @@ import LoadingComponent from '../loading/LoadingComponent';
 
 export function LoadingModal() {
   return (
-    <div role={'presentation'} className={styles.backdrop}>
+    <div role={'presentation'} className={styles.backdrop} id={'skeletonModal'}>
       <div className={styles.content} role={'dialog'} aria-modal={true}>
         <LoadingComponent />
       </div>

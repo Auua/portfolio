@@ -1,15 +1,19 @@
+/// <reference types="react-dom/canary" />
 'use client';
+
+import React from 'react';
 import styles from '@/app/_styles/form.module.css';
 import { FormResponse } from '@/app/_types/form';
 import { TextField } from './InputField';
 import { TranslatorProps } from '@/app/_types/common';
 import { useFormState } from 'react-dom';
 import { useTranslations } from 'next-intl';
-import { useRouter } from '@/i18n';
+import FocusContent from './FocusContent';
+import ReturnButton from './ReturnButton';
 
 type FormProps<FormDataType> = {
   action: (
-    prevState: FormResponse<FormDataType>,
+    prevState: Awaited<FormResponse<FormDataType>>,
     formData: FormData,
   ) => FormResponse<FormDataType> | Promise<FormResponse<FormDataType>>;
   id: string;
@@ -38,11 +42,6 @@ export const Form = <FormDataType,>({
   const [state, formAction] = useFormState(action, initialState);
 
   const formT = useTranslations('Form');
-  const router = useRouter();
-
-  const returnBack = () => {
-    router.back();
-  };
 
   return (
     <>
@@ -58,29 +57,35 @@ export const Form = <FormDataType,>({
               autoComplete={field.autoComplete}
               required={field.required}
               type={field.type}
+              shouldFocus={true}
             />
           );
         })}
-        <div id={'formButtons'} className={'button-row end'}>
-          <button className={'secondary'} onClick={returnBack}>
-            {formT('return')}
-          </button>
+        <div id={'formButtons'} className={'button-row start'}>
+          {buttons}
           <button key={'reset'} className={'secondary'} type={'reset'}>
             {formT('reset')}
           </button>
-          {buttons}
+          <ReturnButton buttonType={'secondary'}>
+            {formT('return')}
+          </ReturnButton>
+
+          {state?.message &&
+            (state.success ? (
+              <FocusContent focus={true}>
+                <p aria-live="polite" className={styles.success} role="status">
+                  {t(state?.message)}
+                </p>
+              </FocusContent>
+            ) : (
+              <FocusContent focus={!state?.errors?.nested}>
+                <p aria-live="polite" className={styles.alert} role="alert">
+                  {t(state?.message)}
+                </p>
+              </FocusContent>
+            ))}
         </div>
       </form>
-      {state?.message &&
-        (state.success ? (
-          <p aria-live="polite" role="status">
-            {t(state?.message)}
-          </p>
-        ) : (
-          <p aria-live="polite" role="alert">
-            {t(state?.message)}
-          </p>
-        ))}
     </>
   );
 };

@@ -1,4 +1,7 @@
-import { defineConfig, devices } from '@playwright/test';
+/** @constant {constantDataTypeHere} */ import {
+  defineConfig,
+  devices,
+} from '@playwright/test';
 
 import path from 'path';
 /**

@@ -25,7 +25,13 @@ export default function ContactForm() {
     </SubmitButton>,
   ];
   const form = (
-    <Form<ContactFormData> t={t} action={formAction} fields={fields} id={id} buttons={buttons} />
+    <Form<ContactFormData>
+      t={t}
+      action={formAction}
+      fields={fields}
+      id={id}
+      buttons={buttons}
+    />
   );
 
   return {
