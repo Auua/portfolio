@@ -5,7 +5,6 @@ import { SUPPORTED_LANGUAGES } from '../../../i18n';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { LocaleParamProps } from '../_types/common';
 import { Suspense } from 'react';
-import LoadingComponent from '../_components/loading/LoadingComponent';
 import Navbar from '../_components/navigation/Navbar';
 import { Analytics } from '../_components/Analytics';
 import Footer from '../_components/footer/Footer';
@@ -56,10 +55,12 @@ export default function LocaleLayout({
     <html lang={locale}>
       <body>
         <Navbar locale={locale} />
-        {children}
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {form}
-        </NextIntlClientProvider>
+        <Suspense>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+            {form}
+          </NextIntlClientProvider>
+        </Suspense>
         <Footer />
         <Suspense fallback={null}>
           <Analytics />

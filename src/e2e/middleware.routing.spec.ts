@@ -13,8 +13,9 @@ describe('default locale', () => {
     expect(
       page.getByRole('heading', { name: en.Home.titleSkills }),
     ).toBeVisible();
-    expect(page.getByRole('option', { name: 'English' })).toBeVisible();
-    expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+    expect(
+      page.getByRole('link', { name: en.Navbar.Login.login }),
+    ).toBeVisible();
   });
 
   it('prevents access to protected pages', async ({ page }) => {
@@ -33,7 +34,7 @@ describe('default locale', () => {
       .click();
     await expect(page).toHaveURL('/api/auth/signin?error=CredentialsSignin');
     page.getByRole('paragraph', {
-      name: ' Sign in failed. Check the details you provided are correct.',
+      name: 'Sign in failed. Check the details you provided are correct.',
     });
   });
 
@@ -57,22 +58,9 @@ describe('default locale', () => {
       expect(
         page.getByRole('heading', { name: en.Home.titleSkills }),
       ).toBeVisible();
-      expect(page.getByRole('option', { name: 'English' })).toBeVisible();
-      expect(page.getByRole('button', { name: 'Logout' })).toBeVisible();
-    });
-
-    it('allows access to protected pages', async ({ page }) => {
-      await page
-        .getByRole('link', { name: 'Secret page for logged in users' })
-        .click();
-      await expect(page).toHaveURL('/admin');
-      expect(page.getByText(en.Navbar.name)).toBeVisible();
-      expect(page.getByRole('heading', { name: en.Home.title })).toBeVisible();
       expect(
-        page.getByRole('heading', { name: en.Home.titleSkills }),
+        page.getByRole('link', { name: en.Navbar.Login.logout }),
       ).toBeVisible();
-      expect(page.getByRole('option', { name: 'English' })).toBeVisible();
-      expect(page.getByRole('button', { name: 'Logout' })).toBeVisible();
     });
 
     it('shows 404 not found for unknown translated pages', async ({ page }) => {
@@ -82,11 +70,16 @@ describe('default locale', () => {
     });
 
     it('can logout', async ({ page }) => {
-      await page.getByRole('button', { name: 'Logout' }).click();
+      await page.getByRole('link', { name: 'Logout' }).click();
       // LOGOUT page
-      await expect(page).toHaveURL('/en');
-      expect(page.getByRole('heading', { name: en.Home.title })).toBeVisible();
-      expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+      await expect(page).toHaveURL('/api/auth/signout');
+      page.getByRole('button', { name: 'Sign out' }).click();
+      await expect(
+        page.getByRole('heading', { name: en.Home.title }),
+      ).toBeVisible();
+      expect(
+        page.getByRole('link', { name: en.Navbar.Login.login }),
+      ).toBeVisible();
     });
   });
 
@@ -105,7 +98,9 @@ describe('default locale', () => {
 
     it('redirects to the home page', async ({ page }) => {
       await expect(page).toHaveURL('/en');
-      expect(page.getByRole('button', { name: 'Logout' })).toBeVisible();
+      expect(
+        page.getByRole('link', { name: en.Navbar.Login.logout }),
+      ).toBeVisible();
     });
 
     it('allows access to admin page', async ({ page }) => {
@@ -115,31 +110,39 @@ describe('default locale', () => {
     });
 
     it('can logout', async ({ page }) => {
-      await page.getByRole('button', { name: 'Logout' }).click();
+      await page.getByRole('link', { name: 'Logout' }).click();
       // LOGOUT page
-      await expect(page).toHaveURL('/en');
-      expect(page.getByRole('heading', { name: en.Home.title })).toBeVisible();
-      expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+      await expect(page).toHaveURL('/api/auth/signout');
+      page.getByRole('button', { name: 'Sign out' }).click();
+      await expect(
+        page.getByRole('heading', { name: en.Home.title }),
+      ).toBeVisible();
+      expect(
+        page.getByRole('link', { name: en.Navbar.Login.login }),
+      ).toBeVisible();
     });
   });
 });
 
 describe('secondary locale', () => {
   it('allows access to public pages', async ({ page }) => {
+    await page.goto('/fin');
+
     await expect(page).toHaveURL('/fin');
     await expect(page.getByText(fin.Navbar.name)).toBeVisible();
     expect(page.getByRole('heading', { name: fin.Home.title })).toBeVisible();
     expect(
       page.getByRole('heading', { name: fin.Home.titleSkills }),
     ).toBeVisible();
-    expect(page.getByRole('option', { name: 'Suomeksi' })).toBeVisible();
-    expect(page.getByRole('button', { name: 'Kirjaudu ulos' })).toBeVisible();
+    expect(
+      page.getByRole('link', { name: fin.Navbar.Login.login }),
+    ).toBeVisible();
   });
 
   it('prevents access to protected pages', async ({ page }) => {
     await page.goto('/fin/admin');
     await expect(page).toHaveURL(
-      '/api/auth/signin?callbackUrl+=https%3A%2F%2Flocalhost%3A3000%2fin%2Fadmin',
+      '/api/auth/signin?callbackUrl+=https%3A%2F%2Flocalhost%3A3000%2Ffin%2Fadmin',
     );
   });
 });

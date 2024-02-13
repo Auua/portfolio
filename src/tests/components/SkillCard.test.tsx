@@ -1,3 +1,4 @@
+import { skillMock } from '@/mocks/skill';
 import { renderComponentInsideMain, screen } from '../testUtils/testUtils';
 import { SkillCard } from '@/app/_components/skill/SkillCard';
 
@@ -5,14 +6,7 @@ describe('SkillCard', () => {
   // Renders an Image component with the correct src, alt, height and width props based on the skill prop passed to it.
   it('should render Image component with correct props', () => {
     // Given
-    const skill = {
-      svg: '<svg></svg>',
-      title: 'Test Skill',
-      id: '2',
-      level: 'Novice',
-      sectionId: '1',
-      top: null,
-    };
+    const skill = skillMock('Skill1', true, 'Novice');
     const size = 50;
 
     // When
@@ -57,14 +51,7 @@ describe('SkillCard', () => {
   // When the size prop is not passed, it defaults to 50.
   it('should default to size 50 when size prop is not passed', () => {
     // Given
-    const skill = {
-      svg: '<svg></svg>',
-      title: 'Test Skill',
-      id: '2',
-      level: 'Novice',
-      sectionId: '1',
-      top: null,
-    };
+    const skill = skillMock('Skill2', false, 'Novice');
 
     // When
     renderComponentInsideMain(<SkillCard skill={skill} />);

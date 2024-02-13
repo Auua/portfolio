@@ -23,6 +23,7 @@ export default function LangSelect({ children, defaultValue, label }: Props) {
 
   return (
     <select
+      id={'languageSwitch'}
       defaultValue={defaultValue}
       disabled={isPending}
       onChange={onSelectChange}
