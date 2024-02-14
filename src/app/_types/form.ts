@@ -9,10 +9,7 @@ export type FormErrors<T> = {
 
 export type FormResponse<T> = {
   success: boolean;
-  errors?: {
-    nested?: Partial<FormErrors<T>>;
-    message?: string;
-  };
+  errors?: Partial<FormErrors<T>>;
   message: string;
   data?: unknown;
 };

@@ -18,7 +18,12 @@ type InputFieldProps = {
   shouldFocus?: boolean;
 } & TranslatorProps;
 
-const errorMessages = ({ name, messages, t, shouldFocus }: ErrorMessageProps) => (
+const errorMessages = ({
+  name,
+  messages,
+  t,
+  shouldFocus = false,
+}: ErrorMessageProps) => (
   <FocusContent focus={shouldFocus}>
     <div className={styles.error} id={`${name}Error`} role={'alert'}>
       <BsExclamationTriangle /> {messages.map((error) => t(error)).join(', ')}
@@ -49,6 +54,7 @@ export const InputField = ({
         aria-required={required}
         autoComplete={autoComplete}
         aria-describedby={`${name}Error`}
+        aria-invalid={errors && errors.length > 0}
       />
       {errors && errorMessages({ messages: errors, t, name, shouldFocus })}
     </>
@@ -75,6 +81,7 @@ export const TextAreaField = ({
           aria-required={required}
           autoComplete={autoComplete}
           aria-describedby={`${name}Error`}
+          aria-invalid={errors && errors.length > 0}
         />
       </label>
       {errors && errorMessages({ messages: errors, t, name, shouldFocus })}
@@ -89,6 +96,7 @@ export const TextField = ({
   name,
   autoComplete,
   required,
+  shouldFocus,
 }: InputFieldProps) => {
   if (type === 'textarea') {
     return (
@@ -98,6 +106,7 @@ export const TextField = ({
         name={name}
         autoComplete={autoComplete}
         required={required}
+        shouldFocus={shouldFocus}
       />
     );
   } else {
@@ -109,6 +118,7 @@ export const TextField = ({
         name={name}
         autoComplete={autoComplete}
         required={required}
+        shouldFocus={shouldFocus}
       />
     );
   }

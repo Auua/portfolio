@@ -12,7 +12,14 @@ const FocusContent = ({
 
   useEffect(() => {
     if (messageRef.current && focus) {
-      (messageRef.current as HTMLElement)?.scrollIntoView({
+      (messageRef.current as HTMLElement).focus();
+
+      const elementPosition = (
+        messageRef.current as HTMLElement
+      ).getBoundingClientRect().top;
+
+      window.scrollTo({
+        top: elementPosition,
         behavior: 'smooth',
       });
     }

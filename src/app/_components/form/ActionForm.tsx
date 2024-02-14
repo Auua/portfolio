@@ -44,48 +44,46 @@ export const Form = <FormDataType,>({
   const formT = useTranslations('Form');
 
   return (
-    <>
-      <form key={id} id={id} className={styles.contact} action={formAction}>
-        {Object.keys(fields).map((key) => {
-          const field = fields[key as keyof FormDataType];
-          return (
-            <TextField
-              key={String(key)}
-              t={t}
-              errors={state?.errors?.nested?.[key as keyof FormDataType]}
-              name={String(key)}
-              autoComplete={field.autoComplete}
-              required={field.required}
-              type={field.type}
-              shouldFocus={true}
-            />
-          );
-        })}
-        <div id={'formButtons'} className={'button-row start'}>
-          {buttons}
-          <button key={'reset'} className={'secondary'} type={'reset'}>
-            {formT('reset')}
-          </button>
-          <ReturnButton buttonType={'secondary'}>
-            {formT('return')}
-          </ReturnButton>
+    <form key={id} id={id} className={styles.contact} action={formAction}>
+      {Object.keys(fields).map((key) => {
+        const field = fields[key as keyof FormDataType];
+        const errors = state?.errors?.[key as keyof FormDataType];
+        const firstError = state.errors && Object.keys(state.errors)[0] === key;
+        return (
+          <TextField
+            key={String(key)}
+            t={t}
+            errors={errors}
+            name={String(key)}
+            autoComplete={field.autoComplete}
+            required={field.required}
+            type={field.type}
+            shouldFocus={firstError}
+          />
+        );
+      })}
+      <div id={'formButtons'} className={'button-row start'}>
+        {buttons}
+        <button key={'reset'} className={'secondary'} type={'reset'}>
+          {formT('reset')}
+        </button>
+        <ReturnButton buttonType={'secondary'}>{formT('return')}</ReturnButton>
 
-          {state?.message &&
-            (state.success ? (
-              <FocusContent focus={true}>
-                <p aria-live="polite" className={styles.success} role="status">
-                  {t(state?.message)}
-                </p>
-              </FocusContent>
-            ) : (
-              <FocusContent focus={!state?.errors?.nested}>
-                <p aria-live="polite" className={styles.alert} role="alert">
-                  {t(state?.message)}
-                </p>
-              </FocusContent>
-            ))}
-        </div>
-      </form>
-    </>
+        {state?.message &&
+          (state.success ? (
+            <FocusContent focus={true}>
+              <p aria-live="polite" className={styles.success} role="status">
+                {t(state?.message)}
+              </p>
+            </FocusContent>
+          ) : (
+            <FocusContent focus={!state?.errors}>
+              <p aria-live="polite" className={styles.alert} role="alert">
+                {t(state?.message)}
+              </p>
+            </FocusContent>
+          ))}
+      </div>
+    </form>
   );
 };

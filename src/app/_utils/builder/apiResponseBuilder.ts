@@ -7,20 +7,17 @@ export function successResponse<T, R>(
   return {
     success: true,
     data,
-    message: message,
+    message,
   };
 }
 
 export function errorResponse<T>(
-  errors: string | undefined,
-  nested: Partial<FormErrors<T>> | undefined,
+  message: string | '',
+  errors: Partial<FormErrors<T>> | undefined,
 ): FormResponse<T> {
   return {
     success: false,
-    errors: {
-      nested: nested,
-      message: errors,
-    },
-    message: 'error',
+    errors,
+    message,
   };
 }

@@ -58,7 +58,7 @@ export default async function sendForm(
   } catch (error) {
     if (error instanceof ValiError) {
       console.error(flatten(error));
-      return errorResponse<ContactFormData>(undefined, flatten(error).nested);
+      return errorResponse<ContactFormData>('', flatten(error).nested);
     } else {
       console.error(error);
       return errorResponse<ContactFormData>('error', undefined);
