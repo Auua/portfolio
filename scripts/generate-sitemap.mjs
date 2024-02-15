@@ -4,8 +4,14 @@ import { resolve } from 'path';
 import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
 
 (async () => {
-  const siteUrl =
-    process.env.NEXT_PUBLIC_VERCEL_URL || 'https://localhost:3000';
+  const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+
+  const getFullUrl =
+    vercelUrl.startsWith('https://') || vercelUrl.startsWith('http://')
+      ? vercelUrl
+      : `https://${vercelUrl}`;
+
+  const siteUrl = getFullUrl || 'https://localhost:3000';
 
   const links = [];
   SUPPORTED_LANGUAGES.forEach((locale) => {
@@ -20,10 +26,6 @@ import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
       priority: 0.5,
     });
   });
-
-  if (!siteUrl.startsWith('https://') || !siteUrl.startsWith('http://')) {
-    siteUrl = `https://${siteUrl}`;
-  }
 
   const sitemapStream = new SitemapStream({ hostname: siteUrl });
 
