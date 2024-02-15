@@ -13,19 +13,19 @@ const Footer = async () => {
             href={t('socials.github.url')}
             aria-label={t('socials.github.alt')}
           >
-            <BsGithub title={t('socials.github.alt')} size={30} />
+            <BsGithub title={t('socials.github.alt')} size={25} />
           </Link>
           <Link
             href={t('socials.linkedin.url')}
             aria-label={t('socials.linkedin.alt')}
           >
-            <BsLinkedin title={t('socials.linkedin.alt')} size={30} />
+            <BsLinkedin title={t('socials.linkedin.alt')} size={25} />
           </Link>
           <Link
             href={t('socials.contact.url')}
             aria-label={t('socials.contact.alt')}
           >
-            <BsEnvelopeArrowUp title={t('socials.contact.alt')} size={30} />
+            <BsEnvelopeArrowUp title={t('socials.contact.alt')} size={25} />
           </Link>
         </div>
       </div>

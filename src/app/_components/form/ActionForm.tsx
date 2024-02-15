@@ -62,7 +62,7 @@ export const Form = <FormDataType,>({
           />
         );
       })}
-      <div id={'formButtons'} className={'button-row start'}>
+      <div id={'formButtons'} className={'button-row start form'}>
         {buttons}
         <button key={'reset'} className={'secondary'} type={'reset'}>
           {formT('reset')}

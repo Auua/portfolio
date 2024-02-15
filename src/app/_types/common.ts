@@ -1,5 +1,8 @@
 import { Session } from 'next-auth';
 import { ReactNode } from 'react';
+import { SUPPORTED_LANGUAGES } from '../../../i18n';
+
+export type SupportedLocale = (typeof SUPPORTED_LANGUAGES)[number];
 
 export type SessionProps = {
   session: Session | null;

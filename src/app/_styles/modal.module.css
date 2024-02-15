@@ -12,7 +12,7 @@
 }
 
 .content {
-  background-color: #fff;
+  background-color: var(--background-secondary);
   padding: var(--size-large) var(--size-x-large);
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -21,12 +21,19 @@
   max-height: 90dvh;
   overflow-x: auto;
   overflow-y: auto;
+  height: fit-content;
+  width: auto;
 }
 
 .header {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.header h2 {
+  padding: var(--size-small) 0;
+  margin: 0;
 }
 
 .top {

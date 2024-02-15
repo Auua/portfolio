@@ -1,69 +1,121 @@
-
 .content {
-  width: 100%;
+  max-width: 1100px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   gap: var(--size-x-large);
-  padding: var(--size-large)
 }
 
-.skills {
+.content section {
+  padding: var(--size-default);
+}
+
+.first {
+  flex-basis: calc(100% / (1 + 1.618) * 1.618);
+}
+
+.second {
   flex-basis: calc(100% / (1 + 1.618));
-  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-large);
+}
+
+.second > section:first-child {
+  flex-basis: calc(100% / (1 + 1.618) * 1.618);
+}
+
+.second > section:last-child {
+  flex-basis: calc(100% / (1 + 1.618));
+  align-items: center;
 }
 
 .about {
-  flex-basis: calc(100% / (1 + 1.618) * 1.618);
   font-size: 1rem;
 }
 
 .about h1 {
   font-size: 2.7rem;
   white-space: pre-line;
+}
+
+.about h1::first-line {
   color: var(--primary);
 }
 
-
 .aboutList {
   list-style: none;
-  padding: 0 var(--size-small);
-  margin: 0 var(--size-small);
-  font-size: 0.9rem;
-  width: 80%;
 }
 
 .aboutList li {
   position: relative;
   margin-bottom: 10px;
   white-space: break-spaces;
+  display: flex;
+  gap: var(--size-small);
+  align-items: center;
+}
+
+.marker {
+  display: inline-block;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.skills {
+  font-size: 1rem;
+}
+
+.skills h2 {
+  text-align: center;
 }
 
 .skillList {
+  list-style: none;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   font-size: small;
   font-family: var(--font-mono);
+  gap: var(--size-small);
+  flex-wrap: wrap;
+}
+
+.skillList li {
+  flex: 1 1 30%;
+  justify-content: center;
+  padding: var(--size-small) 0;
 }
 
 .description {
   display: inherit;
-  justify-content: inherit;
   align-items: inherit;
   max-width: var(--max-width);
   width: 100%;
   white-space: pre-line;
 }
 
+.based {
+  text-align: center;
+  padding: var(--size-small) 0;
+}
+
+.clifton {
+  text-align: center;
+  font-size: smaller;
+  color: var(--text-secondary);
+  padding: var(--size-small) 0;
+}
+
 /* Mobile */
-@media (max-width: 700px) { 
+@media (max-width: 700px) {
   .container {
     flex-direction: column;
   }
 
-  .about, .skills {
-      flex-basis: auto;
+  .about,
+  .skills {
+    flex-basis: auto;
   }
 
   .content {

@@ -9,24 +9,23 @@
   padding: var(--size-large) var(--size-x-large);
   pointer-events: none;
   z-index: 1;
-
 }
 
 .placeholder {
   width: 100%;
-  height: calc(3 * var(--size-x-large));
-  background: var(--primary);
-  border: 1px solid rgba(var(--card-border-rgb), 0.25);
+  height: calc(2 * var(--size-x-large) + var(--size-large));
+  background: var(--background-secondary);
 }
 
 .group {
-  background: white;
+  background: var(--highlight);
   border: 1px solid rgba(var(--card-border-rgb), 0.25);
   border-radius: 5px;
   display: flex;
-  gap: var(--size-large);
+  gap: var(--size-default);
   align-items: center;
   padding: var(--size-default);
   margin: 0;
   pointer-events: all;
+  color: var(--button-text-color);
 }

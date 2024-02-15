@@ -36,6 +36,11 @@ type Picture {
   alt String
 }
 
+type Translations {
+  en  String
+  fin String
+}
+
 model Page {
   id        String       @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime     @db.Date
@@ -70,6 +75,7 @@ model Skill {
   sectionId String   @db.ObjectId
   svg       String
   title     String
+  tTitle    Translations?
   top       Boolean?
 }
 

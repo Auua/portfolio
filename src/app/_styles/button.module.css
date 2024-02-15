@@ -15,12 +15,16 @@
   justify-content: flex-start;
 }
 
+.button-row.form {
+  margin: var(--size-default) 0;
+}
+
 button,
 [type='button'] {
-  background-color: transparent;
-  border: 1px solid #266db6;
+  background-color: var(--primary);
+  border: 2px solid var(--primary);
   box-sizing: border-box;
-  color: #00132c;
+  color: var(--button-text-color);
   font-family: var(--font-button);
   font-weight: 700;
   line-height: 24px;
@@ -39,7 +43,7 @@ button,
 }
 
 [type='button']:hover {
-  background-color: transparent;
+  background-color: var(--primary-hover);
 }
 
 [type='button']:before {
@@ -67,6 +71,7 @@ button,
 button.secondary {
   border: none;
   background: transparent;
+  color: var(--primary);
 }
 
 button.secondary:hover {

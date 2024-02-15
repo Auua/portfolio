@@ -14,7 +14,7 @@
   z-index: 1;
   display: flex;
   gap: var(--size-default);
-  padding: var(--nav-top-padding) var(--size-x-large);;
+  padding: var(--nav-top-padding) var(--size-x-large);
   align-items: center;
   justify-content: space-between;
   background: var(--background);
@@ -63,7 +63,8 @@
 .main select {
   background: transparent;
   border: none;
-  color: rgb(var(--foreground-rgb));
+  color: var(--text-color);
+  cursor: pointer;
   font-family: 'Avenir Next LT W01 Bold', sans-serif;
   font-size: inherit;
   font-weight: 700;
