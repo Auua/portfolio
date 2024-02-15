@@ -20,7 +20,10 @@ import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
       priority: 0.5,
     });
   });
-  console.log(siteUrl);
+
+  if (!siteUrl.startsWith('https://') || !siteUrl.startsWith('http://')) {
+    siteUrl = `https://${siteUrl}`;
+  }
 
   const sitemapStream = new SitemapStream({ hostname: siteUrl });
 
