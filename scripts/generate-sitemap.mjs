@@ -30,7 +30,7 @@ import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
 
   sitemapStream.pipe(createWriteStream(resolve('public', 'sitemap.xml')));
 
-  links.forEach((link) => sitemapStream.write(link));
+  links.forEach((link) => sitemapStream.write({ url: siteUrl + link }));
 
   sitemapStream.end();
 
