@@ -20,9 +20,11 @@ import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
       priority: 0.5,
     });
   });
+  console.log(siteUrl);
 
   const sitemapStream = new SitemapStream({ hostname: siteUrl });
 
+  console.log('sitemap', siteUrl);
   const sitemapPromise = streamToPromise(sitemapStream).then((data) =>
     data.toString(),
   );
