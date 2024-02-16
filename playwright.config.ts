@@ -87,7 +87,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: `PORT=${PORT} 'npm run start:test:local'`,
+    command: `PORT=${PORT} npm run start:test:local`,
     port: PORT,
     reuseExistingServer: true,
   },
