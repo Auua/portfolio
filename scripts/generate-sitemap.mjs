@@ -4,14 +4,15 @@ import { resolve } from 'path';
 import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
 
 (async () => {
-  const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+  const vercelUrl =
+    process.env.NEXT_PUBLIC_VERCEL_URL || 'https://localhost:3000';
 
   const getFullUrl =
     vercelUrl.startsWith('https://') || vercelUrl.startsWith('http://')
       ? vercelUrl
       : `https://${vercelUrl}`;
 
-  const siteUrl = getFullUrl || 'https://localhost:3000';
+  const siteUrl = getFullUrl;
 
   const links = [];
   SUPPORTED_LANGUAGES.forEach((locale) => {
@@ -29,7 +30,6 @@ import { SUPPORTED_LANGUAGES } from '../i18n/lang.mjs';
 
   const sitemapStream = new SitemapStream({ hostname: siteUrl });
 
-  console.log('sitemap', siteUrl);
   const sitemapPromise = streamToPromise(sitemapStream).then((data) =>
     data.toString(),
   );
