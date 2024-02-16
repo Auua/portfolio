@@ -21,7 +21,7 @@ describe('default locale', () => {
   it('prevents access to protected pages', async ({ page }) => {
     await page.goto('/admin');
     await expect(page).toHaveURL(
-      '/api/auth/signin?callbackUrl+=http%3A%2F%2Flocalhost%3A3000%2Fadmin',
+      '/api/auth/signin?callbackUrl+=https%3A%2F%2Flocalhost%3A3000%2Fadmin',
     );
   });
 
@@ -142,7 +142,7 @@ describe('secondary locale', () => {
   it('prevents access to protected pages', async ({ page }) => {
     await page.goto('/fin/admin');
     await expect(page).toHaveURL(
-      '/api/auth/signin?callbackUrl+=http%3A%2F%2Flocalhost%3A3000%2Ffin%2Fadmin',
+      '/api/auth/signin?callbackUrl+=https%3A%2F%2Flocalhost%3A3000%2Ffin%2Fadmin',
     );
   });
 });
