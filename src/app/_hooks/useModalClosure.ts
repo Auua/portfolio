@@ -11,7 +11,6 @@ const useModalClosure = () => {
         contentRef.current &&
         !contentRef.current.contains(event.target as Node)
       ) {
-        console.log('clicked');
         router.back();
       }
     },
