@@ -40,10 +40,11 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #ebe9ed;
-    --background-secondary: #d8d2d1;
+    --background: #fcfcfc;
+    --background-secondary: #ebe9ed;
 
     --text-color: #16161a;
+    --text-secondary: #4f5663;
 
     --button-text-color: #f5f5f5;
   }
