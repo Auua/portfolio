@@ -13,7 +13,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 const PORT = 3000;
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `https://localhost:${PORT}`;
+const baseURL = `http://localhost:${PORT}`;
 
 const COMMAND = process.env.CI
   ? 'npm run start:test:ci'
