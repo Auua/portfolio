@@ -50,29 +50,6 @@
   --notification-success-text: #14bd7f;
 }
 
-/*
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #16161a;
-    --background-secondary: #1f1e2b;
-
-    --text-color: #ebe9ed;
-    --text-secondary: rgb(132, 142, 156);
-
-    --button-text-color: #f5f5f5;
-
-    --primary: #044fc6;
-    --highlight: #14bd7f;
-
-    --primary-hover: #1460dc;
-    --highlight-hover: #11a26d;
-
-    --notification-alert-text: #e4243c;
-    --notification-success-text: #14bd7f;
-  }
-}
-*/
-
 * {
   box-sizing: border-box;
   padding: 0;
