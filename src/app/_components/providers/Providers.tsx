@@ -1,7 +1,6 @@
 'use client';
 
 import { ThemeProvider } from 'next-themes';
-import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
 
@@ -21,7 +20,7 @@ export default function Providers({
         defaultTheme={'system'}
         themes={['light', 'dark']}
       >
-        <SessionProvider>{children}</SessionProvider>
+        {children}
       </ThemeProvider>
     </NextIntlClientProvider>
   );
