@@ -71,7 +71,7 @@ button,
 button.secondary {
   border: none;
   background: transparent;
-  color: var(--primary);
+  color: var(----text-color);
 }
 
 button.secondary:hover {
@@ -81,7 +81,7 @@ button.secondary:hover {
 button.ghost {
   border: none;
   background: transparent;
-  color: var(----text-color);
+  color: var(----primary);
   padding: var(--size-small);
   margin: 0;
   display: flex;
