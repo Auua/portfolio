@@ -13,7 +13,7 @@
     "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma",
     "build:sitemap": "ts-node scripts/generate-sitemap.mjs",
     "build:robots": "ts-node scripts/generate-robots-txt.mjs",
-    "start:test:local": "npm run prisma:generate && npm run dev",
+    "start:test:local": "npm run build && npm run start",
     "start:test:ci": "npm run compose:up && npm run build && npm run start",
     "compose:up": "docker-compose up -d",
     "compose:down": "docker-compose down",

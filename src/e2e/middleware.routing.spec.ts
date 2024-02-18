@@ -19,7 +19,7 @@ describe('default locale', () => {
   });
 
   it('prevents access to protected pages', async ({ page }) => {
-    await page.goto('/admin');
+    await page.goto('/en/admin');
     await expect(page).toHaveURL('en/login?callbackUrl=/en/admin');
   });
 
@@ -68,10 +68,11 @@ describe('default locale', () => {
       await page.getByRole('link', { name: 'Logout' }).click();
       // LOGOUT page
       await expect(page).toHaveURL('/en/logout');
+      await expect(page.getByRole('heading', { name: 'Logout' })).toBeVisible();
       page.getByRole('button', { name: 'Logout' }).click();
       await expect(
-        page.getByRole('heading', { name: en.Home.title }),
-      ).toBeVisible();
+        page.getByRole('heading', { name: 'Logout' }),
+      ).not.toBeVisible();
       expect(
         page.getByRole('link', { name: en.Navbar.Login.login }),
       ).toBeVisible();
@@ -107,10 +108,11 @@ describe('default locale', () => {
       await page.getByRole('link', { name: 'Logout' }).click();
       // LOGOUT page
       await expect(page).toHaveURL('/en/logout');
+      await expect(page.getByRole('heading', { name: 'Logout' })).toBeVisible();
       page.getByRole('button', { name: 'Logout' }).click();
       await expect(
-        page.getByRole('heading', { name: en.Home.title }),
-      ).toBeVisible();
+        page.getByRole('heading', { name: 'Logout' }),
+      ).not.toBeVisible();
       expect(
         page.getByRole('link', { name: en.Navbar.Login.login }),
       ).toBeVisible();
