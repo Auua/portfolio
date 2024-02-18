@@ -1,14 +1,15 @@
 import styles from '@/app/_styles/navigation.module.css';
 
-import { getServerSession } from 'next-auth';
-import options from '@/app/api/auth/[...nextauth]/options';
+import { auth } from '@/app/_utils/auth/config';
+
 import AuthSwitch from './auth/AuthSwitch';
 import LangSwitch from './lang/LangSwitch';
+import DarkModeSwitch from './theme/DarkModeSwitch';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
 const Navbar = async ({ locale }: { locale: string }) => {
-  const sessionPromise = getServerSession(options);
+  const sessionPromise = auth();
   const tPromise = getTranslations('Navbar');
 
   const [t, session] = await Promise.all([tPromise, sessionPromise]);
@@ -25,6 +26,7 @@ const Navbar = async ({ locale }: { locale: string }) => {
           {t('name')}
         </span>
         <div className={styles.group}>
+          <DarkModeSwitch />
           <LangSwitch locale={locale} t={t} />
           <AuthSwitch session={session} t={t} />
         </div>

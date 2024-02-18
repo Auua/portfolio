@@ -71,9 +71,8 @@ describe('default locale', () => {
       await page
         .getByRole('textbox', { name: 'Password' })
         .fill('testpassword');
-      await page
-        .getByRole('button', { name: 'Sign in with Credentials' })
-        .click();
+      await page.getByRole('button', { name: 'Login' }).click();
+      await expect(page.getByLabel('Username')).not.toBeVisible();
     });
 
     it('has correct home page', async ({ page }) => {

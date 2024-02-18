@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: "mongodb://root:password@localhost:27017/portfoliotestdb?authSource=admin&retryWrites=true&w=majority"
-      NEXTAUTH_URL: "https://localhost:3000"
-      NEXTAUTH_SECRET: "RandomSecret"
+      AUTH_SECRET: "RandomSecret"
       NEXT_PUBLIC_VERCEL_URL: "https://localhost:3000"
       GITHUB_ACCESS_TOKEN: ${{ secrets.ACTION_SECRET }}
       DISCORD_WEBHOOK: ${{ secrets.CONTACT_URL }}
+      CI: true
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3

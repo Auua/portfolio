@@ -1,7 +1,7 @@
 'use client';
 import styles from '@/app/_styles/form.module.css';
 import { useFormStatus } from 'react-dom';
-import LoadingComponent from '../loading/LoadingComponent';
+import LoadingComponent from '@/app/_components/loading/LoadingComponent';
 
 type SubmitButtonProps = {
   formId: string;
@@ -19,7 +19,7 @@ export const SubmitButton = ({ formId, children }: SubmitButtonProps) => {
       disabled={pending}
       aria-disabled={pending}
     >
-      {pending ? <LoadingComponent /> : children}
+      {pending ? <LoadingComponent size={'small'} /> : children}
     </button>
   );
 };

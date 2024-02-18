@@ -1,6 +1,6 @@
 import '../globals.css';
 
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { useMessages } from 'next-intl';
 import { SUPPORTED_LANGUAGES } from '../../../i18n';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { LocaleParamProps } from '../_types/common';
@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import Navbar from '../_components/navigation/Navbar';
 import { Analytics } from '../_components/Analytics';
 import Footer from '../_components/footer/Footer';
+import Providers from '../_components/providers/Providers';
 
 export async function generateMetadata({
   params: { locale },
@@ -52,16 +53,18 @@ export default function LocaleLayout({
   const messages = useMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body>
-        <Navbar locale={locale} />
         <Suspense>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
-            {form}
-          </NextIntlClientProvider>
+          <Providers locale={locale} messages={messages}>
+            <Navbar locale={locale} />
+            <Suspense>
+              {children}
+              {form}
+            </Suspense>
+            <Footer />
+          </Providers>
         </Suspense>
-        <Footer />
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>

@@ -53,7 +53,7 @@ export const InputField = ({
         required={required}
         aria-required={required}
         autoComplete={autoComplete}
-        aria-describedby={`${name}Error`}
+        aria-describedby={errors && errors.length > 0 ? `${name}Error` : ''}
         aria-invalid={errors && errors.length > 0}
       />
       {errors && errorMessages({ messages: errors, t, name, shouldFocus })}
@@ -80,7 +80,7 @@ export const TextAreaField = ({
           required={required}
           aria-required={required}
           autoComplete={autoComplete}
-          aria-describedby={`${name}Error`}
+          aria-describedby={errors && errors.length > 0 ? `${name}Error` : ''}
           aria-invalid={errors && errors.length > 0}
         />
       </label>

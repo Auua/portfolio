@@ -24,8 +24,6 @@
 }
 
 .submit {
-  background-color: var(--primary);
-  color: var(--text-light);
   margin: var(--size-default) 0;
   width: fit-content;
   display: flex;
@@ -35,7 +33,6 @@
 
 .submit:hover {
   background-color: var(--primary-hover);
-  color: var(--text-light-hover);
 }
 
 .error {
@@ -48,6 +45,7 @@
   width: fit-content;
   font-size: smaller;
   margin: 0;
+  max-width: 20dvw;
 }
 
 .success {

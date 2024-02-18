@@ -77,3 +77,19 @@ button.secondary {
 button.secondary:hover {
   text-decoration: underline;
 }
+
+button.ghost {
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  padding: var(--size-small);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.ghost:hover {
+  text-decoration: underline;
+  background: var(--background-secondary);
+}
