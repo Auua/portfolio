@@ -39,6 +39,7 @@
 .top {
   border: none;
   background: none;
+  color: inherit;
 }
 
 #modalContent {

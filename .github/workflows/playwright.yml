@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: "mongodb://root:password@localhost:27017/portfoliotestdb?authSource=admin&retryWrites=true&w=majority"
+      AUTH_URL: "https://localhost:3000"
       AUTH_SECRET: "RandomSecret"
       NEXT_PUBLIC_VERCEL_URL: "https://localhost:3000"
       GITHUB_ACCESS_TOKEN: ${{ secrets.ACTION_SECRET }}
