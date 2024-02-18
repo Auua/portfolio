@@ -1,6 +1,6 @@
 import '../globals.css';
 
-import { useMessages } from 'next-intl';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { SUPPORTED_LANGUAGES } from '../../../i18n';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { LocaleParamProps } from '../_types/common';
@@ -55,16 +55,16 @@ export default function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
-        <Suspense>
-          <Providers locale={locale} messages={messages}>
-            <Navbar locale={locale} />
-            <Suspense>
+        <Providers>
+          <Navbar locale={locale} />
+          <Suspense>
+            <NextIntlClientProvider locale={locale} messages={messages}>
               {children}
               {form}
-            </Suspense>
-            <Footer />
-          </Providers>
-        </Suspense>
+            </NextIntlClientProvider>
+          </Suspense>
+          <Footer />
+        </Providers>
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>

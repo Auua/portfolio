@@ -1,20 +1,15 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 
 const DarkModeSwitch = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, systemTheme } = useTheme();
-
-  const setThemeCallback = useCallback(() => {
-    setTheme(systemTheme ?? 'dark');
-  }, [setTheme, systemTheme]);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
-    setThemeCallback();
-  }, [setThemeCallback]);
+  }, []);
 
   if (!mounted) {
     return null;
