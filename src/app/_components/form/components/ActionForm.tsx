@@ -1,7 +1,6 @@
-/// <reference types="react-dom/canary" />
 'use client';
+/// <reference types="react-dom/canary" />
 
-import React from 'react';
 import styles from '@/app/_styles/form.module.css';
 import { FormResponse } from '@/app/_types/form';
 import { TextField } from './InputField';
@@ -27,7 +26,7 @@ type FormProps<FormDataType> = {
   buttons: React.ReactNode[];
 } & TranslatorProps;
 
-export const Form = <FormDataType,>({
+const Form = <FormDataType,>({
   t,
   action,
   id,
@@ -87,3 +86,5 @@ export const Form = <FormDataType,>({
     </form>
   );
 };
+
+export default Form;

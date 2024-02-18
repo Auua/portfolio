@@ -20,21 +20,17 @@ describe('default locale', () => {
 
   it('prevents access to protected pages', async ({ page }) => {
     await page.goto('/admin');
-    await expect(page).toHaveURL(
-      '/api/auth/signin?callbackUrl+=https%3A%2F%2Flocalhost%3A3000%2Fadmin',
-    );
+    await expect(page).toHaveURL('en/login?callbackUrl=%2Fadmin');
   });
 
   it('fails with wrong credentials', async ({ page }) => {
-    await page.goto('/api/auth/signin?callbackUrl=%2Fen');
+    await page.goto('/login');
     await page.getByRole('textbox', { name: 'Username' }).fill('random');
     await page.getByRole('textbox', { name: 'Password' }).fill('random');
-    await page
-      .getByRole('button', { name: 'Sign in with Credentials' })
-      .click();
-    await expect(page).toHaveURL('/api/auth/signin?error=CredentialsSignin');
+    await page.getByRole('button', { name: 'Login' }).click();
+    await expect(page).toHaveURL('/en/login');
     page.getByRole('paragraph', {
-      name: 'Sign in failed. Check the details you provided are correct.',
+      name: 'Invalid username or password.',
     });
   });
 
@@ -46,9 +42,8 @@ describe('default locale', () => {
       await page
         .getByRole('textbox', { name: 'Password' })
         .fill('testpassword');
-      await page
-        .getByRole('button', { name: 'Sign in with Credentials' })
-        .click();
+      await page.getByRole('button', { name: 'Login' }).click();
+      await expect(page.getByLabel('Username')).not.toBeVisible();
     });
 
     it('redirects to the home page', async ({ page }) => {
@@ -72,8 +67,8 @@ describe('default locale', () => {
     it('can logout', async ({ page }) => {
       await page.getByRole('link', { name: 'Logout' }).click();
       // LOGOUT page
-      await expect(page).toHaveURL('/api/auth/signout');
-      page.getByRole('button', { name: 'Sign out' }).click();
+      await expect(page).toHaveURL('/en/logout');
+      page.getByRole('button', { name: 'Logout' }).click();
       await expect(
         page.getByRole('heading', { name: en.Home.title }),
       ).toBeVisible();
@@ -91,9 +86,8 @@ describe('default locale', () => {
       await page
         .getByRole('textbox', { name: 'Password' })
         .fill('adminpassword');
-      await page
-        .getByRole('button', { name: 'Sign in with Credentials' })
-        .click();
+      await page.getByRole('button', { name: 'Login' }).click();
+      await expect(page.getByLabel('Username')).not.toBeVisible();
     });
 
     it('redirects to the home page', async ({ page }) => {
@@ -112,8 +106,8 @@ describe('default locale', () => {
     it('can logout', async ({ page }) => {
       await page.getByRole('link', { name: 'Logout' }).click();
       // LOGOUT page
-      await expect(page).toHaveURL('/api/auth/signout');
-      page.getByRole('button', { name: 'Sign out' }).click();
+      await expect(page).toHaveURL('/en/logout');
+      page.getByRole('button', { name: 'Logout' }).click();
       await expect(
         page.getByRole('heading', { name: en.Home.title }),
       ).toBeVisible();
@@ -141,8 +135,6 @@ describe('secondary locale', () => {
 
   it('prevents access to protected pages', async ({ page }) => {
     await page.goto('/fin/admin');
-    await expect(page).toHaveURL(
-      '/api/auth/signin?callbackUrl+=https%3A%2F%2Flocalhost%3A3000%2Ffin%2Fadmin',
-    );
+    await expect(page).toHaveURL('/fin/login?callbackUrl=/fn/admin');
   });
 });

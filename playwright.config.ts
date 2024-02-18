@@ -12,14 +12,12 @@ import dotenv from 'dotenv';
 dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 const PORT = 3000;
 
-// Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = process.env.CI
-  ? `http://localhost:${PORT}`
-  : `https://localhost:${PORT}`;
+const CI = process.env.CI ? false : false;
 
-const COMMAND = process.env.CI
-  ? 'npm run start:test:ci'
-  : 'npm run start:test:local';
+// Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
+const baseURL = CI ? `http://localhost:${PORT}` : `https://localhost:${PORT}`;
+
+const COMMAND = CI ? 'npm run start:test:ci' : 'npm run start:test:local';
 
 /**
  * See https://playwright.dev/docs/test-configuration.

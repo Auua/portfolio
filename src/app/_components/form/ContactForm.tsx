@@ -1,9 +1,10 @@
 'use client';
+
 import formAction from '@/actions/formActions';
 import { useTranslations } from 'next-intl';
 import { BsEnvelopeArrowUp } from 'react-icons/bs';
-import { SubmitButton } from './SubmitButton';
-import { Form } from './ActionForm';
+import { SubmitButton } from './components/SubmitButton';
+import Form from './components/ActionForm';
 import { ContactFormData } from '@/app/_types/form';
 
 export default function ContactForm() {
