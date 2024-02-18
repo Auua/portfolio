@@ -12,7 +12,7 @@
   --loading-border: 5px;
   width: var(--loading-size);
   height: var(--loading-size);
-  border: var(--loading-border) solid var(--background);
+  border: var(--loading-border) solid var(--background-secondary);
   border-bottom-color: var(--primary);
   border-radius: 50%;
   display: inline-block;

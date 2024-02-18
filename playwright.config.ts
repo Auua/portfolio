@@ -1,7 +1,4 @@
-/** @constant {constantDataTypeHere} */ import {
-  defineConfig,
-  devices,
-} from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 import path from 'path';
 
@@ -12,7 +9,7 @@ const PORT = 3000;
 const CI = process.env.CI ? true : false;
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = CI ? `http://localhost:${PORT}` : `https://localhost:${PORT}`;
+const baseURL = CI ? `http://localhost:${PORT}` : `http://localhost:${PORT}`;
 
 const COMMAND = CI ? 'npm run start:test:ci' : 'npm run start:test:local';
 
@@ -84,7 +81,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: `PORT=${PORT} ${COMMAND}`,
+    command: `${COMMAND}`,
     port: PORT,
     reuseExistingServer: true,
   },

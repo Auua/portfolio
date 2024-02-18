@@ -81,7 +81,7 @@ button.secondary:hover {
 button.ghost {
   border: none;
   background: transparent;
-  color: var(--primary);
+  color: var(----text-color);
   padding: var(--size-small);
   margin: 0;
   display: flex;
