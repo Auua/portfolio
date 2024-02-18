@@ -4,15 +4,12 @@
 } from '@playwright/test';
 
 import path from 'path';
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
+
 import dotenv from 'dotenv';
 dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 const PORT = 3000;
 
-const CI = process.env.CI ? false : false;
+const CI = process.env.CI ? true : false;
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
 const baseURL = CI ? `http://localhost:${PORT}` : `https://localhost:${PORT}`;
