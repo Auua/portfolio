@@ -20,7 +20,7 @@ describe('default locale', () => {
 
   it('prevents access to protected pages', async ({ page }) => {
     await page.goto('/admin');
-    await expect(page).toHaveURL('en/login?callbackUrl=%2Fadmin');
+    await expect(page).toHaveURL('en/login?callbackUrl=/en/admin');
   });
 
   it('fails with wrong credentials', async ({ page }) => {
@@ -135,6 +135,6 @@ describe('secondary locale', () => {
 
   it('prevents access to protected pages', async ({ page }) => {
     await page.goto('/fin/admin');
-    await expect(page).toHaveURL('/fin/login?callbackUrl=/fn/admin');
+    await expect(page).toHaveURL('/fin/login?callbackUrl=/fin/admin');
   });
 });
