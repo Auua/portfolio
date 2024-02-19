@@ -9,8 +9,10 @@ describe('default locale', () => {
     await page.goto('/');
     await expect(page).toHaveURL('/en');
     await expect(page.getByText(en.Navbar.name)).toBeVisible();
-    expect(page.getByRole('heading', { name: en.Home.title })).toBeVisible();
-    expect(
+    await expect(
+      page.getByRole('heading', { name: en.Home.title }),
+    ).toBeVisible();
+    await expect(
       page.getByRole('heading', { name: en.Home.titleSkills }),
     ).toBeVisible();
     expect(
@@ -48,12 +50,14 @@ describe('default locale', () => {
 
     it('redirects to the home page', async ({ page }) => {
       await expect(page).toHaveURL('/en');
-      expect(page.getByText(en.Navbar.name)).toBeVisible();
-      expect(page.getByRole('heading', { name: en.Home.title })).toBeVisible();
-      expect(
+      await expect(page.getByText(en.Navbar.name)).toBeVisible();
+      await expect(
+        page.getByRole('heading', { name: en.Home.title }),
+      ).toBeVisible();
+      await expect(
         page.getByRole('heading', { name: en.Home.titleSkills }),
       ).toBeVisible();
-      expect(
+      await expect(
         page.getByRole('link', { name: en.Navbar.Login.logout }),
       ).toBeVisible();
     });
@@ -61,7 +65,7 @@ describe('default locale', () => {
     it('shows 404 not found for unknown translated pages', async ({ page }) => {
       await page.goto('/en/unknown');
       await expect(page.getByText(en.Common.notFound)).toBeVisible();
-      expect(page.getByText(en.Navbar.name)).toBeVisible();
+      await expect(page.getByText(en.Navbar.name)).toBeVisible();
     });
 
     it('can logout', async ({ page }) => {
@@ -73,7 +77,7 @@ describe('default locale', () => {
       await expect(
         page.getByRole('heading', { name: 'Logout' }),
       ).not.toBeVisible();
-      expect(
+      await expect(
         page.getByRole('link', { name: en.Navbar.Login.login }),
       ).toBeVisible();
     });
@@ -93,7 +97,7 @@ describe('default locale', () => {
 
     it('redirects to the home page', async ({ page }) => {
       await expect(page).toHaveURL('/en');
-      expect(
+      await expect(
         page.getByRole('link', { name: en.Navbar.Login.logout }),
       ).toBeVisible();
     });
@@ -113,7 +117,7 @@ describe('default locale', () => {
       await expect(
         page.getByRole('heading', { name: 'Logout' }),
       ).not.toBeVisible();
-      expect(
+      await expect(
         page.getByRole('link', { name: en.Navbar.Login.login }),
       ).toBeVisible();
     });
@@ -127,10 +131,10 @@ describe('secondary locale', () => {
     await expect(page).toHaveURL('/fin');
     await expect(page.getByText(fin.Navbar.name)).toBeVisible();
     expect(page.getByRole('heading', { name: fin.Home.title })).toBeVisible();
-    expect(
+    await expect(
       page.getByRole('heading', { name: fin.Home.titleSkills }),
     ).toBeVisible();
-    expect(
+    await expect(
       page.getByRole('link', { name: fin.Navbar.Login.login }),
     ).toBeVisible();
   });

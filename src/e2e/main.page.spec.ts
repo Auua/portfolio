@@ -16,7 +16,9 @@ describe('default locale', () => {
       ).toBeVisible();
 
       // Main
-      expect(page.getByRole('heading', { name: en.Home.title })).toBeVisible();
+      await expect(
+        page.getByRole('heading', { name: en.Home.title }),
+      ).toBeVisible();
       expect(
         page.getByRole('heading', { name: en.Home.titleSkills }),
       ).toBeVisible();
@@ -34,7 +36,7 @@ describe('default locale', () => {
       it('can skip to main content', async ({ page }) => {
         await page.goto('/en');
 
-        expect(page.getByText(en.Navbar.name)).toBeVisible();
+        await expect(page.getByText(en.Navbar.name)).toBeVisible();
 
         const skipLink = await page.waitForSelector('text=Skip to content');
         await skipLink.press('Enter');
@@ -44,7 +46,7 @@ describe('default locale', () => {
       it('can switch language', async ({ page }) => {
         await page.goto('/en');
 
-        expect(page.getByText(en.Navbar.name)).toBeVisible();
+        await expect(page.getByText(en.Navbar.name)).toBeVisible();
         expect(page.getByLabel(en.Navbar.LangSwitch.label)).toBeVisible();
 
         await page.getByLabel(en.Navbar.LangSwitch.label).selectOption({
@@ -84,7 +86,9 @@ describe('default locale', () => {
       ).toBeVisible();
 
       // Main
-      expect(page.getByRole('heading', { name: en.Home.title })).toBeVisible();
+      await expect(
+        page.getByRole('heading', { name: en.Home.title }),
+      ).toBeVisible();
       expect(
         page.getByRole('heading', { name: en.Home.titleSkills }),
       ).toBeVisible();
