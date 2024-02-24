@@ -3,7 +3,7 @@ import { ContactFormData, FormResponse } from '@/app/_types/form';
 import {
   errorResponse,
   successResponse,
-} from '@/app/_utils/builder/apiResponseBuilder';
+} from '@/app/_utils/mapper/apiResponseBuilder';
 import { FormSchema } from '@/app/_utils/schemas/FormSchema';
 import { parse, ValiError, flatten } from 'valibot';
 

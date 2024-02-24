@@ -1,5 +1,5 @@
-import styles from '../page.module.css';
-import { SkillCard } from '@/app/_components/skill/SkillCard';
+import styles from '../../page.module.css';
+import { SkillCard } from '@/app/[locale]/_components/skills/SkillCard';
 import { SupportedLocale } from '@/app/_types/common';
 import { getTopSkills } from '@/lib/skills';
 import { getLocale } from 'next-intl/server';

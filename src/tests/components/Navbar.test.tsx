@@ -1,5 +1,5 @@
 import { renderComponent, screen } from '../testUtils/testUtils';
-import Navbar from '@/app/_components/navigation/Navbar';
+import Navbar from '@/app/_components/navigation/mainNav/Navbar';
 
 /*
 jest.mock('@/app/_components/navigation/lang/LangSwitch', () => {

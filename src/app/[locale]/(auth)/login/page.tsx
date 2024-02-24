@@ -7,11 +7,9 @@ export default function LoginPage() {
   const { header, content } = Form();
 
   return (
-    <main>
-      <Suspense fallback={<LoadingComponent />}>
-        <h1 id={'main'}>{header}</h1>
-        {content}
-      </Suspense>
-    </main>
+    <Suspense fallback={<LoadingComponent />}>
+      <h1 id={'main'}>{header}</h1>
+      {content}
+    </Suspense>
   );
 }

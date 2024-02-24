@@ -3,7 +3,7 @@ import { LoginFormData, FormResponse } from '@/app/_types/form';
 import {
   errorResponse,
   successResponse,
-} from '@/app/_utils/builder/apiResponseBuilder';
+} from '@/app/_utils/mapper/apiResponseBuilder';
 import { LoginSchema } from '@/app/_utils/schemas/LoginSchema';
 import { parse, ValiError, flatten } from 'valibot';
 import { signIn } from '@/app/_utils/auth/config';

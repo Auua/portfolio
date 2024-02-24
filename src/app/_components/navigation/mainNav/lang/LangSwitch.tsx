@@ -1,5 +1,5 @@
 import { TranslationProps } from '@/app/_types/common';
-import { SUPPORTED_LANGUAGES } from '../../../../../i18n';
+import { SUPPORTED_LANGUAGES } from '../../../../../../i18n';
 import LangSelect from './LangSelect';
 
 export default function LangSwitch({ locale, t }: TranslationProps) {

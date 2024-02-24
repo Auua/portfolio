@@ -5,6 +5,7 @@
   color-scheme: dark light;
   --background: #fcfcfc;
   --background-secondary: #ebe9ed;
+  --background-lighter: #ebe9ed;
 
   --text-color: #16161a;
   --text-secondary: #4f5663;
@@ -40,6 +41,7 @@
 [data-theme='dark'] {
   --background: #16161a;
   --background-secondary: #1f1e2b;
+  --background-lighter: #575767;
 
   --text-color: #ebe9ed;
   --text-secondary: rgb(132, 142, 156);
@@ -87,6 +89,12 @@ h2 {
   line-height: 1.5;
   padding: var(--size-default) 0;
   margin: var(--size-default) 0;
+}
+
+h3,
+h4 {
+  padding: var(--size-x-small) 0;
+  margin: var(--size-small) 0;
 }
 
 main {

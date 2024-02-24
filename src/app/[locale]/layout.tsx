@@ -1,14 +1,16 @@
 import '../globals.css';
+import styles from './page.module.css';
 
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { SUPPORTED_LANGUAGES } from '../../../i18n';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-import { LocaleParamProps } from '../_types/common';
+import { LocaleParamProps } from '@/app/_types/common';
 import { Suspense } from 'react';
-import Navbar from '../_components/navigation/Navbar';
-import { Analytics } from '../_components/Analytics';
-import Footer from '../_components/footer/Footer';
-import Providers from '../_components/providers/Providers';
+import Navbar from '@/app/_components/navigation/mainNav/Navbar';
+import { Analytics } from '@/app/_components/Analytics';
+import Footer from '@/app/_components/footer/Footer';
+import Providers from '@/app/_components/providers/Providers';
+import Tabs from '../_components/navigation/tabs/Tabs';
 
 export async function generateMetadata({
   params: { locale },
@@ -47,6 +49,8 @@ export function generateStaticParams() {
 export default function LocaleLayout({
   children,
   form,
+  tabs,
+  home,
   params: { locale },
 }: LocaleParamProps) {
   unstable_setRequestLocale(locale);
@@ -59,7 +63,11 @@ export default function LocaleLayout({
           <Navbar locale={locale} />
           <Suspense>
             <NextIntlClientProvider locale={locale} messages={messages}>
-              {children}
+              <main className={styles.main}>
+                {children}
+                {home}
+                <Tabs>{tabs}</Tabs>
+              </main>
               {form}
             </NextIntlClientProvider>
           </Suspense>

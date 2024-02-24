@@ -1,0 +1,38 @@
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--background-secondary);
+  margin: var(--size-large) 0;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--size-default);
+  font-size: larger;
+  margin-top: var(--size-large);
+}
+
+.tabs a {
+  padding: var(--size-default);
+}
+
+.tabs .active {
+  text-decoration: underline bolder;
+  background-color: var(--highlight);
+  color: var(--button-text-color);
+}
+
+.tabs a:hover {
+  text-decoration: underline;
+  background-color: var(--primary);
+  color: var(--button-text-color);
+}
+
+.selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  gap: var(--size-default);
+}

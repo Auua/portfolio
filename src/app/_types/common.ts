@@ -27,7 +27,9 @@ export type ParamProps = {
 
 export type LocaleParamProps = {
   children?: ReactNode;
-  form?: React.ReactNode;
+  form?: ReactNode;
+  tabs?: ReactNode;
+  home?: ReactNode;
   params: { locale: string };
 };
 

@@ -1,6 +1,6 @@
 import { skillMock } from '@/mocks/skill';
 import { renderComponentInsideMain, screen } from '../testUtils/testUtils';
-import { SkillCard } from '@/app/_components/skill/SkillCard';
+import { SkillCard } from '@/app/[locale]/_components/skills/SkillCard';
 
 describe('SkillCard', () => {
   // Renders an Image component with the correct src, alt, height and width props based on the skill prop passed to it.
