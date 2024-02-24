@@ -41,6 +41,15 @@ type Translations {
   fin String
 }
 
+type TimelineExtra {
+  gpa    String?
+  main   String[]
+  major  String?
+  minor  String?
+  skills String[]
+  thesis String?
+}
+
 model Page {
   id        String       @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime     @db.Date
@@ -88,6 +97,19 @@ model Section {
   subtitle String
   tag      String
   skills   Skill[]
+  timeline Timeline[]
+}
+
+model Timeline {
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  end       DateTime?      @db.Date
+  extra     TimelineExtra?
+  location  String
+  main      String
+  section   Section        @relation(fields: [sectionId], references: [id])
+  sectionId String         @db.ObjectId
+  start     DateTime       @db.Date
+  sub       String
 }
 
 model User {

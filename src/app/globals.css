@@ -126,6 +126,19 @@ a {
   margin-bottom: 2rem;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
+.text-bold {
+  font-weight: bolder;
+}
+
+.preline {
+  white-space: pre-line;
+  padding: var(--size-x-small) 0;
+}
+
 .center {
   display: flex;
   justify-content: center;

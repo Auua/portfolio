@@ -5,32 +5,6 @@ import React from 'react';
 import { SkillCard } from './SkillCard';
 import { SupportedLocale } from '@/app/_types/common';
 
-const LevelSection = ({
-  level,
-  skills,
-  locale,
-}: {
-  level: Level;
-  skills?: Skill[];
-  locale: SupportedLocale;
-}) => (
-  <div>
-    <div>{Level[level]}</div>
-    <ul>
-      {skills?.map((skill) => (
-        <li key={skill.id}>
-          <SkillCard
-            key={skill.id}
-            skill={skill}
-            sizes={'100%'}
-            locale={locale}
-          />
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
 const SkillSection = ({
   section,
   mappedSkills,
