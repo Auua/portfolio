@@ -162,3 +162,10 @@ a {
   padding: 0;
   position: absolute;
 }
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  main {
+    padding: var(--size-small);
+  }
+}

@@ -65,7 +65,8 @@
   border-bottom: 2px solid var(--highlight);
 }
 
-@media screen and (max-width: 600px) {
+/* Mobile */
+@media screen and (max-width: 700px) {
   .skills {
     display: grid;
     grid-template-columns: 1fr;
@@ -76,5 +77,7 @@
   .table {
     display: block;
     overflow-x: auto;
+    width: 100%;
+    margin: 0;
   }
 }

@@ -1,8 +1,12 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 import Experience from '../../_components/experience/Experience';
+import { PageParamProps } from '@/app/_types/common';
 
-export default async function ExperiencePage() {
+export default async function ExperiencePage({
+  params: { locale },
+}: PageParamProps) {
+  unstable_setRequestLocale(locale);
   const t = await getTranslations('Experience');
   return (
     <>

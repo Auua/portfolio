@@ -25,6 +25,15 @@ const Navbar = async ({ locale }: { locale: string }) => {
         <span className={`${styles.centered} ${styles.label}`}>
           {t('name')}
         </span>
+        <input
+          className={styles.hamburger_menu}
+          type={'checkbox'}
+          id={'hamburger-menu'}
+        />
+        <label className={styles.hamburger} htmlFor={'hamburger-menu'}>
+          <span className={styles.hamburger_line} />
+          <span className={'screen-reader-only'}>menu</span>
+        </label>
         <div className={styles.group}>
           <DarkModeSwitch />
           <LangSwitch locale={locale} t={t} />

@@ -1,24 +1,21 @@
+import { mapParagraphs } from '@/app/_utils/ui/utils';
 import styles from '../page.module.css';
 import { getTranslations } from 'next-intl/server';
-import TopSkills from '../_components/main/TopSkills';
-import Main from '../_components/main/Main';
-import { Suspense } from 'react';
-import LoadingComponent from '@/app/_components/loading/LoadingComponent';
+
+const Section = ({ title, content }: { title: string; content: string }) => (
+  <div>
+    <h2>{title}</h2>
+    <p>{mapParagraphs(content)}</p>
+  </div>
+);
 
 export default async function MainTabPage() {
-  const t = await getTranslations('Home');
+  const t = await getTranslations('About');
   return (
     <div className={styles.content}>
-      <Main header={t('title')} list={t.raw('content.list')} />
-      <div className={styles.second}>
-        <Suspense fallback={<LoadingComponent />}>
-          <TopSkills header={t('titleSkills')} />
-        </Suspense>
-        <section>
-          <p className={styles.based}>- {t('based')} -</p>
-          <p className={styles.clifton}>{t('clifton')}</p>
-        </section>
-      </div>
+      <Section title={t('overview.title')} content={t('overview.content')} />
+      <Section title={t('engineer.title')} content={t('engineer.content')} />
+      <Section title={t('outside.title')} content={t('outside.content')} />
     </div>
   );
 }

@@ -20,17 +20,16 @@ export type TranslationProps = TranslatorProps & {
 
 export type SessionAndTranslationsProps = SessionProps & TranslationProps;
 
-export type ParamProps = {
-  params?: { id: string };
+export type PageParamProps = {
+  params: { id?: string; locale: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-export type LocaleParamProps = {
+export type LayoutParamProps = PageParamProps & {
   children?: ReactNode;
   form?: ReactNode;
   tabs?: ReactNode;
   home?: ReactNode;
-  params: { locale: string };
 };
 
 export type ErrorProps = {

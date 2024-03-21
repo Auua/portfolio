@@ -4,7 +4,7 @@ import styles from './page.module.css';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { SUPPORTED_LANGUAGES } from '../../../i18n';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-import { LocaleParamProps } from '@/app/_types/common';
+import { LayoutParamProps, PageParamProps } from '@/app/_types/common';
 import { Suspense } from 'react';
 import Navbar from '@/app/_components/navigation/mainNav/Navbar';
 import { Analytics } from '@/app/_components/Analytics';
@@ -12,9 +12,7 @@ import Footer from '@/app/_components/footer/Footer';
 import Providers from '@/app/_components/providers/Providers';
 import Tabs from '../_components/navigation/tabs/Tabs';
 
-export async function generateMetadata({
-  params: { locale },
-}: LocaleParamProps) {
+export async function generateMetadata({ params: { locale } }: PageParamProps) {
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
   const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
@@ -52,7 +50,7 @@ export default function LocaleLayout({
   tabs,
   home,
   params: { locale },
-}: LocaleParamProps) {
+}: LayoutParamProps) {
   unstable_setRequestLocale(locale);
   const messages = useMessages();
 
