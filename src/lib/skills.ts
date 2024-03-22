@@ -22,7 +22,7 @@ export const preload = () => {
 
 export const getSkills = async () => {
   try {
-    const page = await prisma.page.findUniqueOrThrow({
+    const page = await prisma.page.findUnique({
       where: {
         label: 'skills',
       },

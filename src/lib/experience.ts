@@ -3,7 +3,7 @@ import { cache } from 'react';
 
 export const getTimelineFor = cache(async (name: string) => {
   try {
-    const page = await prisma.section.findFirstOrThrow({
+    const page = await prisma.section.findFirst({
       where: {
         tag: name,
       },

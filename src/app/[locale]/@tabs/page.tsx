@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 const Section = ({ title, content }: { title: string; content: string }) => (
   <div>
     <h2>{title}</h2>
-    <p>{mapParagraphs(content)}</p>
+    <div>{mapParagraphs(content)}</div>
   </div>
 );
 
