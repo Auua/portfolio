@@ -19,7 +19,7 @@ const TimelineSection = ({
   const work = workData?.timeline ?? [];
   const education = educationData?.timeline ?? [];
 
-  const firstWork = work?.slice(-1)[0].end?.getFullYear() ?? 2018;
+  const firstWork = work?.slice(-1)[0]?.end?.getFullYear() ?? 2018;
   const currentYear = new Date().getFullYear();
   const workYears = (work[0]?.end?.getFullYear() ?? currentYear) - firstWork;
 

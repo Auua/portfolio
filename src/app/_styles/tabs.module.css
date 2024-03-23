@@ -19,7 +19,7 @@
 .tabs .active {
   text-decoration: underline bolder;
   background-color: var(--highlight);
-  color: var(--button-text-color);
+  color: var(--text-dark);
 }
 
 .tabs a:hover {

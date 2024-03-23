@@ -12,7 +12,7 @@ export default async function SkillsPage({
   const t = await getTranslations('Skills');
   return (
     <>
-      <h1>{t('title')}</h1>
+      <h1 id={'main'}>{t('title')}</h1>
       <LevelExplanation {...t.raw('levels')} />
       <Suspense>
         <Skills sectionHeaderLevel={2} />

@@ -122,8 +122,8 @@
 
 .project_title {
   background-color: var(--highlight);
-  color: var(--button-text-color);
   padding: var(--size-small);
+  color: var(--text-dark);
   font-size: large;
 }
 

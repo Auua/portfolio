@@ -11,7 +11,7 @@ export default async function ExperiencePage({
   const t = await getTranslations('Experience');
   return (
     <div className={styles.main}>
-      <h1>{t('title')}</h1>
+      <h1 id={'main'}>{t('title')}</h1>
       <Suspense>
         <Experience showDetails={true} />
       </Suspense>

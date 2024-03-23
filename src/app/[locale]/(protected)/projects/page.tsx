@@ -13,7 +13,7 @@ export default async function ProjectsPage({
   const searchTags = searchParams?.tags?.toString().split(',');
   return (
     <>
-      <h1>{t('title')}</h1>
+      <h1 id={'main'}>{t('title')}</h1>
       <Suspense fallback={<LoadingComponent translation={t('loading')} />}>
         <Projects searchTags={searchTags} />
       </Suspense>

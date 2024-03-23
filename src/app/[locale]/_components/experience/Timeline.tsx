@@ -50,7 +50,7 @@ export const Timeline = ({
   Extra,
 }: TimelineProps) => {
   if (!timelineData) {
-    return <>{t('notFound')}</>;
+    return <p>{t('notFound')}</p>;
   }
   return (
     <>

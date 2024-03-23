@@ -41,7 +41,6 @@
 .history {
   display: flex;
   flex-direction: column;
-
   margin-inline: var(--inlineP);
 }
 
@@ -58,7 +57,6 @@
 
 .description_title {
   background-color: var(--highlight);
-  color: var(--button-text-color);
   padding: var(--size-small);
 }
 
@@ -230,6 +228,10 @@
 }
 
 @media (min-width: 800px) {
+  .main h1 {
+    text-align: center;
+  }
+
   .section {
     padding: 0;
     margin: 0;
