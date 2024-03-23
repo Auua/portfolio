@@ -19,21 +19,24 @@
   "rules": {
     "no-unused-vars": "warn",
     "react/react-in-jsx-scope": "off",
-    "jest/no-mocks-import": "off"
+    "jest/no-mocks-import": "off",
+    "react/prop-types": "off"
   },
   "plugins": ["testing-library", "react", "react-hooks", "import", "@typescript-eslint" ],
   "overrides": [
     // Only uses Testing Library lint rules in test files
     {
       "files": [
-        "**/__mocks__/**/*.[jt]s?(x)",
-        "**/__tests__/**/*.[jt]s?(x)",
+        "**/mocks/**/*.[jt]s?(x)",
+        "**/tests/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"
       ],
       "extends": ["plugin:testing-library/react"],
       "rules": {
         "jest/no-mocks-import": "off",
-        "testing-library/prefer-screen-queries": "off"
+        "testing-library/prefer-screen-queries": "off",
+        "import/no-extraneous-dependencies": "off",
+        "react/display-name": "off"
       }
     }
   ]

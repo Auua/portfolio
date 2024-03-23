@@ -1,0 +1,39 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "mongodb://root:password@localhost:27017/portfoliotestdb?authSource=admin&retryWrites=true&w=majority"
+      AUTH_URL: "http://localhost:3000/api/auth"
+      AUTH_SECRET: "RandomSecret"
+      NEXT_PUBLIC_VERCEL_URL: "http://localhost:3000"
+      GITHUB_ACCESS_TOKEN: ${{ secrets.ACTION_SECRET }}
+      DISCORD_WEBHOOK: ${{ secrets.CONTACT_URL }}
+      CI: true
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Load Translations from Submodule
+      run: npm run submodule-install
+    - name: Start MongoDB with Docker Compose
+      run: npm run compose:up
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30

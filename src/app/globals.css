@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css?family=Coda:400|Nothing+You+Could+Do:400,700&display=swap');
+@import '@/app/_styles/button.module.css';
+
+:root {
+  color-scheme: dark light;
+  --background: #fcfcfc;
+  --background-secondary: #ebe9ed;
+  --background-lighter: #ebe9ed;
+
+  --text-color: #16161a;
+  --text-secondary: #4f5663;
+  --text-dark: #16161a;
+
+  --button-text-color: #f5f5f5;
+  --notification-alert-text: #af0808;
+  --notification-success-text: #076442;
+
+  --primary: #044fc6;
+  --highlight: #14bd7f;
+
+  --primary-hover: #1460dc;
+  --highlight-hover: #11a26d;
+
+  /* paddings and margins */
+  --size-x-small: 0.25rem;
+  --size-small: 0.5rem;
+  --size-default: 1rem;
+  --size-large: 2rem;
+  --size-x-large: 3rem;
+
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+  --font-heading: 'Nothing You Could Do', sans-serif;
+  --font-headings: 'Coda', sans-serif;
+  --font-button: 'Avenir Next LT W01 Bold', sans-serif;
+}
+
+[data-theme='dark'] {
+  --background: #16161a;
+  --background-secondary: #1f1e2b;
+  --background-lighter: #575767;
+
+  --text-color: #ebe9ed;
+  --text-secondary: rgb(132, 142, 156);
+
+  --button-text-color: #f5f5f5;
+
+  --notification-alert-text: #ff7a8a;
+  --notification-success-text: #14bd7f;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100dvw;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-mono);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+  background: var(--background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+  font-family: var(--font-headings);
+}
+
+h1,
+h2 {
+  line-height: 1.5;
+  padding: var(--size-default) 0;
+  margin: var(--size-default) 0;
+}
+
+h3,
+h4 {
+  padding: var(--size-x-small) 0;
+  margin: var(--size-small) 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 6rem;
+  flex: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+.quote {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.text-bold {
+  font-weight: bolder;
+}
+
+.preline {
+  white-space: pre-line;
+  padding: var(--size-x-small) 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: var(--size-large) 0;
+  flex-direction: column;
+}
+
+.full {
+  flex: 1;
+}
+
+.screen-reader-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  main {
+    padding: var(--size-small);
+  }
+}

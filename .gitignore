@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
 # testing
 /coverage
@@ -19,6 +20,8 @@
 .DS_Store
 *.pem
 .idea
+.vscode/
+certificates
 
 # debug
 npm-debug.log*
@@ -29,6 +32,7 @@ yarn-error.log*
 .env*.local
 .env
 .env.local
+.env*
 
 # vercel
 .vercel
@@ -37,5 +41,16 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-certificates
-.vscode/
+# scrpited files
+public/robots.txt
+public/sitemap.xml
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests-examples/
+/v2/

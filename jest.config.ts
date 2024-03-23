@@ -11,12 +11,14 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
     '/__utils__/',
+    '<rootDir>/v2/__tests__/',
+    '<rootDir>/src/e2e/',
   ],
   preset: 'ts-jest',
   verbose: true,
@@ -28,6 +30,7 @@ const customJestConfig = {
     'app/**/*.{js,jsx,ts,tsx}',
     '!**/api/auth/[...nextauth]/**',
     '!**/_lib/**',
+    '!**/*.spec.ts',
   ],
 };
 

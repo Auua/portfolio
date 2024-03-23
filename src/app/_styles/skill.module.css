@@ -1,0 +1,83 @@
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+}
+
+.skill figcaption {
+  margin-top: var(--size-small);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(auto, 1fr));
+  object-fit: fill;
+  background-color: var(--background-lighter);
+  margin-bottom: var(--size-large);
+}
+
+.level {
+  border: 2px solid var(--background);
+  padding: var(--size-default);
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--size-small);
+  padding: var(--size-default);
+  justify-content: center;
+  list-style: none;
+}
+
+.grid li {
+  justify-content: center;
+  flex-basis: 20%;
+  display: flex;
+}
+
+.table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.9em;
+  box-shadow: 0 0 var(--size-default) rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+  background-color: var(--highlight);
+  text-align: left;
+}
+
+.table th,
+.table td,
+.table ul {
+  padding: var(--size-default);
+}
+
+.table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--highlight);
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: var(--size-x-small);
+    object-fit: fill;
+  }
+
+  .table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    margin: 0;
+  }
+}
