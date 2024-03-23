@@ -22,9 +22,9 @@ const Navbar = async ({ locale }: { locale: string }) => {
             {t('skip')}
           </Link>
         </div>
-        <span className={`${styles.centered} ${styles.label}`}>
+        <Link className={`${styles.centered} ${styles.label}`} href={'/'}>
           {t('name')}
-        </span>
+        </Link>
         <input
           className={styles.hamburger_menu}
           type={'checkbox'}

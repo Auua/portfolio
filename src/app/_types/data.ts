@@ -10,7 +10,7 @@ export type SkillSectionProps = Prisma.SectionGetPayload<{
 
 export type TimelineSectionProps = Prisma.SectionGetPayload<{
   include: { timeline: true };
-}>;
+}> | null;
 
 export enum Level {
   Expert = 'Expert',
