@@ -15,7 +15,7 @@ const Navbar = async ({ locale }: { locale: string }) => {
   const [t, session] = await Promise.all([tPromise, sessionPromise]);
 
   return (
-    <nav className={styles.placeholder}>
+    <nav aria-label={'main-nav'} className={styles.placeholder}>
       <div className={styles.main}>
         <div className={styles.first}>
           <Link className={styles.skip} href={'#main'}>

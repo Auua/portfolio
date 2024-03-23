@@ -17,7 +17,7 @@ export default function TabBar() {
   };
 
   return (
-    <nav id={'tabs'} className={styles.tabs}>
+    <nav aria-label={'tabs'} id={'tabs'} className={styles.tabs}>
       {links.map((link) => (
         <Link
           key={link.href}
